@@ -6,6 +6,9 @@ var bodyParser = require('body-parser');
 // MongoDB
 mongoose.connect('mongodb://localhost/rest_test');
 
+mongoose.Promise = global.Promise;
+
+
 // Express
 var app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -16,4 +19,4 @@ app.use('/api', require('./routes/api'));
 
 // Start server
 app.listen(3000);
-console.log('Listening on port 3000...');
+console.log('Listening on port 3000...');   
