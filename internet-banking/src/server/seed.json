@@ -2,55 +2,55 @@
     {
         "account": 1001,
         "name": "Luiz Gall",
-        "password": "123456",
+        "password": 123456,
         "balance": 1000,
         "logs": []
     },
     {
         "name": "Robério de Jesus dos Anjos",
-        "password": "123456",
+        "password": 123456,
         "balance": 1000,
         "account": 1002,
         "logs": []
     },
     {
         "name": "Bruno Brandão Mendes Sesso",
-        "password": "123456",
+        "password": 123456,
         "balance": 1000,
         "account": 1003,
         "logs": []
     },
     {
         "name": "Marcelo dos Santos Veiga",
-        "password": "123456",
+        "password": 123456,
         "balance": 1000,
         "account": 1004,
         "logs": []
     },
     {
         "name": "André Camargo",
-        "password": "123456",
+        "password": 123456,
         "balance": 1000,
         "account": 1005,
         "logs": []
     },
     {
         "name": "Maykon Henrique dos Santos",
-        "password": "123456",
+        "password": 123456,
         "balance": 1000,
         "account": 1006,
         "logs": []
     },
     {
         "name": "Murilo Portescheller",
-        "password": "123456",
+        "password": 123456,
         "balance": 1000,
         "account": 1007,
         "logs": []
     },
     {
         "name": "Bruno Serafim de Morais",
-        "password": "123456",
+        "password": 123456,
         "balance": 1000,
         "account": 1008,
         "logs": []

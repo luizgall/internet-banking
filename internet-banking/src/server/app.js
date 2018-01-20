@@ -41,24 +41,50 @@ Users.find({}, function (err, docs) {
 
 
 app.use('/api', require('./routes/api'));
+
 // Definir rotas da api
 app.post('/api/login', function(request, response){
-  Users.find({"account":request.body.account,"password": request.body.password}, function (err, docs) {
+  let account = request.body.account
+  let password = request.body.password
+  Users.find({"account":account,"password":password}, function (err, docs) {
     if(docs.length === 0){
-      response.json({ login: false });
+      response.send(false)
     } if (docs.length === 1){
-      response.json({ login: true });
+      response.send(true)
     }
   })
-
 
 });
 
 
 app.post('/api/transferencia', function(request, response){
+  let account = request.body.account
+  let password = request.body.password
+  let value = request.body.value
+  let dest = request.body.dest
 
-
-
+  // Conferir senha
+  Users.find({"account":account,"password":password}, function (err, docs) {
+    if(docs.length === 0){
+      response.send({msg:"Senha inválida"})
+    } else if (docs.length === 1){
+      if(docs[0].balance < value ){
+        response.send({msg:"Saldo insuficiente"})
+      } else{
+        Users.findOne({"account":dest},function(err, doc){
+          if(doc === null){
+            response.send({msg:"Destinatário não encontrado"})
+          } else{
+            docs[0].balance -= value
+            docs[0].save()
+            doc.balance += value
+            doc.save()
+            response.send({msg:"Sucesso!", seuSaldo:docs[0].balance, saldoDest: doc.balance, data: new Date()})
+          }
+        })
+      }
+    }
+  })
 })
 
 
@@ -73,3 +99,14 @@ app.post('/api/extrato', function(request, response){
 // Start server
 app.listen(3000);
 console.log('Listening on port 3000...');   
+
+
+function login(account, password){
+
+}
+
+function getUserBalance(account){
+  Users.find({"account":account}, function(err, docs){
+      return true
+  })
+}
