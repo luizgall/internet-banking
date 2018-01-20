@@ -7,7 +7,7 @@ import{LoginService} from './services/login.service'
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
   
@@ -15,9 +15,12 @@ export class AppComponent {
 
   }
   title = 'app';
+
+
+
   ngOnInit(){
     this.serviceService.doGet();
-    let account=10011
+    let account = 1002
     let password = 123456
     this.loginService.tryLogin(account, password);
   }

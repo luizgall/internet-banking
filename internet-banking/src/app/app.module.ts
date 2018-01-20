@@ -7,17 +7,19 @@ import { LoginService } from "./services/login.service";
 
 
 import { AppComponent } from './app.component';
-import { TelaLoginComponent } from './components/tela-login/tela-login.component';
-import { TelaLoginExtratoComponent } from './components/tela-login-extrato/tela-login-extrato.component';
-import { TelaLoginTransferenciaComponent } from './components/tela-login-transferencia/tela-login-transferencia.component';
+import { LoginComponent } from './components/login/login.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { ExtratoComponent } from './components/extrato/extrato.component';
+import { TransferenciaComponent } from './components/transferencia/transferencia.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    TelaLoginComponent,
-    TelaLoginExtratoComponent,
-    TelaLoginTransferenciaComponent
+    LoginComponent,
+    DashboardComponent,
+    ExtratoComponent,
+    TransferenciaComponent,
   ],
   imports: [
     BrowserModule, 
