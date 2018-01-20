@@ -1,58 +1,58 @@
 [
     {
+        "account": 1001,
         "name": "Luiz Gall",
-        "login": "luizgall",
         "password": "123456",
-        "money": 1000,
+        "balance": 1000,
         "logs": []
     },
     {
         "name": "Robério de Jesus dos Anjos",
-        "login": "dante",
         "password": "123456",
-        "money": 1000,
+        "balance": 1000,
+        "account": 1002,
         "logs": []
     },
     {
         "name": "Bruno Brandão Mendes Sesso",
-        "login": "brunosesso",
         "password": "123456",
-        "money": 1000,
+        "balance": 1000,
+        "account": 1003,
         "logs": []
     },
     {
         "name": "Marcelo dos Santos Veiga",
-        "login": "marceloveiga",
         "password": "123456",
-        "money": 1000,
+        "balance": 1000,
+        "account": 1004,
         "logs": []
     },
     {
         "name": "André Camargo",
-        "login": "andrecamargo",
         "password": "123456",
-        "money": 1000,
+        "balance": 1000,
+        "account": 1005,
         "logs": []
     },
     {
         "name": "Maykon Henrique dos Santos",
-        "login": "maykonsantos",
         "password": "123456",
-        "money": 1000,
+        "balance": 1000,
+        "account": 1006,
         "logs": []
     },
     {
         "name": "Murilo Portescheller",
-        "login": "mukaportes",
         "password": "123456",
-        "money": 1000,
+        "balance": 1000,
+        "account": 1007,
         "logs": []
     },
     {
         "name": "Bruno Serafim de Morais",
-        "login": "brunomorais",
         "password": "123456",
-        "money": 1000,
+        "balance": 1000,
+        "account": 1008,
         "logs": []
     } 
 ]

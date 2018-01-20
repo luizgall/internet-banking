@@ -5,12 +5,13 @@ var mongoose = restful.mongoose;
 // Schema
 var userSchema = new mongoose.Schema({
     name: String,
-    login: String,
-    password: String,
-    money: Number
+    account: Number,
+    password: Number,
+    balance: Number,
+    logs: Array
 });
 
 
 
 // Return model
-module.exports = restful.model('Products', userSchema);
+module.exports = restful.model('User', userSchema);
