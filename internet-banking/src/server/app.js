@@ -55,6 +55,21 @@ app.post('/api/login', function(request, response){
 });
 
 
+app.post('/api/transferencia', function(request, response){
+
+
+
+})
+
+
+
+
+app.post('/api/extrato', function(request, response){
+
+  
+
+})
+
 // Start server
 app.listen(3000);
 console.log('Listening on port 3000...');   

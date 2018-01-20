@@ -4,6 +4,8 @@ import { NgModule } from '@angular/core';
 
 import { ServiceService } from './services/service.service';
 import { LoginService } from "./services/login.service";
+import { ExtratoService } from "./services/extrato.service";
+import { TransferenciaService } from "./services/transferencia.service";
 
 
 import { AppComponent } from './app.component';
@@ -23,7 +25,7 @@ import { TelaLoginTransferenciaComponent } from './components/tela-login-transfe
     BrowserModule, 
     HttpClientModule
   ],
-  providers: [ServiceService, AppComponent, LoginService],
+  providers: [ServiceService, AppComponent, LoginService, TransferenciaService, ExtratoService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
