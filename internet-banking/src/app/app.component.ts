@@ -8,7 +8,7 @@ import { TransferenciaService } from './services/transferencia.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
   
@@ -16,8 +16,13 @@ export class AppComponent {
 
   }
   title = 'app';
+
+
+
   ngOnInit(){
-    let account=1001
+
+    this.serviceService.doGet();
+    let account = 1002
     let password = 123456
     let value = 1
     let dest = 1002

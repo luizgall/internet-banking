@@ -11,7 +11,5 @@ var userSchema = new mongoose.Schema({
     logs: Array
 });
 
-
-
 // Return model
 module.exports = restful.model('User', userSchema);
