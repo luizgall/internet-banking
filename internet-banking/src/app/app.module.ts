@@ -6,6 +6,7 @@ import { ServiceService } from './services/service.service';
 import { LoginService } from "./services/login.service";
 import { ExtratoService } from "./services/extrato.service";
 import { TransferenciaService } from "./services/transferencia.service";
+import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
@@ -14,7 +15,8 @@ import { ExtratoComponent } from './components/extrato/extrato.component';
 import { TransferenciaComponent } from './components/transferencia/transferencia.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatButtonModule, MatIconModule, MatToolbar, MatToolbarModule } from '@angular/material';
+import { MatButtonModule, MatIconModule, MatToolbar, MatToolbarModule, MatGridListModule, MatInputModule } from '@angular/material';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
   declarations: [
@@ -28,10 +30,14 @@ import { MatButtonModule, MatIconModule, MatToolbar, MatToolbarModule } from '@a
     BrowserModule, 
 	HttpClientModule,
 	BrowserAnimationsModule,
+	FormsModule,
 
+	FlexLayoutModule,
 	MatButtonModule,
 	MatIconModule,
-	MatToolbarModule
+	MatToolbarModule,
+	MatGridListModule,
+    MatInputModule
   ],
   providers: [ServiceService, AppComponent, LoginService, TransferenciaService, ExtratoService],
   bootstrap: [AppComponent]
