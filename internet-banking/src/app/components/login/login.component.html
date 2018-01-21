@@ -4,19 +4,16 @@
 		<h2>Seja bem-vindo ao seu banco<br /> 100% online</h2>
 	</header>
 	<div class="form-login">
-		<form>
-			
+		<form class="example-form">
 			<mat-form-field class="example-full-width">
 				<input matInput placeholder="Email" [formControl]="emailFormControl">
 				<mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
 					Please enter a valid email address
 				</mat-error>
 				<mat-error *ngIf="emailFormControl.hasError('required')">
-					Email is
-					<strong>required</strong>
+					Email is <strong>required</strong>
 				</mat-error>
 			</mat-form-field>
-
 		</form>
 	</div>
 </div>
