@@ -22,7 +22,7 @@ export class AppComponent {
   ngOnInit(){
 
     this.serviceService.doGet();
-    let account = 1002
+    let account = 1001
     let password = 123456
     let value = 1
     let dest = 1002
