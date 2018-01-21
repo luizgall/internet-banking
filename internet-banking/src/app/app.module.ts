@@ -15,7 +15,7 @@ import { ExtratoComponent } from './components/extrato/extrato.component';
 import { TransferenciaComponent } from './components/transferencia/transferencia.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatButtonModule, MatIconModule, MatToolbar, MatToolbarModule, MatGridListModule, MatInputModule } from '@angular/material';
+import { MatButtonModule, MatIconModule, MatToolbarModule, MatGridListModule, MatInputModule, MatCardModule, MatSlideToggleModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
@@ -38,7 +38,9 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 	MatIconModule,
 	MatToolbarModule,
 	MatGridListModule,
-    MatInputModule
+	MatInputModule,
+	MatCardModule,
+	MatSlideToggleModule
   ],
   providers: [ServiceService, AppComponent, LoginService, TransferenciaService, ExtratoService],
   bootstrap: [AppComponent]
