@@ -1,6 +1,9 @@
 .login-header {
 	color: #fff;
 	text-align: center;
+	h1 {
+		margin-top: 0;
+	}
 	h2 {
 		font-weight: 100;
 	}
@@ -8,7 +11,8 @@
 
 .form-login {
 	margin-top: 3rem;
-	.mat-form-field-underline {
-		background: #fff !important;
+	min-width: 280px;
+	.form-group {
+		margin: 1rem 0 0;
 	}
 }
