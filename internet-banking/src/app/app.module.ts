@@ -6,7 +6,7 @@ import { ServiceService } from './services/service.service';
 import { LoginService } from "./services/login.service";
 import { ExtratoService } from "./services/extrato.service";
 import { TransferenciaService } from "./services/transferencia.service";
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
@@ -31,6 +31,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 	HttpClientModule,
 	BrowserAnimationsModule,
 	FormsModule,
+	ReactiveFormsModule,
 
 	FlexLayoutModule,
 	MatButtonModule,
