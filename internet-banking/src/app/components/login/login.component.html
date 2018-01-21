@@ -1,64 +1,22 @@
-<h3>Basic Buttons</h3>
-<div class="button-row">
-	<button mat-button>Basic</button>
-	<button mat-button color="primary">Primary</button>
-	<button mat-button color="accent">Accent</button>
-	<button mat-button color="warn">Warn</button>
-	<button mat-button disabled>Disabled</button>
-	<a mat-button routerLink=".">Link</a>
-</div>
+<div class="container vertical-center horizontal">
+	<header class="login-header">
+		<h1>NG Bank<span class="text-thin">LINE</span></h1>
+		<h2>Seja bem-vindo ao seu banco<br /> 100% online</h2>
+	</header>
+	<div class="form-login">
+		<form>
+			
+			<mat-form-field class="example-full-width">
+				<input matInput placeholder="Email" [formControl]="emailFormControl">
+				<mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+					Please enter a valid email address
+				</mat-error>
+				<mat-error *ngIf="emailFormControl.hasError('required')">
+					Email is
+					<strong>required</strong>
+				</mat-error>
+			</mat-form-field>
 
-<h3>Raised Buttons</h3>
-<div class="button-row">
-	<button mat-raised-button>Basic</button>
-	<button mat-raised-button color="primary">Primary</button>
-	<button mat-raised-button color="accent">Accent</button>
-	<button mat-raised-button color="warn">Warn</button>
-	<button mat-raised-button disabled>Disabled</button>
-	<a mat-raised-button routerLink=".">Link</a>
-</div>
-
-<h3>Icon Buttons</h3>
-<div class="button-row">
-	<button mat-icon-button>
-		<mat-icon aria-label="Example icon-button with a heart icon">favorite</mat-icon>
-	</button>
-	<button mat-icon-button color="primary">
-		<mat-icon aria-label="Example icon-button with a heart icon">favorite</mat-icon>
-	</button>
-	<button mat-icon-button color="accent">
-		<mat-icon aria-label="Example icon-button with a heart icon">favorite</mat-icon>
-	</button>
-	<button mat-icon-button color="warn">
-		<mat-icon aria-label="Example icon-button with a heart icon">favorite</mat-icon>
-	</button>
-	<button mat-icon-button disabled>
-		<mat-icon aria-label="Example icon-button with a heart icon">favorite</mat-icon>
-	</button>
-</div>
-
-<h3>Fab Buttons</h3>
-<div class="button-row">
-	<button mat-fab>Basic</button>
-	<button mat-fab color="primary">Primary</button>
-	<button mat-fab color="accent">Accent</button>
-	<button mat-fab color="warn">Warn</button>
-	<button mat-fab disabled>Disabled</button>
-	<button mat-fab>
-		<mat-icon aria-label="Example icon-button with a heart icon">favorite</mat-icon>
-	</button>
-	<a mat-fab routerLink=".">Link</a>
-</div>
-
-<h3>Mini Fab Buttons</h3>
-<div class="button-row">
-	<button mat-mini-fab>Basic</button>
-	<button mat-mini-fab color="primary">Primary</button>
-	<button mat-mini-fab color="accent">Accent</button>
-	<button mat-mini-fab color="warn">Warn</button>
-	<button mat-mini-fab disabled>Disabled</button>
-	<button mat-mini-fab>
-		<mat-icon aria-label="Example icon-button with a heart icon">favorite</mat-icon>
-	</button>
-	<a mat-mini-fab routerLink=".">Link</a>
+		</form>
+	</div>
 </div>
