@@ -25,7 +25,7 @@ export class AppComponent {
     let account = 1001
     let password = 123456
     let value = 1
-    let dest = 1002
+    let dest = 1004
 
     this.loginService.tryLogin(account, password);
     this.transferenciaService.transfer(account, password, value, dest);

@@ -8,7 +8,8 @@ var userSchema = new mongoose.Schema({
     account: Number,
     password: Number,
     balance: Number,
-    logs: Array
+    logs: Array,
+    email: String
 });
 
 // Return model

@@ -22,10 +22,6 @@ app.use(function(req, res, next) {
   });
 
 var Users = require('./models/users');
-//  Users.remove({}, function(err) { 
-//    console.log('collection removed') 
-// });
-
 
  //carregar seeds se banco estiver vazio
 Users.find({}, function (err, docs) {
@@ -79,6 +75,7 @@ app.post('/api/transferencia', function(request, response){
             docs[0].save()
             doc.balance += value
             doc.save()
+            let email = require('./email/sendEmail')(docs[0], doc, value)
             response.send({msg:"Sucesso!", seuSaldo:docs[0].balance, saldoDest: doc.balance, data: new Date()})
           }
         })
