@@ -12,12 +12,12 @@
 // 		private loginService: LoginService
 // 	) { }
 
-// 	// canActivate(): boolean {
-// 	// 	if (this.loginService.tryLogin(1002, 123450)) {
-// 	// 		return true;
-// 	// 	} else {
-// 	// 		this.router.navigate(['/login']);	
-// 	// 		return false;
-// 	// 	}
-// 	// }
+// 	canActivate(): boolean {
+// 		if (this.loginService.tryLogin(1002, 123450)) {
+// 			this.router.navigate(['/login']);				
+// 			return false;
+// 		} else {
+// 			return true;
+// 		}
+// 	}
 // }

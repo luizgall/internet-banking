@@ -1,59 +1,62 @@
-<div class="container vertical-center horizontal">
-	<header class="login-header">
-		<h1>NG Bank<span class="text-thin">LINE</span></h1>
-		<h2>Seja bem-vindo ao seu banco<br /> 100% online</h2>
-	</header>
+<div class="page">
 
-	<mat-card class="opacity-9">
-		<div class="form-login">
-			<form>
+	<div class="container vertical-center horizontal">
+		<header class="login-header">
+			<h1>NG Bank<span class="text-thin">LINE</span></h1>
+			<h2>Seja bem-vindo ao seu banco<br /> 100% online</h2>
+		</header>
 
-				<mat-grid-list cols="6" rowHeight="70">
-					<mat-grid-tile colspan="1">
-						<mat-icon>person_outline</mat-icon>
-					</mat-grid-tile>
-					<mat-grid-tile colspan="5">
-						<mat-form-field class="form-field full-width">
-							<input matInput placeholder="Número da conta" [formControl]="accountFormControl" maxlength="4" minlength="4">
-							<mat-error *ngIf="accountFormControl.hasError('email') && accountFormControl.hasError('minlength') &&  !accountFormControl.hasError('required')">
-								Conta inválida
-							</mat-error>
-							<mat-error *ngIf="accountFormControl.hasError('required')">
-								Insira o número da conta
-							</mat-error>
-						</mat-form-field>
-					</mat-grid-tile>
-				</mat-grid-list>
+		<mat-card class="opacity-9">
+			<div class="form-login">
+				<form>
 
-				<mat-grid-list cols="6" rowHeight="70">
-					<mat-grid-tile colspan="1">
-						<mat-icon>lock_outline</mat-icon>
-					</mat-grid-tile>
-					<mat-grid-tile colspan="5">
-						<mat-form-field class="form-field full-width">
-							<input matInput placeholder="Senha eletrônica" [formControl]="passwordFormControl" maxlength="6" minlength="6">
-							<mat-error *ngIf="passwordFormControl.hasError('maxlength') || passwordFormControl.hasError('minlength') || !passwordFormControl.hasError('required')">
-								Senha deve ter 6 dígitos
-							</mat-error>
-							<mat-error *ngIf="passwordFormControl.hasError('required')">
-								Insira sua senha
-							</mat-error>
-						</mat-form-field>
-					</mat-grid-tile>
-				</mat-grid-list>
-				<div class="form-group">
-					<mat-slide-toggle>continuar logado</mat-slide-toggle>
-				</div>
-				<div class="form-group">
-					<button 
-						mat-raised-button 
-						color="primary" 
-						class="text-uppercase full-width btn-large"
-						routerLink="dashboard"
-					>Acessar minha conta</button>
-				</div>
-			</form>
-		</div>
-	</mat-card>
+					<mat-grid-list cols="6" rowHeight="70">
+						<mat-grid-tile colspan="1">
+							<mat-icon>person_outline</mat-icon>
+						</mat-grid-tile>
+						<mat-grid-tile colspan="5">
+							<mat-form-field class="form-field full-width">
+								<input matInput placeholder="Número da conta" [formControl]="accountFormControl" maxlength="4" minlength="4">
+								<mat-error *ngIf="accountFormControl.hasError('email') && accountFormControl.hasError('minlength') &&  !accountFormControl.hasError('required')">
+									Conta inválida
+								</mat-error>
+								<mat-error *ngIf="accountFormControl.hasError('required')">
+									Insira o número da conta
+								</mat-error>
+							</mat-form-field>
+						</mat-grid-tile>
+					</mat-grid-list>
+
+					<mat-grid-list cols="6" rowHeight="70">
+						<mat-grid-tile colspan="1">
+							<mat-icon>lock_outline</mat-icon>
+						</mat-grid-tile>
+						<mat-grid-tile colspan="5">
+							<mat-form-field class="form-field full-width">
+								<input matInput placeholder="Senha eletrônica" [formControl]="passwordFormControl" maxlength="6" minlength="6">
+								<mat-error *ngIf="passwordFormControl.hasError('maxlength') || passwordFormControl.hasError('minlength') || !passwordFormControl.hasError('required')">
+									Senha deve ter 6 dígitos
+								</mat-error>
+								<mat-error *ngIf="passwordFormControl.hasError('required')">
+									Insira sua senha
+								</mat-error>
+							</mat-form-field>
+						</mat-grid-tile>
+					</mat-grid-list>
+					<div class="form-group">
+						<mat-slide-toggle>continuar logado</mat-slide-toggle>
+					</div>
+					<div class="form-group">
+						<button 
+							mat-raised-button 
+							color="primary" 
+							class="text-uppercase full-width btn-large"
+							routerLink="/"
+						>Acessar minha conta</button>
+					</div>
+				</form>
+			</div>
+		</mat-card>
+	</div>
 
 </div>
