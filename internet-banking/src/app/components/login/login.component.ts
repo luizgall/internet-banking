@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, Validators} from '@angular/forms';
+import {NgModel} from '@angular/forms'
+import {LoginService} from "../../services/login.service"
 
 @Component({
   selector: 'app-login',
@@ -15,10 +17,18 @@ export class LoginComponent implements OnInit {
 	passwordFormControl = new FormControl('', [
 		Validators.required
 	]);
-
-  constructor() { }
+	titulo = "Luiz"
+	data={account:"", password:""}
+  constructor(private loginService:LoginService) {
+	 }
 
   ngOnInit() {
-  }
+
+	}
+	
+	onSubmit(){
+		console.log("submiting", this.data)
+		this.loginService.tryLogin(parseInt(this.data.account), parseInt(this.data.password))
+	}
 
 }

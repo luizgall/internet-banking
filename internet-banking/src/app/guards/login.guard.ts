@@ -17,11 +17,12 @@ import { Router } from '@angular/router';
       private authService: AuthService
  	) { }
 
- 	canActivate(    next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean{
- 		if (!this.loginService.tryLogin(1002, 123456)&&!this.authService.authenticated) {
+ 	canActivate( ){
+ 		if (!this.authService.login) {
  			this.router.navigate(['/login']);				
  			return false;
  		} else {
+			 console.log("Vc ja está logado")
  			return true;
  		}
  	}

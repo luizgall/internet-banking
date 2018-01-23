@@ -8,7 +8,7 @@
 
 		<mat-card class="opacity-9">
 			<div class="form-login">
-				<form>
+				<form (ngSubmit)="onSubmit()">
 
 					<mat-grid-list cols="6" rowHeight="70">
 						<mat-grid-tile colspan="1">
@@ -16,7 +16,7 @@
 						</mat-grid-tile>
 						<mat-grid-tile colspan="5">
 							<mat-form-field class="form-field full-width">
-								<input matInput placeholder="Número da conta" [formControl]="accountFormControl" maxlength="4" minlength="4">
+								<input matInput placeholder="Número da conta" [formControl]="accountFormControl" maxlength="4" minlength="4" [(ngModel)] = "data.account">
 								<mat-error *ngIf="accountFormControl.hasError('email') && accountFormControl.hasError('minlength') &&  !accountFormControl.hasError('required')">
 									Conta inválida
 								</mat-error>
@@ -33,7 +33,7 @@
 						</mat-grid-tile>
 						<mat-grid-tile colspan="5">
 							<mat-form-field class="form-field full-width">
-								<input matInput placeholder="Senha eletrônica" [formControl]="passwordFormControl" maxlength="6" minlength="6">
+								<input matInput placeholder="Senha eletrônica" [formControl]="passwordFormControl" maxlength="6" minlength="6" [(ngModel)] = "data.password">
 								<mat-error *ngIf="passwordFormControl.hasError('maxlength') || passwordFormControl.hasError('minlength') || !passwordFormControl.hasError('required')">
 									Senha deve ter 6 dígitos
 								</mat-error>
@@ -51,7 +51,6 @@
 							mat-raised-button 
 							color="primary" 
 							class="text-uppercase full-width btn-large"
-							routerLink="/"
 						>Acessar minha conta</button>
 					</div>
 				</form>
