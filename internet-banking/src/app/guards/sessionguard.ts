@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
 
 
  @Injectable()
- export class LoginGuard implements CanActivate {
+ export class SessionGuard implements CanActivate {
 
  	isLoggedIn: boolean;
 
@@ -18,8 +18,8 @@ import { Router } from '@angular/router';
  	) { }
 
  	canActivate( ){
- 		if (!localStorage.getItem("logado")) {
- 			this.router.navigate(['/login']);				
+ 		if (localStorage.getItem("logado")) {
+ 			this.router.navigate(['/']);				
  			return false;
  		} else {
  			return true;

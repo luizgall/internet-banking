@@ -9,6 +9,8 @@ import { ExtratoService } from "./services/extrato.service";
 import { TransferenciaService } from "./services/transferencia.service";
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginGuard } from './guards/login.guard';
+import { SessionGuard } from './guards/sessionguard';
+import { ChecarloginService} from './services/checarlogin.service'
 
 import{AuthService} from './auth/auth.service';
 import { AppComponent } from './app.component';
@@ -40,17 +42,20 @@ import {
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { NavbarComponent } from './components/navbar/navbar.component';
 
+
 // app routes
 const appRoutes: Routes = [
   { path: '', component: DashboardComponent,  
-    // canActivate: [LoginGuard]
+    canActivate: [LoginGuard]
      },
-	{ path: 'login', component: LoginComponent },
+	{ path: 'login', component: LoginComponent, 
+			canActivate[SessionGuard]
+	},
   { path: 'extrato', component: ExtratoComponent,
- // canActivate: [LoginGuard] 
+ canActivate: [LoginGuard] 
 },
   { path: 'transferencia', component: TransferenciaComponent,
-  //canActivate: [LoginGuard] 
+ canActivate: [LoginGuard] 
 },
 	{ path: '**', component: PageNotFoundComponent },
 ];
@@ -89,7 +94,7 @@ const appRoutes: Routes = [
 	MatDividerModule,
 	MatListModule
   ],
-  providers: [ServiceService, AppComponent, LoginService, TransferenciaService, ExtratoService, LoginGuard, AuthService],
+  providers: [SessionGuard, ChecarloginService, ServiceService, AppComponent, LoginService, TransferenciaService, ExtratoService, LoginGuard, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

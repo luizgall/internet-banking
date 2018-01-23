@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import {Router} from '@angular/router'
+
 @Injectable()
 export class LoginService {
 
@@ -13,6 +14,8 @@ export class LoginService {
       {
         if(res){
           this.router.navigateByUrl("/")
+          localStorage.setItem("logado", "true")
+
         } else {
           alert("Senha ou usuário incorreto")
         }
