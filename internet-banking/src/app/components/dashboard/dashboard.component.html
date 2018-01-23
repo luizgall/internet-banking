@@ -1,8 +1,44 @@
-<mat-toolbar color="primary">
-	<mat-toolbar-row>
-		<span>Third Line</span>
-		<span class="example-spacer"></span>
-		<mat-icon class="example-icon">favorite</mat-icon>
-		<mat-icon class="example-icon">delete</mat-icon>
-	</mat-toolbar-row>
-</mat-toolbar>
+<div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center start" fxLayoutAlign.xs="center" fxLayoutGap="32px">
+	<mat-card fxFlex="50" fxFlex.sm="100">
+		<mat-card-title>Saldo em conta</mat-card-title>
+		<h3 class="balance">{{ currentBalance | currency: 'BRL': 'symbol': '1.3-3' }}</h3>
+	
+		<div class="f-right mt-2">
+			<a routerLink="transferencia" mat-button color="primary">Fazer transferência</a>
+		</div>
+	</mat-card>
+
+	<mat-card fxFlex="50" fxFlex.sm="100">
+		<mat-card-title>Lançamentos recentes</mat-card-title>
+		
+		<div class="table-container">
+			<mat-table #table [dataSource]="dataSource">
+			
+				<ng-container matColumnDef="type">
+					<mat-header-cell *matHeaderCellDef></mat-header-cell>
+					<mat-cell *matCellDef="let statement"><mat-icon>{{ statement.type }}</mat-icon></mat-cell>
+				</ng-container>
+			
+				<ng-container matColumnDef="date">
+					<mat-header-cell *matHeaderCellDef></mat-header-cell>
+					<mat-cell *matCellDef="let statement">{{ statement.date }}</mat-cell>
+				</ng-container>
+			
+				<ng-container matColumnDef="value">
+					<mat-header-cell *matHeaderCellDef></mat-header-cell>
+					<mat-cell *matCellDef="let statement">{{ statement.value | currency: 'BRL': 'symbol': '1.3-3' }}</mat-cell>
+				</ng-container>
+			
+				<mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+				<mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+			
+			</mat-table>
+
+			
+		</div>
+
+		<div class="f-right mt-2">
+			<a routerLink="extrato" mat-button color="primary">Ver extrato completo</a>
+		</div>
+	</mat-card>
+</div>

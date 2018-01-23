@@ -22,10 +22,23 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 // import { LoginGuard } from './guards/login.guard';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatButtonModule, MatIconModule, MatToolbarModule, MatGridListModule, MatInputModule, MatCardModule, MatSlideToggleModule } from '@angular/material';
+import { 
+	MatButtonModule, 
+	MatIconModule, 
+	MatToolbarModule, 
+	MatGridListModule, 
+	MatInputModule, 
+	MatCardModule, 
+	MatSlideToggleModule, 
+	MatMenuModule, 
+	MatTableModule,
+	MatDividerModule,
+	MatListModule
+} from '@angular/material';
 
 // tentar criar o grid usando o GridList do material, se não conseguir pode usar o modulo abaixo
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 // app routes
 const appRoutes: Routes = [
@@ -46,7 +59,8 @@ const appRoutes: Routes = [
     DashboardComponent,
     ExtratoComponent,
 	TransferenciaComponent,
-	PageNotFoundComponent
+	PageNotFoundComponent,
+	NavbarComponent
   ],
   imports: [
     BrowserModule, 
@@ -66,7 +80,11 @@ const appRoutes: Routes = [
 	MatGridListModule,
 	MatInputModule,
 	MatCardModule,
-	MatSlideToggleModule
+	MatSlideToggleModule,
+	MatMenuModule,
+	MatTableModule,
+	MatDividerModule,
+	MatListModule
   ],
   providers: [ServiceService, AppComponent, LoginService, TransferenciaService, ExtratoService, LoginGuard, AuthService],
   bootstrap: [AppComponent]
