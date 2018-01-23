@@ -43,12 +43,15 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 // app routes
 const appRoutes: Routes = [
   { path: '', component: DashboardComponent,  
-     canActivate: [LoginGuard] },
+    // canActivate: [LoginGuard]
+     },
 	{ path: 'login', component: LoginComponent },
   { path: 'extrato', component: ExtratoComponent,
-  canActivate: [LoginGuard] },
+ // canActivate: [LoginGuard] 
+},
   { path: 'transferencia', component: TransferenciaComponent,
-  canActivate: [LoginGuard] },
+  //canActivate: [LoginGuard] 
+},
 	{ path: '**', component: PageNotFoundComponent },
 ];
 
