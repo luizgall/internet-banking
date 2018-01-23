@@ -49,7 +49,7 @@ const appRoutes: Routes = [
     canActivate: [LoginGuard]
      },
 	{ path: 'login', component: LoginComponent, 
-			canActivate[SessionGuard]
+			canActivate:[SessionGuard]
 	},
   { path: 'extrato', component: ExtratoComponent,
  canActivate: [LoginGuard] 
