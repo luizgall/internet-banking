@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, Validators} from '@angular/forms';
+import{LoginService} from '../../services/login.service';
+
 
 @Component({
   selector: 'app-login',
@@ -19,6 +21,18 @@ export class LoginComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+  }
+  usuario:any = { 
+    account: '',
+    password:''
+  }
+  
+  onSubmit(form){
+    let dados = this.usuario;
+    let account = dados.account;
+    let password = dados.password;
+    console.log(dados.account);
+    console.log(dados.password);
   }
 
 }
