@@ -2,8 +2,7 @@
 var express = require('express');
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
-const jwt = require('express-jwt');
-const jwks = require('jwks-rsa');
+
 
 // MongoDB
 mongoose.connect('mongodb://localhost/rest_test');
@@ -23,19 +22,6 @@ app.use(function(req, res, next) {
     next();
   });
 
-
-  // JWT
-  var jwtCheck = jwt({
-    secret: jwks.expressJwtSecret({
-        cache: true,
-        rateLimit: true,
-        jwksRequestsPerMinute: 5,
-        jwksUri: "https://ngbankingline.auth0.com/.well-known/jwks.json"
-    }),
-    audience: 'ngbankingline',
-    issuer: "https://ngbankingline.auth0.com/",
-    algorithms: ['RS256']
-});
 
   
 var Users = require('./models/users');
@@ -89,8 +75,15 @@ app.post('/api/transferencia', function(request, response){
             response.send({msg:"Destinatário não encontrado"})
           } else{
             docs[0].balance -= value
+            log = {msg: "Transferência de " + value + " para " + doc.account + " no dia " + new Date(), 
+                  date: new Date,
+                  fromUser: docs[0].account,
+                  toUser: doc.account,
+                  value: value}
+            docs[0].logs.push(log)
             docs[0].save()
             doc.balance += value
+            doc.logs.push(log)
             doc.save()
            // let email = require('./email/sendEmail')(docs[0], doc, value)
             response.send({msg:"Sucesso!", seuSaldo:docs[0].balance, saldoDest: doc.balance, data: new Date()})
