@@ -2,6 +2,8 @@
 var express = require('express');
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
+const jwt = require('express-jwt');
+const jwks = require('jwks-rsa');
 
 // MongoDB
 mongoose.connect('mongodb://localhost/rest_test');
@@ -21,6 +23,21 @@ app.use(function(req, res, next) {
     next();
   });
 
+
+  // JWT
+  var jwtCheck = jwt({
+    secret: jwks.expressJwtSecret({
+        cache: true,
+        rateLimit: true,
+        jwksRequestsPerMinute: 5,
+        jwksUri: "https://ngbankingline.auth0.com/.well-known/jwks.json"
+    }),
+    audience: 'ngbankingline',
+    issuer: "https://ngbankingline.auth0.com/",
+    algorithms: ['RS256']
+});
+
+  
 var Users = require('./models/users');
 
  //carregar seeds se banco estiver vazio
