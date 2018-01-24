@@ -33,15 +33,19 @@ NodeJS instalado na última versão, MongoDB, AngularCLI
 ## Passo a passo da instalação do ambiente
 
 * Primeiro clonem o repositório e dentro dele executem o código na linha de comando:
-⋅⋅⋅npm install (para rodar as dependências do projeto)
+
+..* `npm install` (para rodar as dependências do projeto)
 
 * Depois, rode o MongoDB. É preciso ir até a pasta onde você instalou o MongoDB, acessar a pasta .bin e rodar o comando:
-⋅⋅⋅mongod
+
+..* `mongod`
 
 * Para iniciar o servidor, vá até a pasta server (..\internet-banking\src\server) e rode o seguinte comando:
-⋅⋅⋅nodemon app.js
+
+..* `nodemon app.js`
 
 * Por último, execute:
-⋅⋅⋅ng serve (Irá abrir o App na porta do servidor que aparecerá na linha de comando ("localhost:8000" por exemplo))
+
+..* `ng serve` (Irá abrir o App na porta do servidor que aparecerá na linha de comando ("localhost:8000" por exemplo))
 
 **ATENÇÃO:** É necessário que os três comandos (mongod, nodemon app.js e ng serve estejam rodando em janelas diferentes da linha de comando).
