@@ -37,7 +37,7 @@ export class TransferenciaComponent implements OnInit {
    }
    
    onSubmit(){
-    this.transferenciaService.transfer(localStorage.getItem("auth-token"), this.value, this.toAccount, this.afterSubmit);
+    this.transferenciaService.transfer(localStorage.getItem("auth-token"), parseInt(this.value), this.toAccount, this.afterSubmit);
    }
 
   afterSubmit = (res) => {
