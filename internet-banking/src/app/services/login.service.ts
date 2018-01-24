@@ -12,10 +12,11 @@ export class LoginService {
     .subscribe(
       res => 
       {
-        if(res){
+        
+        if(res['status']){
           this.router.navigateByUrl("/")
-          localStorage.setItem("logado", "true")
-
+          localStorage.setItem("auth-token", res['token'])
+         
         } else {
           alert("Senha ou usuário incorreto")
         }
