@@ -46,28 +46,7 @@ app.use('/api', require('./routes/api'));
 
 // Definir rotas da api
 app.post('/api/login', function(request, response){
-  let account = request.body.account
-  let password = request.body.password
-  Users.find({"account":account,"password":password}, function (err, docs) {
-    if(docs.length === 0){
-      response.send({token:'', status: false})
-    } if (docs.length === 1){
-      const token = JWT.sign(
-        {
-          account: docs[0].account,
-          password: docs[0].password,
-          accessLevel: 'admin'
-        },
-        CHAVESECRETA,
-        {
-          expiresIn: '2 days'
-        }
-      )
-      res = {token: token, status: true}
-      response.send(res)
-    }
-  })
-
+  require('./api/login')(Users, request, response, JWT, CHAVESECRETA)
 });
 
 
@@ -132,13 +111,3 @@ app.post('/api/extrato', function(request, response){
 app.listen(3000);
 console.log('Listening on port 3000...');   
 
-
-function login(account, password){
-
-}
-
-function getUserBalance(account){
-  Users.find({"account":account}, function(err, docs){
-      return true
-  })
-}
