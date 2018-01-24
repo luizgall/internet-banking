@@ -12,7 +12,8 @@ export class TransferenciaService {
       {account: account, 
         password: password,
         value: value,
-        dest: dest
+        dest: dest,
+        token: localStorage.getItem('auth-token')
       })
     .subscribe(
       res => 

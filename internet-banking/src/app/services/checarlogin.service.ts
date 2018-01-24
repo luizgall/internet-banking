@@ -6,7 +6,8 @@ export class ChecarloginService {
   constructor() { }
 
   public isLogin(){
-    if(localStorage.getItem("logado")){
+    if(localStorage.getItem("auth-token")){
+
       return true
     } else{
       return false

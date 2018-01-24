@@ -4,13 +4,29 @@ var mongoose = restful.mongoose;
 
 // Schema
 var userSchema = new mongoose.Schema({
-    name: String,
-    account: Number,
-    password: Number,
+    name: {
+        type: String,
+        required: true
+    },
+
+    account: 
+    {type: Number,
+    required: true,
+    min: 1000,
+    max: 9999},
+
+
+    password:
+       {type: Number,
+        required: true,
+        min: 100000,
+        max: 999999},
     balance: Number,
     logs: Array,
-    email: String
-});
+    email: 
+       {type: String,
+        required: true}
+    })
 
 // Return model
 module.exports = restful.model('User', userSchema);

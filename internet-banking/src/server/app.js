@@ -2,8 +2,10 @@
 var express = require('express');
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
-const jwt = require('express-jwt');
-const jwks = require('jwks-rsa');
+
+const JWT = require('jsonwebtoken')
+const CHAVESECRETA = 'ADD901ODKFJUCJNW82319'
+
 
 // MongoDB
 mongoose.connect('mongodb://localhost/rest_test');
@@ -23,19 +25,6 @@ app.use(function(req, res, next) {
     next();
   });
 
-
-  // JWT
-  var jwtCheck = jwt({
-    secret: jwks.expressJwtSecret({
-        cache: true,
-        rateLimit: true,
-        jwksRequestsPerMinute: 5,
-        jwksUri: "https://ngbankingline.auth0.com/.well-known/jwks.json"
-    }),
-    audience: 'ngbankingline',
-    issuer: "https://ngbankingline.auth0.com/",
-    algorithms: ['RS256']
-});
 
   
 var Users = require('./models/users');
@@ -57,55 +46,22 @@ app.use('/api', require('./routes/api'));
 
 // Definir rotas da api
 app.post('/api/login', function(request, response){
-  let account = request.body.account
-  let password = request.body.password
-  Users.find({"account":account,"password":password}, function (err, docs) {
-    if(docs.length === 0){
-      response.send(false)
-    } if (docs.length === 1){
-      response.send(true)
-    }
-  })
-
+  require('./api/login')(Users, request, response, JWT, CHAVESECRETA)
 });
 
 
 app.post('/api/transferencia', function(request, response){
-  let account = request.body.account
-  let password = request.body.password
-  let value = request.body.value
-  let dest = request.body.dest
-
-  // Conferir senha
-  Users.find({"account":account,"password":password}, function (err, docs) {
-    if(docs.length === 0){
-      response.send({msg:"Senha inválida"})
-    } else if (docs.length === 1){
-      if(docs[0].balance < value ){
-        response.send({msg:"Saldo insuficiente"})
-      } else{
-        Users.findOne({"account":dest},function(err, doc){
-          if(doc === null){
-            response.send({msg:"Destinatário não encontrado"})
-          } else{
-            docs[0].balance -= value
-            docs[0].save()
-            doc.balance += value
-            doc.save()
-           // let email = require('./email/sendEmail')(docs[0], doc, value)
-            response.send({msg:"Sucesso!", seuSaldo:docs[0].balance, saldoDest: doc.balance, data: new Date()})
-          }
-        })
-      }
-    }
-  })
+ require('./api/transferencia')(Users, request, response, JWT, CHAVESECRETA)
 })
 
 
 
 
 app.post('/api/extrato', function(request, response){
-
+  let account = request.body.account
+  Users.findOne({"account":account}, function(err,docs){
+    response.send({msg:"Sucesso!!!", seuSaldo:docs[1].balance})
+  })
   
 
 })
@@ -114,13 +70,3 @@ app.post('/api/extrato', function(request, response){
 app.listen(3000);
 console.log('Listening on port 3000...');   
 
-
-function login(account, password){
-
-}
-
-function getUserBalance(account){
-  Users.find({"account":account}, function(err, docs){
-      return true
-  })
-}
