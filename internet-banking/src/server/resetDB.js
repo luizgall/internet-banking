@@ -27,7 +27,7 @@ Users.find({}, function (err, docs) {
          for(let user of fs){
              var instancia = new Users(user)
              instancia.save(function (err) {
-             if (err) return handleError(err)
+              if (err) throw err;
              });}
    })
 

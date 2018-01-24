@@ -27,8 +27,7 @@ export class LoginComponent implements OnInit {
 	}
 	
 	onSubmit(){
-		console.log("submiting", this.data)
-		this.loginService.tryLogin(parseInt(this.data.account), parseInt(this.data.password))
+		this.loginService.tryLogin(parseInt(this.data.account), this.data.password)
 	}
 
 }
