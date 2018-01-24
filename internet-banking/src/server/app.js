@@ -103,7 +103,7 @@ app.post('/api/transferencia', function(request, response){
                   doc.logs.push(log)
                   doc.save()
                 // let email = require('./email/sendEmail')(docs[0], doc, value)
-                  response.send({msg:"Sucesso!", seuSaldo:docs[0].balance, saldoDest: doc.balance, data: new Date()})
+                  response.send({msg:"Sucesso!!!", seuSaldo:docs[0].balance, saldoDest: doc.balance, data: new Date()})
                 }
               })
             }
