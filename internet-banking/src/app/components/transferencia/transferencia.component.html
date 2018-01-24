@@ -2,7 +2,7 @@
 
 	<mat-card fxFlex="50" fxFlex.sm="100">
 		<mat-card-title>Saldo atual disponível</mat-card-title>
-		<h3 class="balance">{{ currentBalance | currency: 'BRL': 'symbol': '1.3-3' }}</h3>
+		<h3 class="balance">{{ data.balance | currency: 'BRL'}}</h3>
 	</mat-card>
 
 	<mat-card fxFlex="50" fxFlex.sm="100">
@@ -16,12 +16,12 @@
 					</mat-grid-tile>
 					<mat-grid-tile colspan="5">
 						<mat-form-field class="form-field full-width">
-							<input matInput placeholder="Valor a transferir" maxlength="4" minlength="4">
+							<input matInput placeholder="Valor a transferir"  [(ngModel)] = "value" name="value">
 							<mat-error>
 								Conta inválida
 							</mat-error>
 							<mat-error>
-								Insira o número da conta
+								Insira o valor para transferir
 							</mat-error>
 						</mat-form-field>
 					</mat-grid-tile>
@@ -33,12 +33,12 @@
 					</mat-grid-tile>
 					<mat-grid-tile colspan="5">
 						<mat-form-field class="form-field full-width">
-							<input matInput placeholder="Conta destino" maxlength="6" minlength="6">
+							<input matInput placeholder="Conta destino" maxlength="4" minlength="4" [(ngModel)] = "toAccount" name="account">
 							<mat-error>
-								Senha deve ter 6 dígitos
+								Conta inválida
 							</mat-error>
 							<mat-error>
-								Insira sua senha
+								Insira o número da conta
 							</mat-error>
 						</mat-form-field>
 					</mat-grid-tile>

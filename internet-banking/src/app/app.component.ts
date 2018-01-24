@@ -34,7 +34,6 @@ export class AppComponent {
     let value = 1
     let dest = 1004
 
-    this.transferenciaService.transfer(account, password, value, dest);
     this.serviceService.doGet();
   }
 

@@ -1,7 +1,6 @@
 module.exports = function (Users, request, response, JWT, CHAVESECRETA){
     let value = request.body.value
     let dest = request.body.dest
-  
     const tokenDoUsuario = request.body.token
   
     if(tokenDoUsuario) {

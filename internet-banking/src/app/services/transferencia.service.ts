@@ -6,18 +6,17 @@ export class TransferenciaService {
 
   constructor(private http:HttpClient) { }
 
-  public transfer(account, password, value, dest ){
+  public transfer(token, value, dest, cb ){
     let url = `http://localhost:3000/api/transferencia`;
     this.http.post(url,
-      {account: account, 
-        password: password,
+      {
         value: value,
         dest: dest,
         token: localStorage.getItem('auth-token')
       })
     .subscribe(
       res => 
-      {console.log(res)},
+      {cb(res)},
       err => {
         console.log(err)
       }
