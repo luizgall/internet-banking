@@ -12,7 +12,6 @@ import { LoginGuard } from './guards/login.guard';
 import { SessionGuard } from './guards/sessionguard';
 import { ChecarloginService} from './services/checarlogin.service'
 
-import{AuthService} from './auth/auth.service';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
@@ -94,7 +93,8 @@ const appRoutes: Routes = [
 	MatDividerModule,
 	MatListModule
   ],
-  providers: [SessionGuard, ChecarloginService, ServiceService, AppComponent, LoginService, TransferenciaService, ExtratoService, LoginGuard, AuthService],
+
+  providers: [SessionGuard, ChecarloginService, ServiceService, AppComponent, LoginService, TransferenciaService, ExtratoService, LoginGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
