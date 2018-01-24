@@ -6,7 +6,7 @@ import {Router} from '@angular/router'
 export class ExtratoService {
   constructor(private http:HttpClient, private router:Router) { }
 
-  public getExtract(account, cb, that){
+  public getExtract(account, cb){
     let url = `http://localhost:3000/api/extrato`;
     this.http.post(url,{account: account})
     .subscribe(
