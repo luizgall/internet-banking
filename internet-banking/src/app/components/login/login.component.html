@@ -33,7 +33,7 @@
 						</mat-grid-tile>
 						<mat-grid-tile colspan="5">
 							<mat-form-field class="form-field full-width">
-								<input matInput placeholder="Senha eletrônica" [formControl]="passwordFormControl" maxlength="6" minlength="6" [(ngModel)] = "data.password">
+								<input type="password" matInput placeholder="Senha eletrônica" [formControl]="passwordFormControl" maxlength="6" minlength="6" [(ngModel)] = "data.password">
 								<mat-error *ngIf="passwordFormControl.hasError('maxlength') || passwordFormControl.hasError('minlength') || !passwordFormControl.hasError('required')">
 									Senha deve ter 6 dígitos
 								</mat-error>

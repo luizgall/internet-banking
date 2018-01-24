@@ -28,6 +28,15 @@ body {
 	padding: 1rem;
 }
 
+.balance {
+	color: #757575;
+	font-size: 22px;
+	font-weight: 400;
+}
+.form-group {
+	margin: 1rem 0 0;
+}
+
 // navbar
 .avatar {
 	background: #ddd;
@@ -71,9 +80,6 @@ body {
 	&.horizontal {
 		flex-direction: column;
 	}
-}
-.opacity-9 {
-	background: rgba(#fff, 0.9);
 }
 
 .btn-large {

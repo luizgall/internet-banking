@@ -1,15 +1,33 @@
 import { Component, OnInit } from '@angular/core';
+import { MatTableDataSource } from '@angular/material';
 
 @Component({
-  selector: 'app-transferencia',
-  templateUrl: './transferencia.component.html',
-  styleUrls: ['./transferencia.component.scss']
+	selector: 'app-transferencia',
+	templateUrl: './transferencia.component.html',
+	styleUrls: ['./transferencia.component.scss']
 })
 export class TransferenciaComponent implements OnInit {
+	
+	currentBalance: number = 8.200;
 
-  constructor() { }
+	displayedColumns = ['type', 'date', 'value'];
+	dataSource = new MatTableDataSource<Statement>(ESTATEMENT_DATA);
 
-  ngOnInit() {
-  }
+	constructor() { }
+
+	ngOnInit() {
+	}
 
 }
+
+export interface Statement {
+	type: string;
+	date: string;
+	value: number;
+}
+
+const ESTATEMENT_DATA: Statement[] = [
+	{ type: 'arrow_forward', date: '11/01/2018', value: 1.079, },
+	{ type: 'arrow_back', date: '07/12/2017', value: 4.026, },
+	{ type: 'arrow_forward', date: '10/12/2017', value: 6.041 },
+];

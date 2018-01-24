@@ -8,6 +8,8 @@ import { MatTableDataSource } from '@angular/material';
 })
 export class DashboardComponent implements OnInit {
 
+	isDashboard: boolean;
+
 	currentBalance: number = 8.200;
 
 	displayedColumns = ['type', 'date', 'value'];
@@ -16,6 +18,7 @@ export class DashboardComponent implements OnInit {
 	constructor() { }
 
 	ngOnInit() {
+		this.isDashboard = false;
 	}
 
 }
