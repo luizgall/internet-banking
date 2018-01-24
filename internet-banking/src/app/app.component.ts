@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
+import {ChecarloginService} from './services/checarlogin.service'
 import{ ServiceService } from './services/service.service'
 import{ LoginService } from './services/login.service'
 import { TransferenciaService } from './services/transferencia.service';
@@ -15,7 +16,8 @@ export class AppComponent {
 	constructor(
 		private serviceService: ServiceService, 
 		private loginService: LoginService, 
-		private transferenciaService: TransferenciaService
+    private transferenciaService: TransferenciaService,
+    private checarloginService: ChecarloginService
 	) {}
 
   title = 'app';
@@ -30,7 +32,6 @@ export class AppComponent {
     let value = 1
     let dest = 1004
 
-    this.loginService.tryLogin(account, password);
     this.transferenciaService.transfer(account, password, value, dest);
     this.serviceService.doGet();
   }

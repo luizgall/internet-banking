@@ -17,14 +17,20 @@ export class LoginComponent implements OnInit {
 	passwordFormControl = new FormControl('', [
 		Validators.required
 	]);
+	
+	titulo = "Luiz"
+	data = {
+		account: "", 
+		password: ""
+	}
 
-  constructor() { }
+	constructor(private loginService:LoginService) {}
 
   ngOnInit() {
   }
-  usuario:any = { 
+  usuario: any = { 
     account: '',
-    password:''
+    password: ''
   }
   
   onSubmit(form){
