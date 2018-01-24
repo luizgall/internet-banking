@@ -14,7 +14,7 @@ export class ExtratoService {
         if(res['status']){
           this.router.navigateByUrl("/")
         } else {
-          alert("Extratoooo")
+          alert("Extratoooo!!")
         }
        
       },

@@ -60,7 +60,7 @@ app.post('/api/transferencia', function(request, response){
 app.post('/api/extrato', function(request, response){
   let account = request.body.account
   Users.findOne({"account":account}, function(err,docs){
-    response.send({msg:"Sucesso!!", seuSaldo:docs[1].balance})
+    response.send({msg:"Sucesso!!!", seuSaldo:docs[1].balance})
   })
   
 
