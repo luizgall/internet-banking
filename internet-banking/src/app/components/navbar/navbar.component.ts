@@ -14,7 +14,9 @@ export class NavbarComponent implements OnInit {
   }
 
   desconectar(){
+
     localStorage.removeItem("auth-token")
+
     this.router.navigate(['/login'])
 
   }

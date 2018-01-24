@@ -16,7 +16,9 @@ import { Router } from '@angular/router';
  	) { }
 
  	canActivate( ){
+
  		if (!localStorage.getItem("auth-token")) {
+
  			this.router.navigate(['/login']);				
  			return false;
  		} else {
