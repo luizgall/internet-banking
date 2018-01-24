@@ -12,13 +12,13 @@ export class ExtratoComponent implements OnInit {
 
   logs = []
   that = this
-  atualizar(res, that){
-    that.logs = res.logs.reverse()
-    console.log(that.logs)
+  atualizar = (res) => {
+    this.logs = res.logs.reverse()
+    console.log(this.logs)
   }
 
   ngOnInit() {
-    this.extratoService.getExtract(1001, this.atualizar, this.that)
+    this.extratoService.getExtract(1001, this.atualizar)
  
   }
 

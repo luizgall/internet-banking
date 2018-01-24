@@ -12,7 +12,7 @@ export class ExtratoService {
       res => 
       {
         if(res['status']){
-          cb(res, that)
+          cb(res)
         } else {
         }
        
