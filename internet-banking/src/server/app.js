@@ -63,12 +63,38 @@ app.post('/api/extrato', function(request, response){
     if (docs !== null){
       response.send({status: true, msg:"Sucesso!!!", balance:docs.balance, logs: docs.logs})
     } else {
-      response.send ({status: false})
+      response.send ({status: false, msg: "Usuário não encontrado"})
     }
     
   })
 
 })
+
+app.post('/api/user', (request,response) => {
+  JWT.verify(request.body.token, CHAVESECRETA, function(erro, tokenDecodificado) {
+    if(tokenDecodificado) {
+     
+      Users.findOne({"account":tokenDecodificado.account}, (err, doc) => {
+          if (doc !== null){
+
+               response.send({status:true, 
+                            balance:doc.balance, 
+                      logs: doc.logs, 
+                      account: doc.account,
+                      username: doc.name
+                    })
+          }
+          else{
+              response.send({status:false, msg: "Usuário não encontrado"})
+          }
+      })
+    } 
+    else{
+      response.send({status:false, msg: "Token inválido"})
+    }
+  })
+})
+  
 
 // Start server
 app.listen(3000);
