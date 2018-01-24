@@ -5,16 +5,15 @@ import {Router} from '@angular/router'
 @Injectable()
 export class ExtratoService {
   constructor(private http:HttpClient, private router:Router) { }
-  public tryExtract(account){
+  public getExtract(account, cb, that){
     let url = `http://localhost:3000/api/extrato`;
     this.http.post(url,{account: account})
     .subscribe(
       res => 
       {
         if(res['status']){
-          this.router.navigateByUrl("/")
+          cb(res, that)
         } else {
-          alert("Extratoooo!!")
         }
        
       },

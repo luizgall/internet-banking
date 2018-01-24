@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ExtratoService } from '../../services/extrato.service'
 
 @Component({
   selector: 'app-extrato',
@@ -7,9 +8,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ExtratoComponent implements OnInit {
 
-  constructor() { }
+  constructor(private extratoService:ExtratoService) { }
+
+  logs = []
+  that = this
+  atualizar(res, that){
+    that.logs = res.logs.reverse()
+    console.log(that.logs)
+  }
 
   ngOnInit() {
+    this.extratoService.getExtract(1001, this.atualizar, this.that)
+ 
   }
+
 
 }
