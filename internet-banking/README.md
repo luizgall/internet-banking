@@ -25,3 +25,20 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+## REQUISITOS
+NodeJS instalado na última versão, MongoDB, AngularCLI
+
+## PASSO A PASSO DA INSTALAÇÃO DO AMBIENTE
+-Primeiro clonem o repositório e dentro dele executem o código na linha de comando:
+    $ npm install (para rodar as dependências do projeto)
+-Depois disso rodar:
+    $ ng serve (Irá abrir o App na porta do servidor que aparecerá na linha de comando ("localhost:8000" por exemplo))
+
+-Para iniciar o servidor, vá até a pasta server (..\internet-banking\src\server) e rode o seguinte comando:
+    nodemon app.js
+
+-Agora só falta rodar o MongoDB. É preciso ir até a pasta onde você instalou o MongoDB, acessar a pasta .bin e rodar o comando:
+    mongod
+
+ATENÇÃO: É necessário que os três comandos (ng serve, nodemon app.js e mongod estejam rodando em janelas diferentes da linha de comando).
