@@ -14,8 +14,9 @@ export class NavbarComponent implements OnInit {
   }
 
   desconectar(){
-    console.log("desconecta")
-    localStorage.removeItem("logado")
+
+    localStorage.removeItem("auth-token")
+
     this.router.navigate(['/login'])
 
   }
