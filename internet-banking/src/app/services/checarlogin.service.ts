@@ -7,6 +7,7 @@ export class ChecarloginService {
 
   public isLogin(){
     if(localStorage.getItem("auth-token")){
+
       return true
     } else{
       return false

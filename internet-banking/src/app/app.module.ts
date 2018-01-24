@@ -93,6 +93,7 @@ const appRoutes: Routes = [
 	MatDividerModule,
 	MatListModule
   ],
+
   providers: [SessionGuard, ChecarloginService, ServiceService, AppComponent, LoginService, TransferenciaService, ExtratoService, LoginGuard],
   bootstrap: [AppComponent]
 })

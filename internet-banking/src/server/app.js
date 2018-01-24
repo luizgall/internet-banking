@@ -2,6 +2,7 @@
 var express = require('express');
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
+
 const JWT = require('jsonwebtoken')
 const CHAVESECRETA = 'ADD901ODKFJUCJNW82319'
 
