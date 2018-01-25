@@ -33,7 +33,7 @@ export class DashboardComponent implements OnInit {
 						this.router.navigate(['/login'])
 					}
 					this.data.username = res['username']
-					this.data.balance = "R$ " + res['balance'].toFixed(2).toString().replace(".", ",")
+					this.data.balance = res['balance'].toFixed(2).toString().replace(".", ",")
 					this.data.account = res["account"]
 					this.data.logs =  res['logs'] 
 				}
