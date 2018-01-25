@@ -40,61 +40,57 @@ import {
 // tentar criar o grid usando o GridList do material, se não conseguir pode usar o modulo abaixo
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { IniciaisPipe } from './pipes/iniciais.pipe';
 
 
 // app routes
 const appRoutes: Routes = [
-  { path: '', component: DashboardComponent,  
-    canActivate: [LoginGuard]
-     },
-	{ path: 'login', component: LoginComponent, 
-			canActivate:[SessionGuard]
-	},
-  { path: 'extrato', component: ExtratoComponent,
- canActivate: [LoginGuard] 
-},
-  { path: 'transferencia', component: TransferenciaComponent,
- canActivate: [LoginGuard] 
-},
+	{ path: '', component: DashboardComponent, canActivate: [LoginGuard] },
+	{ path: 'login', component: LoginComponent, canActivate:[SessionGuard] },
+	{ path: 'extrato', component: ExtratoComponent, canActivate: [LoginGuard] },
+	{ path: 'transferencia', component: TransferenciaComponent, canActivate: [LoginGuard] },
 	{ path: '**', component: PageNotFoundComponent },
 ];
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    LoginComponent,
-    DashboardComponent,
-    ExtratoComponent,
-	TransferenciaComponent,
-	PageNotFoundComponent,
-	NavbarComponent
-  ],
-  imports: [
-    BrowserModule, 
-	HttpClientModule,
-	FormsModule,
-	ReactiveFormsModule,
-
-	// rotas de navegação do app
-	RouterModule.forRoot(appRoutes),
-
-	// layout modules
-	BrowserAnimationsModule,	
-	FlexLayoutModule,
-	MatButtonModule,
-	MatIconModule,
-	MatToolbarModule,
-	MatGridListModule,
-	MatInputModule,
-	MatCardModule,
-	MatSlideToggleModule,
-	MatMenuModule,
-	MatTableModule,
-	MatDividerModule,
-	MatListModule
-  ],
-
-  providers: [SessionGuard, ChecarloginService, ServiceService, AppComponent, LoginService, TransferenciaService, ExtratoService, LoginGuard],
-  bootstrap: [AppComponent]
+	declarations: [
+		AppComponent,
+		LoginComponent,
+		DashboardComponent,
+		ExtratoComponent,
+		TransferenciaComponent,
+		PageNotFoundComponent,
+		NavbarComponent,
+		
+		// pipes
+		IniciaisPipe
+	],
+	imports: [
+		BrowserModule, 
+		HttpClientModule,
+		FormsModule,
+		ReactiveFormsModule,
+		
+		// rotas de navegação do app
+		RouterModule.forRoot(appRoutes),
+		
+		// layout modules
+		BrowserAnimationsModule,	
+		FlexLayoutModule,
+		MatButtonModule,
+		MatIconModule,
+		MatToolbarModule,
+		MatGridListModule,
+		MatInputModule,
+		MatCardModule,
+		MatSlideToggleModule,
+		MatMenuModule,
+		MatTableModule,
+		MatDividerModule,
+		MatListModule
+	],
+	
+	providers: [SessionGuard, ChecarloginService, ServiceService, AppComponent, LoginService, TransferenciaService, ExtratoService, LoginGuard],
+	bootstrap: [AppComponent]
 })
 export class AppModule { }
