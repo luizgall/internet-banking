@@ -7,17 +7,10 @@ import { LoginService } from './services/login.service'
 import { TransferenciaService } from './services/transferencia.service';
 import { ExtratoService } from './services/extrato.service';
 
-// animations
-import { moveIn, fallIn, moveInLeft, moveInDown } from './router.animations';
-
-import { trigger, style, transition, animate, keyframes, query, stagger } from '@angular/animations';
-
 @Component({
 	selector: 'app-root',
 	templateUrl: './app.component.html',
-	styleUrls: ['./app.component.scss'],
-	animations: [moveIn(), fallIn(), moveInLeft(), moveInDown()],
-	host: {'[@moveIn]': ''}
+	styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
 	
