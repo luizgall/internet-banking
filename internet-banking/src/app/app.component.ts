@@ -7,10 +7,17 @@ import { LoginService } from './services/login.service'
 import { TransferenciaService } from './services/transferencia.service';
 import { ExtratoService } from './services/extrato.service';
 
+// animations
+import { moveIn, fallIn, moveInLeft, moveInDown } from './router.animations';
+
+import { trigger, style, transition, animate, keyframes, query, stagger } from '@angular/animations';
+
 @Component({
 	selector: 'app-root',
 	templateUrl: './app.component.html',
-	styleUrls: ['./app.component.scss']
+	styleUrls: ['./app.component.scss'],
+	animations: [moveIn(), fallIn(), moveInLeft(), moveInDown()],
+	host: {'[@moveIn]': ''}
 })
 export class AppComponent {
 	
@@ -21,10 +28,8 @@ export class AppComponent {
 		private transferenciaService: TransferenciaService,
 		private extratoService: ExtratoService,
 		private checarloginService: ChecarloginService,
-		private global:Globals
+		private global: Globals
 	) {}
-	
-	title = 'app';
 	
 	ngOnInit(){
 		this.serviceService.doGet();
