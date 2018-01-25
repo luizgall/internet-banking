@@ -16,21 +16,20 @@
 						</mat-grid-tile>
 						<mat-grid-tile colspan="5">
 							<mat-form-field class="form-field full-width">
-								<input matInput placeholder="Número da conta" [formControl]="accountFormControl" pattern="[0-9]{0,4}" maxlength="4" minlength="4" [(ngModel)] = "data.account">
-								<mat-error 
-									*ngIf="accountFormControl.hasError('email') && accountFormControl.hasError('minlength') &&  !accountFormControl.hasError('required')"
+								<input 
+									matInput 
+									placeholder="Número da conta" 
+									[formControl]="accountFormControl" 
+									pattern="[0-9]{0,4}" 
+									maxlength="4" 
+									minlength="4" 
+									[(ngModel)] = "data.account"
 								>
+								<mat-error *ngIf="accountFormControl.hasError('pattern') || accountFormControl.hasError('minlength')">
 									Conta inválida
 								</mat-error>
-								<mat-error 
-									*ngIf="accountFormControl.hasError('required')"
-								>
+								<mat-error *ngIf="accountFormControl.hasError('required')">
 									Insira o número da conta
-								</mat-error>
-								<mat-error 
-									*ngIf="accountFormControl.hasError('pattern')"
-								>
-									A conta deve ser numérica
 								</mat-error>
 							</mat-form-field>
 						</mat-grid-tile>
@@ -42,20 +41,20 @@
 						</mat-grid-tile>
 						<mat-grid-tile colspan="5">
 							<mat-form-field class="form-field full-width">
-								<input matInput type="password" placeholder="Senha eletrônica" [formControl]="passwordFormControl" pattern="[0-9]{0,6}" maxlength="6" minlength="6" [(ngModel)] = "data.password">
-								<mat-error 
-									*ngIf="(passwordFormControl.hasError('maxlength') || passwordFormControl.hasError('minlength')) && !passwordFormControl.hasError('required') && !passwordFormControl.hasError('pattern')"
+								<input 
+									matInput 
+									type="password" 
+									placeholder="Senha eletrônica" 
+									[formControl]="passwordFormControl" 
+									pattern="[0-9]{0,6}" 
+									maxlength="6" 
+									minlength="6" 
+									[(ngModel)]="data.password"
 								>
-									Senha deve ter 6 dígitos
-								</mat-error>
-								<mat-error 
-									*ngIf="passwordFormControl.hasError('required')"
-								>
+								<mat-error *ngIf="passwordFormControl.hasError('required')">
 									Insira sua senha
 								</mat-error>
-								<mat-error 
-									*ngIf="accountFormControl.hasError('pattern')"
-								>
+								<mat-error *ngIf="passwordFormControl.hasError('pattern')">
 									A senha deve ser numérica
 								</mat-error>
 							</mat-form-field>
@@ -65,7 +64,8 @@
 						<mat-slide-toggle>continuar logado</mat-slide-toggle>
 					</div>
 					<div class="form-group">
-						<button 
+						<button
+							type="submit"
 							mat-raised-button 
 							color="primary" 
 							class="text-uppercase full-width btn-large"

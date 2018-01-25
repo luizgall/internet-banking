@@ -4,6 +4,8 @@ import { NgModel } from '@angular/forms';
 import { LoginService } from '../../services/login.service';
 import { Globals } from '../../model/Globals.module';
 
+import { ToasterService } from '../../services/toaster.service';
+
 // animations
 import { trigger, style, transition, animate, keyframes, query, stagger } from '@angular/animations';
 
@@ -28,7 +30,6 @@ export class LoginComponent implements OnInit {
 	// login form validation
 	accountFormControl = new FormControl('', [
 		Validators.required,
-		Validators.email,
 	]);
 	passwordFormControl = new FormControl('', [
 		Validators.required
@@ -42,12 +43,11 @@ export class LoginComponent implements OnInit {
 	
 	constructor(
 		private loginService: LoginService, 
-		private global: Globals
+		private global: Globals,
+		private toasterService: ToasterService
 	){}
 	
-	ngOnInit() {
-		
-	}
+	ngOnInit() {}
 	
 	onSubmit(){
 		this.global.getApiKey(this.submitLogin)
