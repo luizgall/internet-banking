@@ -1,13 +1,11 @@
 <mat-toolbar color="primary">
 	<mat-toolbar-row [fxLayout]="row" fxLayoutAlign="space-between center">
 
-		<div [fxLayout]="column" fxLayoutAlign="center center">			
-			<div *ngIf="isDashboard; else backBtn">
-				<div class="avatar">JD</div>
-				<div>
-					<div class="name">Olá, John Doe</div>
-					<div class="account">conta: 123456</div>
-				</div>
+		<div [fxLayout]="column" fxLayoutAlign="center center">
+			<div class="avatar">JD</div>
+			<div>
+				<div class="name">Olá, {{data.username}}</div>
+				<div class="account">conta: {{data.account}}</div>
 			</div>
 			<ng-template #backBtn>
 				<a routerLink="/" mat-icon-button>

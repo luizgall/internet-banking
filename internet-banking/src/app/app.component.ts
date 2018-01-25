@@ -5,6 +5,7 @@ import {ChecarloginService} from './services/checarlogin.service'
 import{ ServiceService } from './services/service.service'
 import{ LoginService } from './services/login.service'
 import { TransferenciaService } from './services/transferencia.service';
+import {ExtratoService} from './services/extrato.service';
 
 @Component({
 	selector: 'app-root',
@@ -17,6 +18,7 @@ export class AppComponent {
 		private serviceService: ServiceService, 
 		private loginService: LoginService, 
     private transferenciaService: TransferenciaService,
+    private extratoService: ExtratoService,
     private checarloginService: ChecarloginService
 	) {}
 
@@ -32,7 +34,6 @@ export class AppComponent {
     let value = 1
     let dest = 1004
 
-    this.transferenciaService.transfer(account, password, value, dest);
     this.serviceService.doGet();
   }
 

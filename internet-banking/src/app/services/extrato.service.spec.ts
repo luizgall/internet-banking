@@ -1,15 +1,18 @@
 import { TestBed, inject } from '@angular/core/testing';
 
 import { ExtratoService } from './extrato.service';
+import { RouterTestingModule } from '@angular/router/testing';
+import { HttpClientModule } from '@angular/common/http';
 
 describe('ExtratoService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [ExtratoService]
+      providers: [ExtratoService],
+      imports: [RouterTestingModule, HttpClientModule]
     });
   });
 
-  it('should be created', inject([ExtratoService], (service: ExtratoService) => {
+  it('servico criado', inject([ExtratoService], (service: ExtratoService) => {
     expect(service).toBeTruthy();
   }));
 });
