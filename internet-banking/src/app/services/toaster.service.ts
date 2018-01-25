@@ -6,9 +6,10 @@ export class ToasterService {
 
     constructor(private snackBar: MatSnackBar) {}
 
-    showToaster(msg: string) {
+    showToaster(msg: string, alertType?: string) {
         this.snackBar.open(msg, 'Fechar', {
-            duration: 4000,
+			duration: 9000,
+			panelClass: alertType,
         });
     }
 }
