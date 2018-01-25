@@ -13,7 +13,7 @@ import { Router } from '@angular/router'
 export class DashboardComponent implements OnInit {
 	data = {
 		username: "",
-		balance: 0,
+		balance: "0",
 		account: 0,
 		logs: []
 	}
