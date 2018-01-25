@@ -10,6 +10,6 @@ export class ServiceService {
 	public doGet() {
 		let url = `http://localhost:3000/api/users`;
 		this.http.get(url)
-			.subscribe(res => console.log(res));
+			.subscribe(res => {return res});
 	}
 }
