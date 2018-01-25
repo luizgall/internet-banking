@@ -2,8 +2,6 @@ module.exports = function (Logs, Users, request, response, JWT, CHAVESECRETA, ap
     let value = request.body.value
 	let dest = request.body.dest
 	let receivedApiKey = request.body.apiKey
-	console.log("Received: ", receivedApiKey)
-	console.log("Api: ", apiKey)
 	const tokenDoUsuario = request.body.token
 	
 	if(receivedApiKey === apiKey){
