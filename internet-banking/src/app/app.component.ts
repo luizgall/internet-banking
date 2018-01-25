@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-import {ChecarloginService} from './services/checarlogin.service'
+import { ChecarloginService } from './services/checarlogin.service'
 import { ServiceService } from './services/service.service'
 import { LoginService } from './services/login.service'
 import { TransferenciaService } from './services/transferencia.service';
