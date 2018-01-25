@@ -56,27 +56,19 @@ app.use('/api', require('./routes/api'));
 
 // Definir rotas da api
 app.post('/api/login', function(request, response){
-  require('./api/login')(Users, request, response, JWT, CHAVESECRETA, apiKey)
+  	require('./api/login')(Users, request, response, JWT, CHAVESECRETA, apiKey)
 });
 
 
 app.post('/api/transferencia', function(request, response){
- require('./api/transferencia')(Logs, Users, request, response, JWT, CHAVESECRETA, apiKey)
+ 	require('./api/transferencia')(Logs, Users, request, response, JWT, CHAVESECRETA, apiKey)
 })
 
 
 
 
 app.post('/api/extrato', function(request, response){
-  let account = request.body.account
-  Logs.find({"account":account}, function(err,docs){
-    if (docs !== null){
-      response.send({status: true, msg:"Sucesso!!!", logs: docs})
-    } else {
-      response.send ({status: false, msg: "Usuário não encontrado"})
-    }
-    
-  })
+	require('./api/extrato')(Logs, request, response, JWT, CHAVESECRETA, apiKey)
 
 })
 

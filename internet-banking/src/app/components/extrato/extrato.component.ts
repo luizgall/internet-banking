@@ -10,7 +10,7 @@ import { HttpClient } from '@angular/common/http'
 })
 export class ExtratoComponent implements OnInit {
 	
-	constructor(private extratoService: ExtratoService, private http:HttpClient) { }
+	constructor(private extratoService: ExtratoService, private http:HttpClient, private global:Globals) { }
 	
 	logs = []
 	that = this
@@ -20,13 +20,19 @@ export class ExtratoComponent implements OnInit {
 	}
 	
 	ngOnInit() {
+		this.global.getApiKey(this.getExtract)
+
+	}
+
+	getExtract = (apiKey) =>{
 		let url = `http://localhost:3000/api/user`;
-		this.http.post(url, { token: localStorage.getItem("auth-token") })
+		this.http.post(url, { apiKey:apiKey, token: localStorage.getItem("auth-token") })
 			.subscribe(
-				res => {
-					this.extratoService.getExtract(res['account'], this.atualizar)
-				}
+			res => {
+				this.extratoService.getExtract(apiKey, res['account'], this.atualizar)
+			}
 			)
+
 	}
 	
 }
