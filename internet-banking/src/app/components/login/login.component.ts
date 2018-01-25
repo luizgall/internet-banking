@@ -17,7 +17,7 @@ import { trigger, style, transition, animate, keyframes, query, stagger } from '
 				// animation enter from top
 				query('.enter-from-top', style({ opacity: 0, transform: 'translateY(-25px)' })),
 				query('.enter-from-top', stagger('400ms', [
-					animate('1200ms 0.3s ease-out', style({ opacity: 1, transform: 'translateY(0)' })),
+					animate('800ms 0.3s ease-out', style({ opacity: 1, transform: 'translateY(0)' })),
 				])),
 			])
 		])

@@ -9,7 +9,7 @@ export class IniciaisPipe implements PipeTransform {
 
 		if (fullName) {
 
-			let array = fullName.split(' ');
+			let array = fullName.toString().split(' ');
 
 			if (array.length == 1 ) {
 				nameInitials = array[0].charAt(0).toUpperCase();
