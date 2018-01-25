@@ -2,7 +2,12 @@ module.exports = function(Users, request, response, JWT, CHAVESECRETA, apiKey){
     let account = request.body.account
 	let password = request.body.password
 	let receivedApiKey = request.body.apiKey
-
+	let expire
+	if(request.body.logado){
+		 expire = '1 day'
+	} else {
+		 expire = '10 minutes'
+	}
 	if (receivedApiKey === apiKey){
 		Users.find({"account":account}, function (err, docs) {
         if(docs.length === 0){
@@ -20,7 +25,7 @@ module.exports = function(Users, request, response, JWT, CHAVESECRETA, apiKey){
                     },
                     CHAVESECRETA,
                     {
-                    expiresIn: '2 days'
+                    expiresIn: expire
                     }
                 )
                 res = {token: token, status: true}

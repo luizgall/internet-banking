@@ -92,7 +92,7 @@ app.post('/api/user', (request,response) => {
       })
     } 
     else{
-      response.send({status:false, msg: "Token inválido"})
+      response.send({status:false, msg: "token-invalido"})
     }
   })
 })
