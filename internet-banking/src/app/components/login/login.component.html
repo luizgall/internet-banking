@@ -16,9 +16,9 @@
 						</mat-grid-tile>
 						<mat-grid-tile colspan="5">
 							<mat-form-field class="form-field full-width">
-								<input matInput placeholder="Número da conta" [formControl]="accountFormControl" maxlength="4" minlength="4" [(ngModel)] = "data.account">
+								<input matInput placeholder="Número da conta" [formControl]="accountFormControl" pattern="[0-9]{0,4}" maxlength="4" minlength="4" [(ngModel)] = "data.account">
 								<mat-error 
-									*ngIf="accountFormControl.hasError('email') && accountFormControl.hasError('minlength') && !accountFormControl.hasError('required')"
+									*ngIf="accountFormControl.hasError('email') && accountFormControl.hasError('minlength') &&  !accountFormControl.hasError('required')"
 								>
 									Conta inválida
 								</mat-error>
@@ -26,6 +26,11 @@
 									*ngIf="accountFormControl.hasError('required')"
 								>
 									Insira o número da conta
+								</mat-error>
+								<mat-error 
+									*ngIf="accountFormControl.hasError('pattern')"
+								>
+									A conta deve ser numérica
 								</mat-error>
 							</mat-form-field>
 						</mat-grid-tile>
@@ -37,9 +42,9 @@
 						</mat-grid-tile>
 						<mat-grid-tile colspan="5">
 							<mat-form-field class="form-field full-width">
-								<input matInput type="password" placeholder="Senha eletrônica" [formControl]="passwordFormControl" maxlength="6" minlength="6" [(ngModel)] = "data.password">
+								<input matInput type="password" placeholder="Senha eletrônica" [formControl]="passwordFormControl" pattern="[0-9]{0,6}" maxlength="6" minlength="6" [(ngModel)] = "data.password">
 								<mat-error 
-									*ngIf="passwordFormControl.hasError('maxlength') || passwordFormControl.hasError('minlength') || !passwordFormControl.hasError('required')"
+									*ngIf="(passwordFormControl.hasError('maxlength') || passwordFormControl.hasError('minlength')) && !passwordFormControl.hasError('required') && !passwordFormControl.hasError('pattern')"
 								>
 									Senha deve ter 6 dígitos
 								</mat-error>
@@ -47,6 +52,11 @@
 									*ngIf="passwordFormControl.hasError('required')"
 								>
 									Insira sua senha
+								</mat-error>
+								<mat-error 
+									*ngIf="accountFormControl.hasError('pattern')"
+								>
+									A senha deve ser numérica
 								</mat-error>
 							</mat-form-field>
 						</mat-grid-tile>
