@@ -6,6 +6,8 @@ var bodyParser = require('body-parser');
 const JWT = require('jsonwebtoken')
 const CHAVESECRETA = 'ADD901ODKFJUCJNW82319'
 
+const apiKey = require('./api/apiKey.json')['key']
+
 
 // MongoDB
 mongoose.connect('mongodb://localhost/rest_test');
@@ -46,12 +48,12 @@ app.use('/api', require('./routes/api'));
 
 // Definir rotas da api
 app.post('/api/login', function(request, response){
-  require('./api/login')(Users, request, response, JWT, CHAVESECRETA)
+  require('./api/login')(Users, request, response, JWT, CHAVESECRETA, apiKey)
 });
 
 
 app.post('/api/transferencia', function(request, response){
- require('./api/transferencia')(Users, request, response, JWT, CHAVESECRETA)
+ require('./api/transferencia')(Users, request, response, JWT, CHAVESECRETA, apiKey)
 })
 
 

@@ -12,6 +12,7 @@ import { LoginGuard } from './guards/login.guard';
 import { SessionGuard } from './guards/sessionguard';
 import { ChecarloginService} from './services/checarlogin.service'
 
+import {Globals} from './model/Globals.module'
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
@@ -94,7 +95,7 @@ const appRoutes: Routes = [
 	MatListModule
   ],
 
-  providers: [SessionGuard, ChecarloginService, ServiceService, AppComponent, LoginService, TransferenciaService, ExtratoService, LoginGuard],
+  providers: [SessionGuard, ChecarloginService, ServiceService, AppComponent, LoginService, TransferenciaService, ExtratoService, LoginGuard, Globals],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

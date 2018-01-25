@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ExtratoService } from '../../services/extrato.service'
+import { Globals } from '../../model/Globals.module';
 
 @Component({
   selector: 'app-extrato',
@@ -8,7 +9,7 @@ import { ExtratoService } from '../../services/extrato.service'
 })
 export class ExtratoComponent implements OnInit {
 
-  constructor(private extratoService:ExtratoService) { }
+  constructor(private extratoService:ExtratoService, private global:Globals) { }
 
   logs = []
   that = this
@@ -18,7 +19,8 @@ export class ExtratoComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.extratoService.getExtract(1001, this.atualizar)
+	this.extratoService.getExtract(1001, this.atualizar)
+	console.log(this.global.apiKey)
  
   }
 

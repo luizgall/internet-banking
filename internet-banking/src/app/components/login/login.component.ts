@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormControl, Validators} from '@angular/forms';
 import {NgModel} from '@angular/forms'
 import {LoginService} from "../../services/login.service"
+import {Globals} from '../../model/Globals.module'
 
 @Component({
   selector: 'app-login',
@@ -19,15 +20,18 @@ export class LoginComponent implements OnInit {
 	]);
 	titulo = "Luiz"
 	data={account:"", password:""}
-  constructor(private loginService:LoginService) {
-	 }
+  	constructor(private loginService:LoginService, private global:Globals) { }
 
   ngOnInit() {
 
 	}
 	
 	onSubmit(){
-		this.loginService.tryLogin(parseInt(this.data.account), this.data.password)
+		this.global.getApiKey(this.submitLogin)
+	}
+
+	submitLogin = (apiKey) =>{
+		this.loginService.tryLogin(parseInt(this.data.account), this.data.password, apiKey)
 	}
 
 }

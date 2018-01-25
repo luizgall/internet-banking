@@ -1,11 +1,15 @@
-module.exports = function(Users, request, response, JWT, CHAVESECRETA){
+module.exports = function(Users, request, response, JWT, CHAVESECRETA, apiKey){
     let account = request.body.account
-    let password = request.body.password
-    Users.find({"account":account}, function (err, docs) {
+	let password = request.body.password
+	let receivedApiKey = request.body.apiKey
+
+	if (receivedApiKey === apiKey){
+		Users.find({"account":account}, function (err, docs) {
         if(docs.length === 0){
-        response.send({token:'', status: false})
-        } if (docs.length === 1){
-         docs[0].comparePassword(password, function(err, isMatch){
+      	  response.send({token:'', status: false})
+		} 
+		if (docs.length === 1){
+        	 docs[0].comparePassword(password, function(err, isMatch){
              if(err) throw err
              if(isMatch){
                 const token = JWT.sign(
@@ -26,5 +30,11 @@ module.exports = function(Users, request, response, JWT, CHAVESECRETA){
        
         }
     })
+
+	}
+	else {
+		response.send({status:false})
+	}
+    
 
 }
