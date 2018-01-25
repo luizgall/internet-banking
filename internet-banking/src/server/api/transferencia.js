@@ -18,7 +18,10 @@ module.exports = function (Logs, Users, request, response, JWT, CHAVESECRETA, ap
 						Users.findOne({"account":dest},function(err, doc){
 						if(doc === null){
 							response.send({msg:"Destinatário não encontrado"})
-						} else{
+						} else if(doc.account === docs[0].account){
+							response.send({msg:"Conta inválida"})
+						} 
+						else{
 							docs[0].balance -= value
 							log =
 							 {	msg: "Transferência de " + value + " para " + doc.account + " no dia " + new Date(), 	account:docs[0].account,

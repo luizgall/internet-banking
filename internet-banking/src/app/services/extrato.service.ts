@@ -7,9 +7,10 @@ export class ExtratoService {
 	
 	constructor(private http: HttpClient, private router: Router) { }
 	
-	public getExtract(account, cb) {
+	public getExtract(apiKey, account, cb) {
 		let url = `http://localhost:3000/api/extrato`;
-		this.http.post(url, {account: account})
+		this.http.post(url, {
+			account: account, token: localStorage.getItem('auth-token'), apiKey: apiKey})
 			.subscribe(
 				res => {
 					if(res['status']) {
