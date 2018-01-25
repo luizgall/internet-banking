@@ -1,4 +1,4 @@
-module.exports = function (Users, request, response, JWT, CHAVESECRETA, apiKey){
+module.exports = function (Logs, Users, request, response, JWT, CHAVESECRETA, apiKey){
     let value = request.body.value
 	let dest = request.body.dest
 	let receivedApiKey = request.body.apiKey
@@ -22,18 +22,35 @@ module.exports = function (Users, request, response, JWT, CHAVESECRETA, apiKey){
 							response.send({msg:"Destinatário não encontrado"})
 						} else{
 							docs[0].balance -= value
-							log = {msg: "Transferência de " + value + " para " + doc.account + " no dia " + new Date(), 
-								date: new Date,
-								fromUser: docs[0].account,
-								toUser: doc.account,
-								value: value}
+							log =
+							 {	msg: "Transferência de " + value + " para " + doc.account + " no dia " + new Date(), 	account:docs[0].account,
+								type:"transferencia",
+								date: new Date(),
+								destAccount: doc.account,
+								value: -value
+							}
+							let instance = new Logs(log)
+							instance.save(function (err) {
+							if (err) return console.log(err)
+							})
+							log =
+							 {	msg: "Depósito de  " + value + " recebido de " + doc.account + " no dia " + new Date(), 	account:doc.account,
+								type:"recebimento",
+								date: new Date(),
+								destAccount: docs[0].account,
+								value: value
+							}
+							instance = new Logs(log)
+							instance.save(function (err) {
+							if (err) return console.log(err)
+							})
 							docs[0].logs.push(log)
 							docs[0].save()
 							doc.balance += value
 							doc.logs.push(log)
 							doc.save()
 						// let email = require('./email/sendEmail')(docs[0], doc, value)
-							response.send({msg:"Sucesso!!!", seuSaldo:docs[0].balance, saldoDest: doc.balance, data: new Date()})
+							response.send({msg:"Transação concluída!", seuSaldo:docs[0].balance, saldoDest: doc.balance, data: new Date()})
 						}
 						})
 					}

@@ -38,7 +38,7 @@ app.use(function(req, res, next) {
 
   
 var Users = require('./models/users');
-
+var Logs = require('./models/logs')
  //carregar seeds se banco estiver vazio 	
 Users.find({}, function (err, docs) {
    if(docs.length === 0){ // Se a coleção estiver vazia, popula o banco com os dados do seed.json
@@ -47,7 +47,7 @@ Users.find({}, function (err, docs) {
             var instancia = new Users(user)
             instancia.save(function (err) {
             if (err) return handleError(err)
-            });}
+            })}
    }
   })
 
@@ -61,7 +61,7 @@ app.post('/api/login', function(request, response){
 
 
 app.post('/api/transferencia', function(request, response){
- require('./api/transferencia')(Users, request, response, JWT, CHAVESECRETA, apiKey)
+ require('./api/transferencia')(Logs, Users, request, response, JWT, CHAVESECRETA, apiKey)
 })
 
 
@@ -69,9 +69,9 @@ app.post('/api/transferencia', function(request, response){
 
 app.post('/api/extrato', function(request, response){
   let account = request.body.account
-  Users.findOne({"account":account}, function(err,docs){
+  Logs.find({"account":account}, function(err,docs){
     if (docs !== null){
-      response.send({status: true, msg:"Sucesso!!!", balance:docs.balance, logs: docs.logs})
+      response.send({status: true, msg:"Sucesso!!!", logs: docs})
     } else {
       response.send ({status: false, msg: "Usuário não encontrado"})
     }
