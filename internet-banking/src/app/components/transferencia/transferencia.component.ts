@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, Validators } from '@angular/forms';
 import { HttpClient} from "@angular/common/http"
 import { TransferenciaService} from '../../services/transferencia.service'
 import { Router} from '@angular/router'
@@ -15,6 +16,14 @@ export class TransferenciaComponent implements OnInit {
 
 	displayedColumns = [];
 	dataSource;
+
+	// transfer form validation
+	valueFormControl = new FormControl('', [
+		Validators.required,
+	]);
+	accountFormControl = new FormControl('', [
+		Validators.required
+	]);
 	
 	data = {
 		username: "",
