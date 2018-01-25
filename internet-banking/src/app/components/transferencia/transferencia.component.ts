@@ -4,6 +4,7 @@ import { TransferenciaService} from '../../services/transferencia.service'
 import { Router} from '@angular/router'
 import { MatTableDataSource } from '@angular/material';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { Globals } from '../../model/Globals.module'
 
 @Component({
 	selector: 'app-transferencia',
@@ -28,7 +29,8 @@ export class TransferenciaComponent implements OnInit {
 	constructor(
 		private http: HttpClient,
 		private transferenciaService: TransferenciaService,
-		private router: Router
+		private router: Router,
+		private global:Globals
 	) {}
 	
 	ngOnInit() {
@@ -45,12 +47,18 @@ export class TransferenciaComponent implements OnInit {
 	}
 	
 	onSubmit(){
+		this.global.getApiKey(this.submitTransferencia)
+	}
+	
+	submitTransferencia  = (apiKey) =>{
+		console.log(apiKey)
 		this.transferenciaService.transfer(
-			localStorage.getItem("auth-token"), parseInt(this.value), this.toAccount, this.afterSubmit
-		);
+		apiKey, localStorage.getItem("auth-token"), parseInt(this.value), this.toAccount, this.afterSubmit
+		 );
 	}
 	
 	afterSubmit = (res) => {
+		console.log(res)
 		alert(res.msg)
 		this.router.navigate(['/'])
 	}
