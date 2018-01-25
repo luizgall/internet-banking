@@ -1,4 +1,5 @@
 <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center start" fxLayoutAlign.xs="center" fxLayoutGap="32px">
+
 	<mat-card fxFlex="50" fxFlex.sm="100">
 		<mat-card-title>Saldo em conta</mat-card-title>
 		<h3 class="balance"> {{ data.balance | currency:'BRL'}}</h3>
@@ -33,8 +34,6 @@
 				<mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
 			
 			</mat-table>
-
-			
 		</div>
 
 		<div class="f-right mt-2">

@@ -9,7 +9,7 @@ import { ExtratoService } from "./services/extrato.service";
 import { TransferenciaService } from "./services/transferencia.service";
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginGuard } from './guards/login.guard';
-import { SessionGuard } from './guards/sessionguard';
+import { SessionGuard } from './guards/session.guard';
 import { ChecarloginService} from './services/checarlogin.service'
 
 import { AppComponent } from './app.component';
@@ -19,9 +19,7 @@ import { ExtratoComponent } from './components/extrato/extrato.component';
 import { TransferenciaComponent } from './components/transferencia/transferencia.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
-// futuramente isso bloqueará o acesso às páginas internas caso não esteja logado
-// import { LoginGuard } from './guards/login.guard';
-
+// angular material imports
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { 
 	MatButtonModule, 
@@ -34,14 +32,16 @@ import {
 	MatMenuModule, 
 	MatTableModule,
 	MatDividerModule,
-	MatListModule
+	MatListModule,
+	MatCheckboxModule
 } from '@angular/material';
 
 // tentar criar o grid usando o GridList do material, se não conseguir pode usar o modulo abaixo
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { NavbarComponent } from './components/navbar/navbar.component';
-import { IniciaisPipe } from './pipes/iniciais.pipe';
 
+// custom pipes
+import { IniciaisPipe } from './pipes/iniciais.pipe';
 
 // app routes
 const appRoutes: Routes = [
@@ -87,7 +87,8 @@ const appRoutes: Routes = [
 		MatMenuModule,
 		MatTableModule,
 		MatDividerModule,
-		MatListModule
+		MatListModule,
+		MatCheckboxModule
 	],
 	
 	providers: [SessionGuard, ChecarloginService, ServiceService, AppComponent, LoginService, TransferenciaService, ExtratoService, LoginGuard],

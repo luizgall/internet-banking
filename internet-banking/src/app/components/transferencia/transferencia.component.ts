@@ -3,6 +3,7 @@ import { HttpClient} from "@angular/common/http"
 import { TransferenciaService} from '../../services/transferencia.service'
 import { Router} from '@angular/router'
 import { MatTableDataSource } from '@angular/material';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @Component({
 	selector: 'app-transferencia',
