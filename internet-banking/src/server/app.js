@@ -1,10 +1,20 @@
 // Dependencies
-var express = require('express');
-var mongoose = require('mongoose');
-var bodyParser = require('body-parser');
+const fs = require('fs')
+const http = require("http")
+const https = require ("https")
+
+const options = {
+	key: fs.readFileSync("./SSL/privatekey.pem", 'utf8'),
+	cert: fs.readFileSync("./SSL/server.crt", 'utf8')
+}
+const express = require('express');
+const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
 
 const JWT = require('jsonwebtoken')
 const CHAVESECRETA = 'ADD901ODKFJUCJNW82319'
+
+const apiKey = require('./api/apiKey.json')['key']
 
 
 // MongoDB
@@ -13,7 +23,7 @@ mongoose.Promise = global.Promise;
 
 
 // Express
-var app = express();
+const app = express();
 app.set('json spaces', 40);
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -28,8 +38,8 @@ app.use(function(req, res, next) {
 
   
 var Users = require('./models/users');
-
- //carregar seeds se banco estiver vazio
+var Logs = require('./models/logs')
+ //carregar seeds se banco estiver vazio 	
 Users.find({}, function (err, docs) {
    if(docs.length === 0){ // Se a coleção estiver vazia, popula o banco com os dados do seed.json
       var fs = require('./seed.json');
@@ -37,7 +47,7 @@ Users.find({}, function (err, docs) {
             var instancia = new Users(user)
             instancia.save(function (err) {
             if (err) return handleError(err)
-            });}
+            })}
    }
   })
 
@@ -46,12 +56,12 @@ app.use('/api', require('./routes/api'));
 
 // Definir rotas da api
 app.post('/api/login', function(request, response){
-  require('./api/login')(Users, request, response, JWT, CHAVESECRETA)
+  require('./api/login')(Users, request, response, JWT, CHAVESECRETA, apiKey)
 });
 
 
 app.post('/api/transferencia', function(request, response){
- require('./api/transferencia')(Users, request, response, JWT, CHAVESECRETA)
+ require('./api/transferencia')(Logs, Users, request, response, JWT, CHAVESECRETA, apiKey)
 })
 
 
@@ -59,9 +69,9 @@ app.post('/api/transferencia', function(request, response){
 
 app.post('/api/extrato', function(request, response){
   let account = request.body.account
-  Users.findOne({"account":account}, function(err,docs){
+  Logs.find({"account":account}, function(err,docs){
     if (docs !== null){
-      response.send({status: true, msg:"Sucesso!!!", balance:docs.balance, logs: docs.logs})
+      response.send({status: true, msg:"Sucesso!!!", logs: docs})
     } else {
       response.send ({status: false, msg: "Usuário não encontrado"})
     }
@@ -97,6 +107,9 @@ app.post('/api/user', (request,response) => {
   
 
 // Start server
-app.listen(3000);
-console.log('Listening on port 3000...');   
 
+var httpServer = http.createServer(app);
+var httpsServer = https.createServer(options, app);
+
+httpServer.listen(3000);
+httpsServer.listen(3001);

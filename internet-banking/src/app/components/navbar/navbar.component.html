@@ -1,23 +1,32 @@
-<mat-toolbar color="accent">
+<mat-toolbar color="primary">
 	<mat-toolbar-row [fxLayout]="row" fxLayoutAlign="space-between center">
 
 		<div [fxLayout]="column" fxLayoutAlign="center center">
-			<div class="avatar">JD</div>
+			<div class="avatar">{{ data.username | iniciais }}</div>
 			<div>
-				<div class="name">Olá, {{data.username}}</div>
-				<div class="account">conta: {{data.account}}</div>
+				<div class="name">Olá, {{ data.username }}</div>
+				<div class="account">conta: {{ data.account }}</div>
 			</div>
+			<ng-template #backBtn>
+				<a routerLink="/" mat-icon-button>
+					<mat-icon>arrow_back</mat-icon>
+				</a>
+				<h4>Transferência</h4>
+			</ng-template>
 		</div>
 
 		<div>
-			<a routerLink="/" mat-icon-button>
+			<a routerLink="/" mat-button>
 				<mat-icon>home</mat-icon>
+				Início
 			</a>
-			<a routerLink="/transferencia" mat-icon-button>
+			<a routerLink="/transferencia" mat-button>
 				<mat-icon>swap_vert</mat-icon>
+				<span>Transferência</span>
 			</a>
-			<a routerLink="/extrato" mat-icon-button>
+			<a routerLink="/extrato" mat-button>
 				<mat-icon>format_list_bulleted</mat-icon>
+				<span>Extrato</span>
 			</a>
 
 			<button mat-icon-button [matMenuTriggerFor]="menu">

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material';
-import {HttpClient} from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
+import { Globals } from '../../model/Globals.module'
 
 
 @Component({
@@ -10,8 +11,8 @@ import {HttpClient} from '@angular/common/http';
 })
 export class DashboardComponent implements OnInit {
 	data = {
-		username:"",
-		balance:0,
+		username: "",
+		balance: 0,
 		account: 0,
 		logs: []
 	}
@@ -19,19 +20,19 @@ export class DashboardComponent implements OnInit {
 	displayedColumns = ['type', 'date', 'value'];
 	dataSource = new MatTableDataSource<Statement>(ESTATEMENT_DATA);
 
-	constructor(private http:HttpClient) { }
+	constructor(private http: HttpClient) { }
 
 	ngOnInit() {
 		let url = `http://localhost:3000/api/user`;
 		this.http.post(url, {token: localStorage.getItem("auth-token")})
-				.subscribe(
-					res => {
-						this.data.username = res['username']
-						this.data.balance = parseInt(res['balance'])
-						this.data.account = res["account"]
-						this.data.logs =  res['logs'] 
-					}
-				)
+			.subscribe(
+				res => {
+					this.data.username = res['username']
+					this.data.balance = parseInt(res['balance'])
+					this.data.account = res["account"]
+					this.data.logs =  res['logs'] 
+				}
+			)
 	}
 
 }

@@ -1,1 +1,1 @@
-<p *ngFor="let log of logs">Data:{{log.date}} <br> Valor:{{log.value}} <br> Conta:{{log.toUser}}  {{log.fromUser}}<br> <br></p>
+<p *ngFor="let log of logs">Data: {{log.date | date: 'dd/MM/yyyy'}} <br> Valor:{{log.value}} <br> Conta: {{log.destAccount}}<br> <br></p>

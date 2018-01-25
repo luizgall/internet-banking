@@ -1,6 +1,7 @@
 .page {
 	background: teal url(../../../assets/images/login-img.jpg) bottom left no-repeat;
 	background-size: cover;
+	overflow: hidden;
 }
 
 .login-header {
@@ -17,7 +18,8 @@
 .form-login {
 	margin-top: 3rem;
 	min-width: 280px;
-	.form-group {
-		margin: 1rem 0 0;
-	}
+}
+
+.opacity-9 {
+	background: rgba(#fff, 0.9);
 }
