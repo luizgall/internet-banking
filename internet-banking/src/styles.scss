@@ -97,3 +97,23 @@ body {
 .d-block {
 	display: block;
 }
+
+// toast alerts custom
+.alert-error {
+	background: #d32f2f !important;
+	.mat-simple-snackbar-action {
+		color: #ffffff;
+	}
+}
+.alert-success {
+	background: #388e3c !important;
+	.mat-simple-snackbar-action {
+		color: #ffffff;
+	}
+}
+.alert-warning {
+	background: #ffa000 !important;
+	.mat-simple-snackbar-action {
+		color: #ffffff;
+	}
+}

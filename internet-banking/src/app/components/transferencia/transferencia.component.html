@@ -2,7 +2,7 @@
 
 	<mat-card fxFlex="50" fxFlex.sm="100">
 		<mat-card-title>Saldo atual disponível</mat-card-title>
-		<h3 class="balance">{{ data.balance | currency: 'BRL'}}</h3>
+		<h3 class="balance">{{ 'R$ ' + data.balance }}</h3>
 	</mat-card>
 
 	<mat-card fxFlex="50" fxFlex.sm="100">
@@ -21,7 +21,7 @@
 								required
 								pattern="[0-9]+([\.,][0-9]+)?"
 								placeholder="Valor a transferir"  
-								[(ngModel)] = "value" 
+								[(ngModel)]="value" 
 								[formControl]="valueFormControl"
 								name="value"
 							>
@@ -64,7 +64,11 @@
 					<mat-checkbox>Enviar comprovante por e-mail</mat-checkbox>
 				</div>
 				<div class="form-group">
-					<button mat-raised-button color="primary" class="text-uppercase full-width btn-large">Confirmar transferência</button>
+					<button 
+						mat-raised-button 
+						color="primary" 
+						class="text-uppercase full-width btn-large"
+					>Confirmar transferência</button>
 				</div>
 			</form>
 		</div>

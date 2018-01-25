@@ -54,7 +54,7 @@ const appRoutes: Routes = [
 	{ path: 'login', component: LoginComponent, canActivate:[SessionGuard] },
 	{ path: 'extrato', component: ExtratoComponent, canActivate: [LoginGuard] },
 	{ path: 'transferencia', component: TransferenciaComponent, canActivate: [LoginGuard] },
-	{ path: '**', component: PageNotFoundComponent },
+	{ path: '**', redirectTo: '' },
 ];
 
 @NgModule({
@@ -62,11 +62,11 @@ const appRoutes: Routes = [
 	declarations: [
 		AppComponent,
 		LoginComponent,
+		NavbarComponent,		
 		DashboardComponent,
 		ExtratoComponent,
 		TransferenciaComponent,
 		PageNotFoundComponent,
-		NavbarComponent,
 		
 		// pipes
 		IniciaisPipe

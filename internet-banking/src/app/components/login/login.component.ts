@@ -4,8 +4,6 @@ import { NgModel } from '@angular/forms';
 import { LoginService } from '../../services/login.service';
 import { Globals } from '../../model/Globals.module';
 
-import { ToasterService } from '../../services/toaster.service';
-
 // animations
 import { trigger, style, transition, animate, keyframes, query, stagger } from '@angular/animations';
 
@@ -19,7 +17,7 @@ import { trigger, style, transition, animate, keyframes, query, stagger } from '
 				// animation enter from top
 				query('.enter-from-top', style({ opacity: 0, transform: 'translateY(-25px)' })),
 				query('.enter-from-top', stagger('400ms', [
-					animate('1200ms 0.3s ease-out', style({ opacity: 1, transform: 'translateY(0)' })),
+					animate('800ms 0.3s ease-out', style({ opacity: 1, transform: 'translateY(0)' })),
 				])),
 			])
 		])
@@ -44,8 +42,7 @@ export class LoginComponent implements OnInit {
 	logado
 	constructor(
 		private loginService: LoginService, 
-		private global: Globals,
-		private toasterService: ToasterService
+		private global: Globals
 	){}
 	
 	ngOnInit() {}
