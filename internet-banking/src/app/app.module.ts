@@ -9,7 +9,7 @@ import { ExtratoService } from "./services/extrato.service";
 import { TransferenciaService } from "./services/transferencia.service";
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginGuard } from './guards/login.guard';
-import { SessionGuard } from './guards/sessionguard';
+import { SessionGuard } from './guards/session.guard';
 import { ChecarloginService} from './services/checarlogin.service'
 
 import { AppComponent } from './app.component';
@@ -32,7 +32,8 @@ import {
 	MatMenuModule, 
 	MatTableModule,
 	MatDividerModule,
-	MatListModule
+	MatListModule,
+	MatCheckboxModule
 } from '@angular/material';
 
 // tentar criar o grid usando o GridList do material, se não conseguir pode usar o modulo abaixo
@@ -86,7 +87,8 @@ const appRoutes: Routes = [
 		MatMenuModule,
 		MatTableModule,
 		MatDividerModule,
-		MatListModule
+		MatListModule,
+		MatCheckboxModule
 	],
 	
 	providers: [SessionGuard, ChecarloginService, ServiceService, AppComponent, LoginService, TransferenciaService, ExtratoService, LoginGuard],
