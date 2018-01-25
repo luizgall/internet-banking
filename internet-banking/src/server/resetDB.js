@@ -16,20 +16,26 @@ app.use(function(req, res, next) {
     next();
   });
 
-var Users = require('./models/users');
+var Users = require('./models/users')
+var Logs = require('./models/logs')
 
+Logs.remove({}, function(err){
+	console.log("Logs removidos")
+})
  Users.remove({}, function(err) { 
-   console.log('collection removed') 
+   console.log('Usuários removidos') 
 });
 
 Users.find({}, function (err, docs) {
        var fs = require('./seed.json');
          for(let user of fs){
+			 	console.log(user.account)
              var instancia = new Users(user)
              instancia.save(function (err) {
               if (err) throw err;
              });}
    })
 
-app.listen(3000);
+
+
 console.log('Banco de dados resetado, rode o app.js');   

@@ -2,17 +2,20 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router'
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Globals } from './model/Globals.module';
+
+import { LoginGuard } from './guards/login.guard';
+import { SessionGuard } from './guards/session.guard';
 
 import { ServiceService } from './services/service.service';
 import { LoginService } from "./services/login.service";
 import { ExtratoService } from "./services/extrato.service";
 import { TransferenciaService } from "./services/transferencia.service";
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { LoginGuard } from './guards/login.guard';
-import { SessionGuard } from './guards/session.guard';
-import { ChecarloginService} from './services/checarlogin.service'
+import { ChecarloginService} from './services/checarlogin.service';
+import { ToasterService } from './services/toaster.service';
 
-import {Globals} from './model/Globals.module'
+// components
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
@@ -34,7 +37,8 @@ import {
 	MatTableModule,
 	MatDividerModule,
 	MatListModule,
-	MatCheckboxModule
+	MatCheckboxModule,
+	MatSnackBarModule
 } from '@angular/material';
 
 // tentar criar o grid usando o GridList do material, se não conseguir pode usar o modulo abaixo
@@ -90,10 +94,13 @@ const appRoutes: Routes = [
 		MatTableModule,
 		MatDividerModule,
 		MatListModule,
-		MatCheckboxModule
+		MatCheckboxModule,
+		MatSnackBarModule
 	],
 	
-	providers: [SessionGuard, ChecarloginService, ServiceService, AppComponent, LoginService, TransferenciaService, ExtratoService, LoginGuard, Globals],
+	providers: [
+		SessionGuard, ChecarloginService, ServiceService, AppComponent, LoginService, TransferenciaService, ExtratoService, LoginGuard, Globals, ToasterService
+	],
 	bootstrap: [AppComponent]
 })
 export class AppModule { }
