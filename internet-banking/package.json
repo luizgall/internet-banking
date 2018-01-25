@@ -37,6 +37,8 @@
     "mongoskin": "^2.1.0",
     "node-restful": "^0.2.6",
     "nodemailer": "^4.4.2",
+    "openssl": "^1.1.0",
+    "pem": "^1.12.3",
     "rxjs": "^5.5.2",
     "zone.js": "^0.8.14"
   },

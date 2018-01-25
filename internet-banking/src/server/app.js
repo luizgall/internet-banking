@@ -1,7 +1,15 @@
 // Dependencies
-var express = require('express');
-var mongoose = require('mongoose');
-var bodyParser = require('body-parser');
+const fs = require('fs')
+const http = require("http")
+const https = require ("https")
+
+const options = {
+	key: fs.readFileSync("./SSL/privatekey.pem", 'utf8'),
+	cert: fs.readFileSync("./SSL/server.crt", 'utf8')
+}
+const express = require('express');
+const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
 
 const JWT = require('jsonwebtoken')
 const CHAVESECRETA = 'ADD901ODKFJUCJNW82319'
@@ -15,7 +23,7 @@ mongoose.Promise = global.Promise;
 
 
 // Express
-var app = express();
+const app = express();
 app.set('json spaces', 40);
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -31,7 +39,7 @@ app.use(function(req, res, next) {
   
 var Users = require('./models/users');
 
- //carregar seeds se banco estiver vazio
+ //carregar seeds se banco estiver vazio 	
 Users.find({}, function (err, docs) {
    if(docs.length === 0){ // Se a coleção estiver vazia, popula o banco com os dados do seed.json
       var fs = require('./seed.json');
@@ -99,6 +107,9 @@ app.post('/api/user', (request,response) => {
   
 
 // Start server
-app.listen(3000);
-console.log('Listening on port 3000...');   
 
+var httpServer = http.createServer(app);
+var httpsServer = https.createServer(options, app);
+
+httpServer.listen(3000);
+httpsServer.listen(3001);
