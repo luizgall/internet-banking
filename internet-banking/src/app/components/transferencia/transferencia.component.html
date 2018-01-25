@@ -16,11 +16,19 @@
 					</mat-grid-tile>
 					<mat-grid-tile colspan="5">
 						<mat-form-field class="form-field full-width">
-							<input matInput placeholder="Valor a transferir"  [(ngModel)] = "value" name="value">
-							<mat-error>
-								Conta inválida
+							<input 
+								matInput 
+								required
+								pattern="[0-9]+([\.,][0-9]+)?"
+								placeholder="Valor a transferir"  
+								[(ngModel)] = "value" 
+								[formControl]="valueFormControl"
+								name="value"
+							>
+							<mat-error *ngIf="valueFormControl.hasError('pattern')">
+								Digite um valor válido (ex.: 12,50 ou 12.50)
 							</mat-error>
-							<mat-error>
+							<mat-error *ngIf="valueFormControl.hasError('required')">
 								Insira o valor para transferir
 							</mat-error>
 						</mat-form-field>
@@ -33,11 +41,20 @@
 					</mat-grid-tile>
 					<mat-grid-tile colspan="5">
 						<mat-form-field class="form-field full-width">
-							<input matInput placeholder="Conta destino" maxlength="4" minlength="4" [(ngModel)] = "toAccount" name="account">
-							<mat-error>
+							<input 
+								matInput
+								placeholder="Conta destino" 
+								required
+								pattern="[0-9]{0,4}"
+								maxlength="4" 
+								minlength="4" 
+								[(ngModel)] = "toAccount" 
+								name="account"
+							>
+							<mat-error *ngIf="accountFormControl.hasError('pattern') || accountFormControl.hasError('minlength')">
 								Conta inválida
 							</mat-error>
-							<mat-error>
+							<mat-error *ngIf="accountFormControl.hasError('required')">
 								Insira o número da conta
 							</mat-error>
 						</mat-form-field>
