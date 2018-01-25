@@ -19,9 +19,7 @@ import { ExtratoComponent } from './components/extrato/extrato.component';
 import { TransferenciaComponent } from './components/transferencia/transferencia.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
-// futuramente isso bloqueará o acesso às páginas internas caso não esteja logado
-// import { LoginGuard } from './guards/login.guard';
-
+// angular material imports
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { 
 	MatButtonModule, 
@@ -40,8 +38,9 @@ import {
 // tentar criar o grid usando o GridList do material, se não conseguir pode usar o modulo abaixo
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { NavbarComponent } from './components/navbar/navbar.component';
-import { IniciaisPipe } from './pipes/iniciais.pipe';
 
+// custom pipes
+import { IniciaisPipe } from './pipes/iniciais.pipe';
 
 // app routes
 const appRoutes: Routes = [
