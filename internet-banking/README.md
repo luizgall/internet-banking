@@ -48,4 +48,7 @@ NodeJS instalado na última versão, MongoDB, AngularCLI
 
 ..* `ng serve` (Irá abrir o App na porta do servidor que aparecerá na linha de comando ("localhost:8000" por exemplo))
 
-**ATENÇÃO:** É necessário que os três comandos (mongod, nodemon app.js e ng serve estejam rodando em janelas diferentes da linha de comando).
+**Obs:** É necessário que os três comandos (mongod, nodemon app.js e ng serve estejam rodando em janelas diferentes da linha de comando).
+
+
+**ATENÇÃO** "Sempre que houver mudança na seed, é necessário resetar o banco de dados"
