@@ -41,6 +41,7 @@ export class LoginComponent implements OnInit {
 		password: ""
 	}
 	
+	logado
 	constructor(
 		private loginService: LoginService, 
 		private global: Globals,
@@ -54,7 +55,10 @@ export class LoginComponent implements OnInit {
 	}
 
 	submitLogin = (apiKey) =>{
-		this.loginService.tryLogin(parseInt(this.data.account), this.data.password, apiKey)
+		if(this.logado === undefined){
+			this.logado = false
+		}
+		this.loginService.tryLogin(parseInt(this.data.account), this.data.password, apiKey, this.logado)
 	}
 	
 }

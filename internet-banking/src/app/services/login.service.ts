@@ -7,9 +7,9 @@ export class LoginService {
 
 	constructor(private http: HttpClient, private router: Router) { }
 	
-	public tryLogin(account, password, apiKey){
+	public tryLogin(account, password, apiKey, logado){
 		let url = `http://localhost:3000/api/login`;
-		this.http.post(url, {account: account, password: password, apiKey:apiKey})
+		this.http.post(url, {account: account, password: password, apiKey:apiKey, logado:logado})
 			.subscribe(
 				res => {
 					if(res['status']){

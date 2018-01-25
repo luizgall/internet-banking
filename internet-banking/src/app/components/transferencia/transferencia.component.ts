@@ -51,15 +51,16 @@ export class TransferenciaComponent implements OnInit {
 	}
 	
 	submitTransferencia  = (apiKey) =>{
-		console.log(apiKey)
 		this.transferenciaService.transfer(
 		apiKey, localStorage.getItem("auth-token"), parseInt(this.value), this.toAccount, this.afterSubmit
 		 );
 	}
 	
 	afterSubmit = (res) => {
-		console.log(res)
 		alert(res.msg)
-		this.router.navigate(['/'])
+		if(res.msg == 'Transação concluída!'){
+			this.router.navigate(['/'])
+		}
+		
 	}
 }
