@@ -62,7 +62,7 @@ export class TransferenciaComponent implements OnInit {
 	submitTransferencia  = (apiKey) =>{
 		console.log(apiKey)
 		this.transferenciaService.transfer(
-		apiKey, localStorage.getItem("auth-token"), parseInt(this.value), this.toAccount, this.afterSubmit
+		apiKey, localStorage.getItem("auth-token"), parseFloat(this.value.replace(",", ".")), this.toAccount, this.afterSubmit
 		 );
 	}
 	
