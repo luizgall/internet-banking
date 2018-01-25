@@ -39,7 +39,7 @@ export class TransferenciaComponent implements OnInit {
 		private http: HttpClient,
 		private transferenciaService: TransferenciaService,
 		private router: Router,
-		private global:Globals
+		private global: Globals
 	) {}
 	
 	ngOnInit() {
@@ -62,8 +62,8 @@ export class TransferenciaComponent implements OnInit {
 	submitTransferencia  = (apiKey) =>{
 		console.log(apiKey)
 		this.transferenciaService.transfer(
-		apiKey, localStorage.getItem("auth-token"), parseInt(this.value), this.toAccount, this.afterSubmit
-		 );
+			apiKey, localStorage.getItem("auth-token"), parseInt(this.value), this.toAccount, this.afterSubmit
+		);
 	}
 	
 	afterSubmit = (res) => {
