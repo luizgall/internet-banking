@@ -51,4 +51,4 @@ NodeJS instalado na última versão, MongoDB, AngularCLI
 **Obs:** É necessário que os três comandos (mongod, nodemon app.js e ng serve estejam rodando em janelas diferentes da linha de comando).
 
 
-**ATENÇÃO** "Sempre que houver mudança na seed, é necessário resetar o banco de dados"
+**ATENÇÃO:** Sempre que houver mudança na seed, é necessário resetar o banco de dados. Para isso, rode o comando `nodemon resetDB.js` dentro da pasta ..\internet-banking\src\server
