@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ExtratoService } from '../../services/extrato.service'
+import { Globals } from '../../model/Globals.module';
 
 @Component({
 	selector: 'app-extrato',

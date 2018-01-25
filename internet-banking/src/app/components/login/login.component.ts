@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { NgModel } from '@angular/forms'
-import { LoginService } from '../../services/login.service';
+import { LoginService } from "../../services/login.service"
+import { Globals } from '../../model/Globals.module'
+
+// animations
 import { trigger, style, transition, animate, keyframes, query, stagger } from '@angular/animations';
 
 @Component({
@@ -48,15 +51,18 @@ export class LoginComponent implements OnInit {
 		password: ""
 	}
 	
-	constructor(private loginService: LoginService) {}
+	constructor(private loginService: LoginService, private global:Globals) {}
 	
 	ngOnInit() {
 		
 	}
 	
 	onSubmit(){
-		console.log("submiting", this.data)
-		this.loginService.tryLogin(parseInt(this.data.account), parseInt(this.data.password))
+		this.global.getApiKey(this.submitLogin)
+	}
+
+	submitLogin = (apiKey) =>{
+		this.loginService.tryLogin(parseInt(this.data.account), this.data.password, apiKey)
 	}
 	
 }

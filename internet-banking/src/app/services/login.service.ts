@@ -4,12 +4,12 @@ import { Router } from '@angular/router'
 
 @Injectable()
 export class LoginService {
-	
+
 	constructor(private http: HttpClient, private router: Router) { }
 	
-	public tryLogin(account, password){
+	public tryLogin(account, password, apiKey){
 		let url = `http://localhost:3000/api/login`;
-		this.http.post(url, {account: account, password: password})
+		this.http.post(url, {account: account, password: password, apiKey:apiKey})
 			.subscribe(
 				res => {
 					if(res['status']){
@@ -24,5 +24,4 @@ export class LoginService {
 				}
 			)
 	}
-	
 }

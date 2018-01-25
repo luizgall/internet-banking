@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-
+import { Globals } from './model/Globals.module'
 import { ChecarloginService } from './services/checarlogin.service'
 import { ServiceService } from './services/service.service'
 import { LoginService } from './services/login.service'
@@ -17,15 +17,16 @@ export class AppComponent {
 	constructor(
 		private serviceService: ServiceService, 
 		private loginService: LoginService, 
+
 		private transferenciaService: TransferenciaService,
 		private extratoService: ExtratoService,
-		private checarloginService: ChecarloginService
+		private checarloginService: ChecarloginService,
+		private global:Globals
 	) {}
 	
 	title = 'app';
 	
 	ngOnInit(){
-		
 		this.serviceService.doGet();
 		let account = 1001
 		let password = 123456
