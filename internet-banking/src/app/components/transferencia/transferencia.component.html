@@ -1,3 +1,77 @@
-<p>
-  transferencia works!
-</p>
+<div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center start" fxLayoutAlign.xs="center" fxLayoutGap="32px">
+
+	<mat-card fxFlex="50" fxFlex.sm="100">
+		<mat-card-title>Saldo atual disponível</mat-card-title>
+		<h3 class="balance">{{ data.balance | currency: 'BRL'}}</h3>
+	</mat-card>
+
+	<mat-card fxFlex="50" fxFlex.sm="100">
+		<mat-card-title>Fazer nova transferência</mat-card-title>
+		<div class="form-transfer">
+			<form (ngSubmit)="onSubmit()">
+		
+				<mat-grid-list cols="6" rowHeight="70">
+					<mat-grid-tile colspan="1">
+						<mat-icon>attach_money</mat-icon>
+					</mat-grid-tile>
+					<mat-grid-tile colspan="5">
+						<mat-form-field class="form-field full-width">
+							<input 
+								matInput 
+								required
+								pattern="[0-9]+([\.,][0-9]+)?"
+								placeholder="Valor a transferir"  
+								[(ngModel)]="value" 
+								[formControl]="valueFormControl"
+								name="value"
+							>
+							<mat-error *ngIf="valueFormControl.hasError('pattern')">
+								Digite um valor válido (ex.: 12,50 ou 12.50)
+							</mat-error>
+							<mat-error *ngIf="valueFormControl.hasError('required')">
+								Insira o valor para transferir
+							</mat-error>
+						</mat-form-field>
+					</mat-grid-tile>
+				</mat-grid-list>
+		
+				<mat-grid-list cols="6" rowHeight="70">
+					<mat-grid-tile colspan="1">
+						<mat-icon>account_box</mat-icon>
+					</mat-grid-tile>
+					<mat-grid-tile colspan="5">
+						<mat-form-field class="form-field full-width">
+							<input 
+								matInput
+								placeholder="Conta destino" 
+								required
+								pattern="[0-9]{0,4}"
+								maxlength="4" 
+								minlength="4" 
+								[(ngModel)] = "toAccount" 
+								name="account"
+							>
+							<mat-error *ngIf="accountFormControl.hasError('pattern') || accountFormControl.hasError('minlength')">
+								Conta inválida
+							</mat-error>
+							<mat-error *ngIf="accountFormControl.hasError('required')">
+								Insira o número da conta
+							</mat-error>
+						</mat-form-field>
+					</mat-grid-tile>
+				</mat-grid-list>
+				<div class="form-group">
+					<mat-checkbox>Enviar comprovante por e-mail</mat-checkbox>
+				</div>
+				<div class="form-group">
+					<button 
+						mat-raised-button 
+						color="primary" 
+						class="text-uppercase full-width btn-large"
+					>Confirmar transferência</button>
+				</div>
+			</form>
+		</div>
+	</mat-card>
+
+</div>

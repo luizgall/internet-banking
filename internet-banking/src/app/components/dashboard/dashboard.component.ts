@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material';
+import { HttpClient } from '@angular/common/http';
+import { Globals } from '../../model/Globals.module'
+import { Router } from '@angular/router'
+
 
 @Component({
   selector: 'app-dashboard',
@@ -7,15 +11,33 @@ import { MatTableDataSource } from '@angular/material';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
-
-	currentBalance: number = 8.200;
+	data = {
+		username: "",
+		balance: 0,
+		account: 0,
+		logs: []
+	}
 
 	displayedColumns = ['type', 'date', 'value'];
 	dataSource = new MatTableDataSource<Statement>(ESTATEMENT_DATA);
 
-	constructor() { }
+	constructor(private http: HttpClient, private router:Router) { }
 
 	ngOnInit() {
+		let url = `http://localhost:3000/api/user`;
+		this.http.post(url, {token: localStorage.getItem("auth-token")})
+			.subscribe(
+				res => {
+					if(res['msg']==='token-invalido'){
+						localStorage.removeItem("auth-token")
+						this.router.navigate(['/login'])
+					}
+					this.data.username = res['username']
+					this.data.balance = "R$ " + res['balance'].toFixed(2).toString().replace(".", ",")
+					this.data.account = res["account"]
+					this.data.logs =  res['logs'] 
+				}
+			)
 	}
 
 }

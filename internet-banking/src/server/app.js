@@ -1,9 +1,21 @@
 // Dependencies
-var express = require('express');
-var mongoose = require('mongoose');
-var bodyParser = require('body-parser');
-const jwt = require('express-jwt');
-const jwks = require('jwks-rsa');
+const fs = require('fs')
+const http = require("http")
+const https = require ("https")
+
+const options = {
+	key: fs.readFileSync("./SSL/privatekey.pem", 'utf8'),
+	cert: fs.readFileSync("./SSL/server.crt", 'utf8')
+}
+const express = require('express');
+const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
+
+const JWT = require('jsonwebtoken')
+const CHAVESECRETA = 'ADD901ODKFJUCJNW82319'
+
+const apiKey = require('./api/apiKey.json')['key']
+
 
 // MongoDB
 mongoose.connect('mongodb://localhost/rest_test');
@@ -11,7 +23,7 @@ mongoose.Promise = global.Promise;
 
 
 // Express
-var app = express();
+const app = express();
 app.set('json spaces', 40);
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -24,23 +36,10 @@ app.use(function(req, res, next) {
   });
 
 
-  // JWT
-  var jwtCheck = jwt({
-    secret: jwks.expressJwtSecret({
-        cache: true,
-        rateLimit: true,
-        jwksRequestsPerMinute: 5,
-        jwksUri: "https://ngbankingline.auth0.com/.well-known/jwks.json"
-    }),
-    audience: 'ngbankingline',
-    issuer: "https://ngbankingline.auth0.com/",
-    algorithms: ['RS256']
-});
-
   
 var Users = require('./models/users');
-
- //carregar seeds se banco estiver vazio
+var Logs = require('./models/logs')
+ //carregar seeds se banco estiver vazio 	
 Users.find({}, function (err, docs) {
    if(docs.length === 0){ // Se a coleção estiver vazia, popula o banco com os dados do seed.json
       var fs = require('./seed.json');
@@ -48,7 +47,7 @@ Users.find({}, function (err, docs) {
             var instancia = new Users(user)
             instancia.save(function (err) {
             if (err) return handleError(err)
-            });}
+            })}
    }
   })
 
@@ -57,70 +56,52 @@ app.use('/api', require('./routes/api'));
 
 // Definir rotas da api
 app.post('/api/login', function(request, response){
-  let account = request.body.account
-  let password = request.body.password
-  Users.find({"account":account,"password":password}, function (err, docs) {
-    if(docs.length === 0){
-      response.send(false)
-    } if (docs.length === 1){
-      response.send(true)
-    }
-  })
-
+  	require('./api/login')(Users, request, response, JWT, CHAVESECRETA, apiKey)
 });
 
 
 app.post('/api/transferencia', function(request, response){
-  let account = request.body.account
-  let password = request.body.password
-  let value = request.body.value
-  let dest = request.body.dest
-
-  // Conferir senha
-  Users.find({"account":account,"password":password}, function (err, docs) {
-    if(docs.length === 0){
-      response.send({msg:"Senha inválida"})
-    } else if (docs.length === 1){
-      if(docs[0].balance < value ){
-        response.send({msg:"Saldo insuficiente"})
-      } else{
-        Users.findOne({"account":dest},function(err, doc){
-          if(doc === null){
-            response.send({msg:"Destinatário não encontrado"})
-          } else{
-            docs[0].balance -= value
-            docs[0].save()
-            doc.balance += value
-            doc.save()
-           // let email = require('./email/sendEmail')(docs[0], doc, value)
-            response.send({msg:"Sucesso!", seuSaldo:docs[0].balance, saldoDest: doc.balance, data: new Date()})
-          }
-        })
-      }
-    }
-  })
+ 	require('./api/transferencia')(Logs, Users, request, response, JWT, CHAVESECRETA, apiKey)
 })
 
 
 
 
 app.post('/api/extrato', function(request, response){
-
-  
+	require('./api/extrato')(Logs, request, response, JWT, CHAVESECRETA, apiKey)
 
 })
 
-// Start server
-app.listen(3000);
-console.log('Listening on port 3000...');   
+app.post('/api/user', (request,response) => {
+  JWT.verify(request.body.token, CHAVESECRETA, function(erro, tokenDecodificado) {
+    if(tokenDecodificado) {
+     
+      Users.findOne({"account":tokenDecodificado.account}, (err, doc) => {
+          if (doc !== null){
 
-
-function login(account, password){
-
-}
-
-function getUserBalance(account){
-  Users.find({"account":account}, function(err, docs){
-      return true
+               response.send({status:true, 
+                            balance:doc.balance, 
+                      logs: doc.logs, 
+                      account: doc.account,
+                      username: doc.name
+                    })
+          }
+          else{
+              response.send({status:false, msg: "Usuário não encontrado"})
+          }
+      })
+    } 
+    else{
+      response.send({status:false, msg: "token-invalido"})
+    }
   })
-}
+})
+  
+
+// Start server
+
+var httpServer = http.createServer(app);
+var httpsServer = https.createServer(options, app);
+
+httpServer.listen(3000);
+httpsServer.listen(3001);

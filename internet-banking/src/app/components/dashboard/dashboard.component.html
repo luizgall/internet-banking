@@ -1,7 +1,8 @@
 <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center start" fxLayoutAlign.xs="center" fxLayoutGap="32px">
+
 	<mat-card fxFlex="50" fxFlex.sm="100">
 		<mat-card-title>Saldo em conta</mat-card-title>
-		<h3 class="balance">{{ currentBalance | currency: 'BRL': 'symbol': '1.3-3' }}</h3>
+		<h3 class="balance"> {{ data.balance }}</h3>
 	
 		<div class="f-right mt-2">
 			<a routerLink="transferencia" mat-button color="primary">Fazer transferência</a>
@@ -15,26 +16,24 @@
 			<mat-table #table [dataSource]="dataSource">
 			
 				<ng-container matColumnDef="type">
-					<mat-header-cell *matHeaderCellDef></mat-header-cell>
+					<mat-header-cell *matHeaderCellDef>Tipo</mat-header-cell>
 					<mat-cell *matCellDef="let statement"><mat-icon>{{ statement.type }}</mat-icon></mat-cell>
 				</ng-container>
 			
 				<ng-container matColumnDef="date">
-					<mat-header-cell *matHeaderCellDef></mat-header-cell>
-					<mat-cell *matCellDef="let statement">{{ statement.date }}</mat-cell>
+					<mat-header-cell *matHeaderCellDef>Data</mat-header-cell>
+					<mat-cell *matCellDef="let statement">{{ statement.date }} </mat-cell>
 				</ng-container>
 			
 				<ng-container matColumnDef="value">
-					<mat-header-cell *matHeaderCellDef></mat-header-cell>
-					<mat-cell *matCellDef="let statement">{{ statement.value | currency: 'BRL': 'symbol': '1.3-3' }}</mat-cell>
+					<mat-header-cell *matHeaderCellDef>Valor</mat-header-cell>
+					<mat-cell *matCellDef="let statement">{{statement.value | currency: 'BRL'}}</mat-cell>
 				</ng-container>
 			
 				<mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
 				<mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
 			
 			</mat-table>
-
-			
 		</div>
 
 		<div class="f-right mt-2">
