@@ -15,7 +15,7 @@ import { ToasterService } from '../../services/toaster.service';
 export class DashboardComponent implements OnInit {
 	data = {
 		username: "",
-		balance: "",
+		balance: "0",
 		account: 0,
 		logs: []
 	}
@@ -39,7 +39,7 @@ export class DashboardComponent implements OnInit {
 						this.toasterService.showToaster('Sua seção expirou')
 					}
 					this.data.username = res['username']
-					this.data.balance = "R$ " + res['balance'].toFixed(2).toString().replace(".", ",")
+					this.data.balance = res['balance'].toFixed(2).toString().replace(".", ",")
 					this.data.account = res["account"]
 					this.data.logs =  res['logs'] 
 				}

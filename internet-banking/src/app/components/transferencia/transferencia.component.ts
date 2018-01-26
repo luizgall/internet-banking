@@ -5,7 +5,8 @@ import { TransferenciaService} from '../../services/transferencia.service'
 import { Router} from '@angular/router'
 import { MatTableDataSource } from '@angular/material';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import { Globals } from '../../model/Globals.module'
+import { Globals } from '../../model/Globals.module';
+import { ToasterService } from '../../services/toaster.service';
 
 @Component({
 	selector: 'app-transferencia',
@@ -39,7 +40,8 @@ export class TransferenciaComponent implements OnInit {
 		private http: HttpClient,
 		private transferenciaService: TransferenciaService,
 		private router: Router,
-		private global: Globals
+		private global: Globals,
+		private toasterService: ToasterService
 	) {}
 	
 	ngOnInit() {
@@ -48,7 +50,7 @@ export class TransferenciaComponent implements OnInit {
 			.subscribe(
 				res => {
 					this.data.username = res['username']
-					this.data.balance = parseInt(res['balance'])
+					this.data.balance = res['balance'].toFixed(2).toString().replace(".", ",")
 					this.data.account = res["account"]
 					this.data.logs =  res['logs'] 
 				}
@@ -66,7 +68,7 @@ export class TransferenciaComponent implements OnInit {
 	}
 	
 	afterSubmit = (res) => {
-		alert(res.msg)
+		this.toasterService.showToaster(res.msg, 'alert-success')
 		if(res.msg == 'Transação concluída!'){
 			this.router.navigate(['/'])
 		}
