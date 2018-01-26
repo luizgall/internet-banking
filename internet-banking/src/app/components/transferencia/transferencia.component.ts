@@ -35,7 +35,7 @@ export class TransferenciaComponent implements OnInit {
 	
 	toAccount
 	value
-
+	email
 	constructor(
 		private http: HttpClient,
 		private transferenciaService: TransferenciaService,
@@ -62,15 +62,29 @@ export class TransferenciaComponent implements OnInit {
 	}
 	
 	submitTransferencia  = (apiKey) =>{
+		if (this.email == undefined){
+			this.email = false
+		}
 		this.transferenciaService.transfer(
-			apiKey, localStorage.getItem("auth-token"), parseFloat(this.value.replace(",", ".")), this.toAccount, this.afterSubmit
+
+			this.email, apiKey, localStorage.getItem("auth-token"), parseFloat(this.value.replace(",", ".")), this.toAccount, this.afterSubmit
 		);
 	}
 	
 	afterSubmit = (res) => {
-		this.toasterService.showToaster(res.msg, 'alert-success')
 		if(res.msg == 'Transação concluída!'){
+			let mensagem = `
+			${res.msg}
+
+
+			R$ ${parseFloat(this.value.replace(",", ".")).toFixed(2)} para a conta ${this.toAccount}
+
+
+			`
+			this.toasterService.showToaster(mensagem, 'alert-success')
 			this.router.navigate(['/'])
+		} else {
+			this.toasterService.showToaster(res.msg, 'alert-warning')
 		}
 		
 	}
