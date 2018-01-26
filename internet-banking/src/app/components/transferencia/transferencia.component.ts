@@ -68,9 +68,19 @@ export class TransferenciaComponent implements OnInit {
 	}
 	
 	afterSubmit = (res) => {
-		this.toasterService.showToaster(res.msg, 'alert-success')
 		if(res.msg == 'Transação concluída!'){
+			let mensagem = `
+			${res.msg}
+
+
+			R$ ${parseFloat(this.value.replace(",", ".")).toFixed(2)} para a conta ${this.toAccount}
+
+
+			`
+			this.toasterService.showToaster(mensagem, 'alert-success')
 			this.router.navigate(['/'])
+		} else {
+			this.toasterService.showToaster(res.msg, 'alert-warning')
 		}
 		
 	}
