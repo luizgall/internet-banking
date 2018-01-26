@@ -1,6 +1,6 @@
 <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center start" fxLayoutAlign.xs="center" fxLayoutGap="32px">
 
-	<mat-card fxFlex="50" fxFlex.sm="100">
+	<mat-card fxFlex="50" fxFlex.sm="100" [@fallIn]='state'>
 		<mat-card-title>Saldo em conta</mat-card-title>
 		<h3 class="balance"> {{ 'R$ ' + data.balance }}</h3>
 	
@@ -9,7 +9,7 @@
 		</div>
 	</mat-card>
 
-	<mat-card fxFlex="50" fxFlex.sm="100">
+	<mat-card fxFlex="50" fxFlex.sm="100" [@fallIn]='state'>
 		<mat-card-title>Lançamentos recentes</mat-card-title>
 		
 		<div class="table-container" *ngIf="logs.length;else nothingToShow">
