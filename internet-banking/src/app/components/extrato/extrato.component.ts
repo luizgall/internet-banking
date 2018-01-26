@@ -21,7 +21,6 @@ export class ExtratoComponent implements OnInit {
 	) {}
 	
 	logs = []
-	that = this
 	userAccount: Number
 	atualizar = (res) => {
 		this.logs = res.logs.reverse()
