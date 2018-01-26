@@ -1,4 +1,4 @@
-<mat-toolbar color="primary">
+<mat-toolbar color="primary" class="main-toolbar">
 	<mat-toolbar-row [fxLayout]="row" fxLayoutAlign="space-between center">
 
 		<div [fxLayout]="column" fxLayoutAlign="center center">
@@ -16,15 +16,15 @@
 		</div>
 
 		<div>
-			<a routerLink="/" mat-button>
+			<a routerLink="/" mat-button fxHide fxShow.gt-sm="true">
 				<mat-icon>home</mat-icon>
-				Início
+				<span>Início</span>
 			</a>
-			<a routerLink="/transferencia" mat-button>
+			<a routerLink="/transferencia" mat-button fxHide fxShow.gt-sm="true">
 				<mat-icon>swap_vert</mat-icon>
 				<span>Transferência</span>
 			</a>
-			<a routerLink="/extrato" mat-button>
+			<a routerLink="/extrato" mat-button fxHide fxShow.gt-sm="true">
 				<mat-icon>format_list_bulleted</mat-icon>
 				<span>Extrato</span>
 			</a>
