@@ -2,7 +2,7 @@
 	<mat-toolbar-row [fxLayout]="row" fxLayoutAlign="space-between center">
 
 		<div [fxLayout]="column" fxLayoutAlign="center center">
-			<div class="avatar">{{ data.username | iniciais }}</div>
+			<div *ngIf="false;else backBtn" class="avatar">{{ data.username | iniciais }}</div>
 			<div>
 				<div class="name">Olá, {{ data.username }}</div>
 				<div class="account">conta: {{ data.account }}</div>
