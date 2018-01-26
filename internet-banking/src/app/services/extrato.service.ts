@@ -1,16 +1,16 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Router } from '@angular/router'
 
 @Injectable()
 export class ExtratoService {
 	
-	constructor(private http: HttpClient, private router: Router) { }
+	constructor(
+		private http: HttpClient
+	) {}
 	
 	public getExtract(apiKey, account, cb) {
 		let url = `http://localhost:3000/api/extrato`;
-		this.http.post(url, {
-			account: account, token: localStorage.getItem('auth-token'), apiKey: apiKey})
+		this.http.post(url, { account: account, token: localStorage.getItem('auth-token'), apiKey: apiKey})
 			.subscribe(
 				res => {
 					if(res['status']) {

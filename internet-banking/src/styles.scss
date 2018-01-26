@@ -67,6 +67,9 @@ body {
 .text-uppercase {
 	text-transform: uppercase;
 }
+.text-center {
+	text-align: center;
+}
 
 .full-width {
 	width: 100%;
@@ -89,7 +92,6 @@ body {
 .f-right {
 	float: right;
 }
-
 .mt-2 {
 	margin-top: 16px;
 }
@@ -116,4 +118,16 @@ body {
 	.mat-simple-snackbar-action {
 		color: #ffffff;
 	}
+}
+
+.mat-list-item-content {
+	border-bottom: 1px solid #ccc;
+	&:last-child() {
+		border-bottom: 0;
+	}
+}
+.nothing-to-show {
+	display: block;
+	margin-top: 4rem;
+	min-height: 80px;	
 }

@@ -38,7 +38,8 @@ import {
 	MatDividerModule,
 	MatListModule,
 	MatCheckboxModule,
-	MatSnackBarModule
+	MatSnackBarModule,
+	MatPaginatorModule
 } from '@angular/material';
 
 // tentar criar o grid usando o GridList do material, se não conseguir pode usar o modulo abaixo
@@ -95,7 +96,8 @@ const appRoutes: Routes = [
 		MatDividerModule,
 		MatListModule,
 		MatCheckboxModule,
-		MatSnackBarModule
+		MatSnackBarModule,
+		MatPaginatorModule
 	],
 	
 	providers: [
