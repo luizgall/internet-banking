@@ -35,7 +35,7 @@ export class TransferenciaComponent implements OnInit {
 	
 	toAccount
 	value
-
+	email
 	constructor(
 		private http: HttpClient,
 		private transferenciaService: TransferenciaService,
@@ -62,8 +62,12 @@ export class TransferenciaComponent implements OnInit {
 	}
 	
 	submitTransferencia  = (apiKey) =>{
+		if (this.email == undefined){
+			this.email = false
+		}
 		this.transferenciaService.transfer(
-			apiKey, localStorage.getItem("auth-token"), parseFloat(this.value.replace(",", ".")), this.toAccount, this.afterSubmit
+
+			this.email, apiKey, localStorage.getItem("auth-token"), parseFloat(this.value.replace(",", ".")), this.toAccount, this.afterSubmit
 		);
 	}
 	
