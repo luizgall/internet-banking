@@ -51,7 +51,7 @@ module.exports = function (Logs, Users, request, response, JWT, CHAVESECRETA, ap
 							doc.logs.push(log)
 							doc.save()
 							if (request.body.email){
-								let email = require('./email/sendEmail')(docs[0], doc, value)
+								//let email = require('./email/sendEmail')(docs[0], doc, value)
 							}
 							response.send({msg:"Transação concluída!", seuSaldo:docs[0].balance, saldoDest: doc.balance, data: new Date()})
 						}
