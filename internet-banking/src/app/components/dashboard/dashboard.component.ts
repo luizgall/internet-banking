@@ -13,6 +13,9 @@ import { ToasterService } from '../../services/toaster.service';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
+
+	isDashboard: boolean = true;
+
 	data = {
 		username: "",
 		balance: "0",

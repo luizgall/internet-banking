@@ -13,10 +13,10 @@
 		<mat-card-title>Lançamentos recentes</mat-card-title>
 		
 		<div class="table-container" *ngIf="logs.length;else nothingToShow">
-			<mat-list *ngFor="let log of logs">
-				<mat-list-item fxLayout="column">
+			<mat-list>
+				<mat-list-item *ngFor="let log of logs | slice:0:3;" fxLayout="column">
 					<div fxFlex="20" class="value">{{ log.value }}</div> 
-					<div fxFlex="60" class="date">{{ log.date | date: 'shortTime' }}</div>
+					<div fxFlex="60" class="date">{{ log.date | date: 'dd/MM/yyyy' }} - {{ log.date | date: 'shortTime' }}</div>
 					<div fxFlex="20" class="from-account">{{ log.destAccount }}</div>
 				</mat-list-item>
 			</mat-list>
