@@ -5,3 +5,7 @@
 .btn-label {
 	line-height: 1;
 }
+.mat-button.active {
+	border-bottom: 3px solid #000;
+	color: #111;
+}

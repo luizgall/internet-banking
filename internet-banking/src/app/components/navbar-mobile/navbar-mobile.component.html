@@ -1,14 +1,14 @@
 <mat-toolbar class="fixed-bottom" color="primary">
 	<mat-toolbar-row [fxLayout]="row" fxLayoutAlign="space-around stretch">
-		<a routerLink="/" mat-button>
+		<a routerLink="" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" mat-button>
 			<mat-icon>home</mat-icon>
 			<div class="btn-label">Início</div>
 		</a>
-		<a routerLink="/transferencia" mat-button>
-			<mat-icon>swap_vert</mat-icon>
+		<a routerLink="/transferencia" routerLinkActive="active" mat-button>
+			<mat-icon>compare_arrows</mat-icon>
 			<div class="btn-label">Transferência</div>
 		</a>
-		<a routerLink="/extrato" mat-button>
+		<a routerLink="/extrato" routerLinkActive="active" mat-button>
 			<mat-icon>format_list_bulleted</mat-icon>
 			<div class="btn-label">Extrato</div>
 		</a>
