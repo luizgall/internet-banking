@@ -7,11 +7,14 @@ import { MatTableDataSource } from '@angular/material';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { Globals } from '../../model/Globals.module';
 import { ToasterService } from '../../services/toaster.service';
+import { moveIn, fallIn } from '../../router.animations';
 
 @Component({
 	selector: 'app-transferencia',
 	templateUrl: './transferencia.component.html',
-	styleUrls: ['./transferencia.component.scss']
+	styleUrls: ['./transferencia.component.scss'],
+	animations: [moveIn(), fallIn()],
+	host: { '[@moveIn]': '' }
 })
 export class TransferenciaComponent implements OnInit {
 

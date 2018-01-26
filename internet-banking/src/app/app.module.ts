@@ -50,6 +50,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 // custom pipes
 import { IniciaisPipe } from './pipes/iniciais.pipe';
 import { NavbarMobileComponent } from './components/navbar-mobile/navbar-mobile.component';
+import { CurrencyFormatPipe } from './pipes/currencyformat.pipe';
 
 // app routes
 const appRoutes: Routes = [
@@ -72,6 +73,7 @@ const appRoutes: Routes = [
 		
 		// pipes
 		IniciaisPipe,
+		CurrencyFormatPipe,
 		
 		NavbarMobileComponent
 	],

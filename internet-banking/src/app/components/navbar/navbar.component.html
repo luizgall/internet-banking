@@ -7,8 +7,10 @@
 				<div class="name">Olá, {{ data.username }}</div>
 				<div class="account">conta: {{ data.account }}</div>
 			</div>
+
+			<!-- exibir botão voltar e titulo em paginas internas -->
 			<ng-template #backBtn>
-				<a routerLink="/" mat-icon-button>
+				<a routerLink="/" routerLinkActive="active" mat-icon-button>
 					<mat-icon>arrow_back</mat-icon>
 				</a>
 				<h4>Transferência</h4>
@@ -16,15 +18,15 @@
 		</div>
 
 		<div>
-			<a routerLink="/" mat-button fxHide fxShow.gt-sm="true">
+			<a routerLink="" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" mat-button fxHide fxShow.gt-sm="true">
 				<mat-icon>home</mat-icon>
 				<span>Início</span>
 			</a>
-			<a routerLink="/transferencia" mat-button fxHide fxShow.gt-sm="true">
+			<a routerLink="/transferencia" routerLinkActive="active" mat-button fxHide fxShow.gt-sm="true">
 				<mat-icon>swap_vert</mat-icon>
 				<span>Transferência</span>
 			</a>
-			<a routerLink="/extrato" mat-button fxHide fxShow.gt-sm="true">
+			<a routerLink="/extrato" routerLinkActive="active" mat-button fxHide fxShow.gt-sm="true">
 				<mat-icon>format_list_bulleted</mat-icon>
 				<span>Extrato</span>
 			</a>

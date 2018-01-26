@@ -3,6 +3,19 @@
 	overflow: auto;
 }
 .mat-table-header {
-	background: rgba(#000, 0.1);
 	padding: 0 1rem;
+	.mat-form-field {
+		padding-left: 12px;
+	}
+}
+@media (max-width: 600px) {
+	.mat-column-name {
+		display: none;
+	}
+	.mat-cell {
+		font-size: 12px;
+	}
+	.mat-column-type {
+		width: 5%;
+	}
 }
