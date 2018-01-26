@@ -25,7 +25,7 @@ module.exports = function (Logs, Users, request, response, JWT, CHAVESECRETA, ap
 							docs[0].balance -= value
 							log =
 							 {	msg: "Transferência de " + value + " para " + doc.account + " no dia " + new Date(), 	account:docs[0].account,
-								type:"transferencia",
+								type:false,
 								date: new Date(),
 								destAccount: doc.account,
 								value: -value
@@ -36,7 +36,7 @@ module.exports = function (Logs, Users, request, response, JWT, CHAVESECRETA, ap
 							})
 							log =
 							 {	msg: "Depósito de  " + value + " recebido de " + doc.account + " no dia " + new Date(), 	account:doc.account,
-								type:"recebimento",
+								type:true,
 								date: new Date(),
 								destAccount: docs[0].account,
 								value: value
@@ -50,7 +50,9 @@ module.exports = function (Logs, Users, request, response, JWT, CHAVESECRETA, ap
 							doc.balance += value
 							doc.logs.push(log)
 							doc.save()
-						// let email = require('./email/sendEmail')(docs[0], doc, value)
+							if (request.body.email){
+								let email = require('./email/sendEmail')(docs[0], doc, value)
+							}
 							response.send({msg:"Transação concluída!", seuSaldo:docs[0].balance, saldoDest: doc.balance, data: new Date()})
 						}
 						})

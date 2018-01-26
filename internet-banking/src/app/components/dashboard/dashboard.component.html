@@ -2,7 +2,7 @@
 
 	<mat-card fxFlex="50" fxFlex.sm="100">
 		<mat-card-title>Saldo em conta</mat-card-title>
-		<h3 class="balance"> {{ data.balance }}</h3>
+		<h3 class="balance"> {{ 'R$ ' + data.balance }}</h3>
 	
 		<div class="f-right mt-2">
 			<a routerLink="transferencia" mat-button color="primary">Fazer transferência</a>
@@ -12,32 +12,24 @@
 	<mat-card fxFlex="50" fxFlex.sm="100">
 		<mat-card-title>Lançamentos recentes</mat-card-title>
 		
-		<div class="table-container">
-			<mat-table #table [dataSource]="dataSource">
-			
-				<ng-container matColumnDef="type">
-					<mat-header-cell *matHeaderCellDef>Tipo</mat-header-cell>
-					<mat-cell *matCellDef="let statement"><mat-icon>{{ statement.type }}</mat-icon></mat-cell>
-				</ng-container>
-			
-				<ng-container matColumnDef="date">
-					<mat-header-cell *matHeaderCellDef>Data</mat-header-cell>
-					<mat-cell *matCellDef="let statement">{{ statement.date }} </mat-cell>
-				</ng-container>
-			
-				<ng-container matColumnDef="value">
-					<mat-header-cell *matHeaderCellDef>Valor</mat-header-cell>
-					<mat-cell *matCellDef="let statement">{{statement.value | currency: 'BRL'}}</mat-cell>
-				</ng-container>
-			
-				<mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-				<mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-			
-			</mat-table>
+		<div class="table-container" *ngIf="logs.length;else nothingToShow">
+			<mat-list *ngFor="let log of logs">
+				<mat-list-item fxLayout="column">
+					<div fxFlex="20" class="value">{{ log.value }}</div> 
+					<div fxFlex="60" class="date">{{ log.date | date: 'shortTime' }}</div>
+					<div fxFlex="20" class="from-account">{{ log.destAccount }}</div>
+				</mat-list-item>
+			</mat-list>
+			<div class="f-right mt-2">
+				<a routerLink="extrato" mat-button color="primary">Ver extrato completo</a>
+			</div>
 		</div>
 
-		<div class="f-right mt-2">
-			<a routerLink="extrato" mat-button color="primary">Ver extrato completo</a>
-		</div>
+		<ng-template #nothingToShow>
+			<div class="nothing-to-show">
+				<mat-card-subtitle class="text-center">Não há lançamentos recentes</mat-card-subtitle>
+			</div>
+		</ng-template>
+		
 	</mat-card>
 </div>

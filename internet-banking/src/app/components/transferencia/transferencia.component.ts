@@ -5,7 +5,8 @@ import { TransferenciaService} from '../../services/transferencia.service'
 import { Router} from '@angular/router'
 import { MatTableDataSource } from '@angular/material';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import { Globals } from '../../model/Globals.module'
+import { Globals } from '../../model/Globals.module';
+import { ToasterService } from '../../services/toaster.service';
 
 @Component({
 	selector: 'app-transferencia',
@@ -34,12 +35,13 @@ export class TransferenciaComponent implements OnInit {
 	
 	toAccount
 	value
-
+	email
 	constructor(
 		private http: HttpClient,
 		private transferenciaService: TransferenciaService,
 		private router: Router,
-		private global: Globals
+		private global: Globals,
+		private toasterService: ToasterService
 	) {}
 	
 	ngOnInit() {
@@ -48,7 +50,7 @@ export class TransferenciaComponent implements OnInit {
 			.subscribe(
 				res => {
 					this.data.username = res['username']
-					this.data.balance = parseInt(res['balance'])
+					this.data.balance = res['balance'].toFixed(2).toString().replace(".", ",")
 					this.data.account = res["account"]
 					this.data.logs =  res['logs'] 
 				}
@@ -60,15 +62,29 @@ export class TransferenciaComponent implements OnInit {
 	}
 	
 	submitTransferencia  = (apiKey) =>{
+		if (this.email == undefined){
+			this.email = false
+		}
 		this.transferenciaService.transfer(
-			apiKey, localStorage.getItem("auth-token"), parseFloat(this.value.replace(",", ".")), this.toAccount, this.afterSubmit
+
+			this.email, apiKey, localStorage.getItem("auth-token"), parseFloat(this.value.replace(",", ".")), this.toAccount, this.afterSubmit
 		);
 	}
 	
 	afterSubmit = (res) => {
-		alert(res.msg)
 		if(res.msg == 'Transação concluída!'){
+			let mensagem = `
+			${res.msg}
+
+
+			R$ ${parseFloat(this.value.replace(",", ".")).toFixed(2)} para a conta ${this.toAccount}
+
+
+			`
+			this.toasterService.showToaster(mensagem, 'alert-success')
 			this.router.navigate(['/'])
+		} else {
+			this.toasterService.showToaster(res.msg, 'alert-warning')
 		}
 		
 	}

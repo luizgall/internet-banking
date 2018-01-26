@@ -5,6 +5,7 @@ import { RouterModule, Routes } from '@angular/router'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Globals } from './model/Globals.module';
 
+// guards
 import { LoginGuard } from './guards/login.guard';
 import { SessionGuard } from './guards/session.guard';
 
@@ -18,6 +19,7 @@ import { ToasterService } from './services/toaster.service';
 // components
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ExtratoComponent } from './components/extrato/extrato.component';
 import { TransferenciaComponent } from './components/transferencia/transferencia.component';
@@ -38,15 +40,16 @@ import {
 	MatDividerModule,
 	MatListModule,
 	MatCheckboxModule,
-	MatSnackBarModule
+	MatSnackBarModule,
+	MatPaginatorModule
 } from '@angular/material';
 
-// tentar criar o grid usando o GridList do material, se não conseguir pode usar o modulo abaixo
+// grid system
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { NavbarComponent } from './components/navbar/navbar.component';
 
 // custom pipes
 import { IniciaisPipe } from './pipes/iniciais.pipe';
+import { NavbarMobileComponent } from './components/navbar-mobile/navbar-mobile.component';
 
 // app routes
 const appRoutes: Routes = [
@@ -58,7 +61,6 @@ const appRoutes: Routes = [
 ];
 
 @NgModule({
-
 	declarations: [
 		AppComponent,
 		LoginComponent,
@@ -69,9 +71,12 @@ const appRoutes: Routes = [
 		PageNotFoundComponent,
 		
 		// pipes
-		IniciaisPipe
+		IniciaisPipe,
+		
+		NavbarMobileComponent
 	],
 	imports: [
+		// modules
 		BrowserModule, 
 		HttpClientModule,
 		FormsModule,
@@ -95,11 +100,21 @@ const appRoutes: Routes = [
 		MatDividerModule,
 		MatListModule,
 		MatCheckboxModule,
-		MatSnackBarModule
+		MatSnackBarModule,
+		MatPaginatorModule
 	],
 	
 	providers: [
-		SessionGuard, ChecarloginService, ServiceService, AppComponent, LoginService, TransferenciaService, ExtratoService, LoginGuard, Globals, ToasterService
+		Globals, 		
+		LoginGuard, 		
+		SessionGuard,
+		ChecarloginService, 
+		ServiceService, 
+		AppComponent, 
+		LoginService, 
+		TransferenciaService, 
+		ExtratoService, 
+		ToasterService
 	],
 	bootstrap: [AppComponent]
 })
