@@ -1,11 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
-import { NgModule, LOCALE_ID } from '@angular/core';
 import { registerLocaleData } from '@angular/common';
-import ptBr from '@angular/common/locales/pt';
-registerLocaleData(ptBr)
+import { AppMaterialModule } from './material.module';
+import { NgModule, LOCALE_ID } from '@angular/core';
+import { AppRoutes } from './app.routes';
 
-import { RouterModule, Routes } from '@angular/router'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Globals } from './model/Globals.module';
 
@@ -28,100 +27,38 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ExtratoComponent } from './components/extrato/extrato.component';
 import { TransferenciaComponent } from './components/transferencia/transferencia.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
-
-// angular material imports
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { 
-	MatButtonModule, 
-	MatIconModule, 
-	MatToolbarModule, 
-	MatGridListModule, 
-	MatInputModule, 
-	MatCardModule, 
-	MatSlideToggleModule, 
-	MatMenuModule, 
-	MatTableModule,
-	MatDividerModule,
-	MatListModule,
-	MatCheckboxModule,
-	MatSnackBarModule,
-	MatPaginatorModule
-} from '@angular/material';
-
-// grid system
-import { FlexLayoutModule } from '@angular/flex-layout';
+import { NavbarMobileComponent } from './components/navbar-mobile/navbar-mobile.component';
 
 // custom pipes
 import { IniciaisPipe } from './pipes/iniciais.pipe';
-import { NavbarMobileComponent } from './components/navbar-mobile/navbar-mobile.component';
 import { NumberFormatPipe } from './pipes/numberformat.pipe';
 
-// app routes
-const appRoutes: Routes = [
-	{ path: '', component: DashboardComponent, canActivate: [LoginGuard] },
-	{ path: 'login', component: LoginComponent, canActivate:[SessionGuard] },
-	{ path: 'extrato', component: ExtratoComponent, canActivate: [LoginGuard] },
-	{ path: 'transferencia', component: TransferenciaComponent, canActivate: [LoginGuard] },
-	{ path: '**', redirectTo: '' },
-];
+// register locale data
+import ptBr from '@angular/common/locales/pt';
+registerLocaleData(ptBr)
 
 @NgModule({
 	declarations: [
-		AppComponent,
-		LoginComponent,
-		NavbarComponent,		
-		DashboardComponent,
-		ExtratoComponent,
-		TransferenciaComponent,
-		PageNotFoundComponent,
+		AppComponent, LoginComponent, NavbarComponent, DashboardComponent, ExtratoComponent, TransferenciaComponent, NavbarMobileComponent,
 		
 		// pipes
-		IniciaisPipe,
-		NumberFormatPipe,
-		
-		NavbarMobileComponent
+		IniciaisPipe, NumberFormatPipe
 	],
 	imports: [
-		// modules
-		BrowserModule, 
-		HttpClientModule,
-		FormsModule,
-		ReactiveFormsModule,
-		
-		// rotas de navegação do app
-		RouterModule.forRoot(appRoutes),
-		
-		// layout modules
-		BrowserAnimationsModule,	
-		FlexLayoutModule,
-		MatButtonModule,
-		MatIconModule,
-		MatToolbarModule,
-		MatGridListModule,
-		MatInputModule,
-		MatCardModule,
-		MatSlideToggleModule,
-		MatMenuModule,
-		MatTableModule,
-		MatDividerModule,
-		MatListModule,
-		MatCheckboxModule,
-		MatSnackBarModule,
-		MatPaginatorModule
+		BrowserModule, HttpClientModule, FormsModule, ReactiveFormsModule, AppMaterialModule, AppRoutes		
 	],
-	
 	providers: [
-		{ provide: LOCALE_ID, useValue: 'pt-PT' },
-		Globals, 		
-		LoginGuard, 		
-		SessionGuard,
+		Globals, 
+		LoginGuard, 
+		SessionGuard, 
 		ChecarloginService, 
 		ServiceService, 
 		AppComponent, 
 		LoginService, 
 		TransferenciaService, 
 		ExtratoService, 
-		ToasterService
+		ToasterService, 
+		{ provide: LOCALE_ID, useValue: 'pt-PT' }		
 	],
 	bootstrap: [AppComponent]
 })

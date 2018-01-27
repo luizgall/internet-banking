@@ -88,6 +88,7 @@ export class TransferenciaComponent implements OnInit {
 
 			`
 			this.toasterService.showToaster(mensagem, 'alert-success')
+			
 			this.router.navigate(['/'])
 		} else {
 			this.toasterService.showToaster(res.msg, 'alert-warning')
