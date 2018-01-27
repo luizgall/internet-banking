@@ -5,15 +5,15 @@ import { Globals } from '../../model/Globals.module'
 import { Router } from '@angular/router'
 import { ExtratoService } from '../../services/extrato.service';
 import { ToasterService } from '../../services/toaster.service';
+import { moveInLeft } from '../../router.animations';
 
-import { moveIn, fallIn } from '../../router.animations';
 
 @Component({
 	selector: 'app-dashboard',
 	templateUrl: './dashboard.component.html',
 	styleUrls: ['./dashboard.component.scss'],
-	animations: [moveIn(), fallIn()],
-	host: { '[@moveIn]': '' }
+	animations: [moveInLeft()],
+	host: { '[@moveInLeft]': '' }
 })
 export class DashboardComponent implements OnInit {
 	

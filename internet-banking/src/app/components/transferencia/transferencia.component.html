@@ -1,11 +1,11 @@
 <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center start" fxLayoutAlign.xs="center" fxLayoutGap="32px">
 
-	<mat-card fxFlex="50" fxFlex.sm="100" [@fallIn]='state'>
+	<mat-card fxFlex="50" fxFlex.sm="100">
 		<mat-card-title>Saldo atual disponível</mat-card-title>
-		<h3 class="balance">{{ 'R$ ' + data.balance }}</h3>
+		<h3 class="balance">{{ data.balance | currency:'BRL':'symbol' }}</h3>
 	</mat-card>
 
-	<mat-card fxFlex="50" fxFlex.sm="100" [@fallIn]='state'>
+	<mat-card fxFlex="50" fxFlex.sm="100">
 		<mat-card-title>Fazer nova transferência</mat-card-title>
 		<div class="form-transfer">
 			<form (ngSubmit)="onSubmit()">
