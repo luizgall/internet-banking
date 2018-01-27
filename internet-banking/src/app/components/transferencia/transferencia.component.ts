@@ -1,23 +1,24 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
-import { HttpClient} from "@angular/common/http"
-import { TransferenciaService} from '../../services/transferencia.service'
-import { Router} from '@angular/router'
+import { HttpClient } from "@angular/common/http"
+import { TransferenciaService } from '../../services/transferencia.service'
+import { Router } from '@angular/router'
 import { MatTableDataSource } from '@angular/material';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { Globals } from '../../model/Globals.module';
 import { ToasterService } from '../../services/toaster.service';
-import { moveIn, fallIn } from '../../router.animations';
+import { moveInLeft } from '../../router.animations';
 
 @Component({
 	selector: 'app-transferencia',
 	templateUrl: './transferencia.component.html',
 	styleUrls: ['./transferencia.component.scss'],
-	animations: [moveIn(), fallIn()],
-	host: { '[@moveIn]': '' }
+	animations: [moveInLeft()],
+	host: { '[@moveInLeft]': '' }
 })
 export class TransferenciaComponent implements OnInit {
-
+	
+	pageTitle: string;
 	displayedColumns = [];
 	dataSource;
 
@@ -53,11 +54,13 @@ export class TransferenciaComponent implements OnInit {
 			.subscribe(
 				res => {
 					this.data.username = res['username']
-					this.data.balance = res['balance'].toFixed(2).toString().replace(".", ",")
+					this.data.balance = res['balance']
 					this.data.account = res["account"]
 					this.data.logs =  res['logs'] 
 				}
 			)
+		this.pageTitle = 'Transferência'
+		console.log(this.pageTitle)	
 	}
 	
 	onSubmit(){
@@ -85,6 +88,7 @@ export class TransferenciaComponent implements OnInit {
 
 			`
 			this.toasterService.showToaster(mensagem, 'alert-success')
+			
 			this.router.navigate(['/'])
 		} else {
 			this.toasterService.showToaster(res.msg, 'alert-warning')

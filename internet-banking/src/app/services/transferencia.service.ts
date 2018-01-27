@@ -12,8 +12,8 @@ export class TransferenciaService {
 				value: value,
 				dest: dest,
 				token: localStorage.getItem('auth-token'),
-				apiKey:apiKey,
-				email:email
+				apiKey: apiKey,
+				email: email
 			})
 			.subscribe(
 				res => {cb (res)},
