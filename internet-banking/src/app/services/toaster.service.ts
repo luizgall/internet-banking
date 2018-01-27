@@ -8,8 +8,9 @@ export class ToasterService {
 
     showToaster(msg: string, alertType?: string) {
         this.snackBar.open(msg, 'Fechar', {
-			duration: 9000,
-			panelClass: alertType,
+			duration: 5000,
+            panelClass: alertType,
+            verticalPosition: 'top'
         });
     }
 }
