@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
-import { HttpClient} from "@angular/common/http"
-import { TransferenciaService} from '../../services/transferencia.service'
-import { Router} from '@angular/router'
+import { HttpClient } from "@angular/common/http"
+import { TransferenciaService } from '../../services/transferencia.service'
+import { Router } from '@angular/router'
 import { MatTableDataSource } from '@angular/material';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { Globals } from '../../model/Globals.module';
@@ -17,7 +17,8 @@ import { moveIn, fallIn } from '../../router.animations';
 	host: { '[@moveIn]': '' }
 })
 export class TransferenciaComponent implements OnInit {
-
+	
+	pageTitle: string;
 	displayedColumns = [];
 	dataSource;
 
@@ -58,6 +59,8 @@ export class TransferenciaComponent implements OnInit {
 					this.data.logs =  res['logs'] 
 				}
 			)
+		this.pageTitle = 'Transferência'
+		console.log(this.pageTitle)	
 	}
 	
 	onSubmit(){
