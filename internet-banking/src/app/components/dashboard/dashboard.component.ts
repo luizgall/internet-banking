@@ -17,8 +17,6 @@ import { moveIn, fallIn } from '../../router.animations';
 })
 export class DashboardComponent implements OnInit {
 	
-	isDashboard: boolean = true;
-	
 	data = {
 		username: "",
 		balance: "0",
@@ -45,9 +43,9 @@ export class DashboardComponent implements OnInit {
 					this.toasterService.showToaster('Sua seção expirou')
 				}
 				this.data.username = res['username']
-				this.data.balance = res['balance'].toFixed(2).toString().replace(".", ",")
+				this.data.balance = res['balance']
 				this.data.account = res["account"]
-				this.data.logs =  res['logs'] 
+				this.data.logs = res['logs'] 
 			}
 		)
 		

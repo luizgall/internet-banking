@@ -2,7 +2,7 @@
 
 	<mat-card fxFlex="50" fxFlex.sm="100" [@fallIn]='state'>
 		<mat-card-title>Saldo em conta</mat-card-title>
-		<h3 class="balance"> {{ 'R$ ' + data.balance }}</h3>
+		<h3 class="balance"> {{ data.balance | currency:'BRL':'symbol' }}</h3>
 	
 		<div class="f-right mt-2">
 			<a routerLink="transferencia" mat-button color="primary">Fazer transferência</a>
@@ -21,8 +21,8 @@
 					<div fxFlex="10"><small>Conta:</small></div>
 				</mat-list-item>
 				<mat-list-item *ngFor="let log of logs | slice:0:3;" fxLayout="column">
-					<div fxFlex="30" class="type"><mat-icon>{{ log.type ? 'arrow_back' : 'arrow_forward' }}</mat-icon></div> 
-					<div fxFlex="30" class="value">{{ log.value | currency: 'BRL' }}</div> 
+					<div fxFlex="30" class="type"><mat-icon>{{ log.recebimento ? 'arrow_back' : 'arrow_forward' }}</mat-icon></div> 
+					<div fxFlex="30" class="value">{{ log.value | currency: 'BRL':'symbol' }}</div> 
 					<div fxFlex="40" class="date">{{ log.date | date: 'dd/MM/yyyy' }}</div>
 					<div fxFlex="10" class="from-account">{{ log.destAccount }}</div>
 				</mat-list-item>

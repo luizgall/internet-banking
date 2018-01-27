@@ -1,6 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
+import { registerLocaleData } from '@angular/common';
+import ptBr from '@angular/common/locales/pt';
+registerLocaleData(ptBr)
+
 import { RouterModule, Routes } from '@angular/router'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Globals } from './model/Globals.module';
@@ -50,7 +54,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 // custom pipes
 import { IniciaisPipe } from './pipes/iniciais.pipe';
 import { NavbarMobileComponent } from './components/navbar-mobile/navbar-mobile.component';
-import { CurrencyFormatPipe } from './pipes/currencyformat.pipe';
+import { NumberFormatPipe } from './pipes/numberformat.pipe';
 
 // app routes
 const appRoutes: Routes = [
@@ -73,7 +77,7 @@ const appRoutes: Routes = [
 		
 		// pipes
 		IniciaisPipe,
-		CurrencyFormatPipe,
+		NumberFormatPipe,
 		
 		NavbarMobileComponent
 	],
@@ -107,6 +111,7 @@ const appRoutes: Routes = [
 	],
 	
 	providers: [
+		{ provide: LOCALE_ID, useValue: 'pt-PT' },
 		Globals, 		
 		LoginGuard, 		
 		SessionGuard,
