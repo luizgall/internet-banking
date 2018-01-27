@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router'
+import { Router, ActivatedRoute } from '@angular/router'
 import { HttpClient } from '@angular/common/http';
 import { Globals } from '../../model/Globals.module'
 
@@ -10,6 +10,8 @@ import { Globals } from '../../model/Globals.module'
 })
 export class NavbarComponent implements OnInit {
 	
+	pageTitle: string;
+
 	data = {
 		username: String,
 		balance: Number,
@@ -18,8 +20,10 @@ export class NavbarComponent implements OnInit {
 	}
 	constructor(
 		private router: Router,
-		private http: HttpClient
-	) {}
+		private http: HttpClient,
+		private route: ActivatedRoute
+	) {
+	}
 		
 	ngOnInit() {
 		let url = `http://localhost:3000/api/user`;
@@ -32,7 +36,6 @@ export class NavbarComponent implements OnInit {
 				this.data.logs =  res['logs'] 
 			}
 		)
-		
 	}
 		
 	desconectar(){

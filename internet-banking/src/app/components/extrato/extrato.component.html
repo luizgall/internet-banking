@@ -9,9 +9,12 @@
 
 			<div class="full-estatements">
 				<div class="mat-table-header">
-					<mat-form-field>
-						<input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
-					</mat-form-field>
+					<div fxLayout="row" fxLayoutAlign="space-between center">
+						<mat-icon>search</mat-icon>
+						<mat-form-field class="full-width">
+							<input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filtrar lista de transações">
+						</mat-form-field>
+					</div>
 				</div>
 			
 				<mat-table #table [dataSource]="dataSource">
@@ -19,7 +22,7 @@
 					<!-- Type Column -->
 					<ng-container matColumnDef="type">
 						<mat-header-cell *matHeaderCellDef> Tipo: </mat-header-cell>
-						<mat-cell *matCellDef="let extrato"> {{extrato.type}} </mat-cell>
+						<mat-cell *matCellDef="let extrato"><mat-icon>{{ extrato.type ? 'arrow_forward' : 'arrow_back' }}</mat-icon></mat-cell>
 					</ng-container>
 			
 					<!-- Name Column -->
@@ -43,14 +46,14 @@
 					<!-- Symbol Column -->
 					<ng-container matColumnDef="value">
 						<mat-header-cell *matHeaderCellDef> Valor: </mat-header-cell>
-						<mat-cell *matCellDef="let extrato"> {{extrato.value}} </mat-cell>
+						<mat-cell *matCellDef="let extrato"> {{extrato.value | currency: 'BRL':'symbol'}} </mat-cell>
 					</ng-container>
 			
 					<mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
 					<mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
 				</mat-table>
 
-				<!-- paginator provavelmente terá que ficar pra proxima -->
+				<!-- paginator provavelmente terá que ficar pra proxima atualização -->
 				<!-- <mat-paginator #paginator [pageSize]="5" [pageSizeOptions]="[5, 10, 20]"></mat-paginator> -->
 			</div>
 
