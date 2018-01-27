@@ -14,6 +14,8 @@ import { moveIn, fallIn } from '../../router.animations';
 })
 export class ExtratoComponent implements OnInit {
 	
+	pageTitle: string;
+
 	constructor(
 		private extratoService: ExtratoService, 
 		private http: HttpClient, 
@@ -28,6 +30,8 @@ export class ExtratoComponent implements OnInit {
 	
 	ngOnInit() {
 		this.global.getApiKey(this.getExtract)
+		this.pageTitle = 'Extrato'
+		console.log(this.pageTitle)	
 	}
 
 	getExtract = (apiKey) =>{
@@ -37,7 +41,6 @@ export class ExtratoComponent implements OnInit {
 				this.extratoService.getExtract(apiKey, res['account'], this.atualizar)
 			}
 		)
-
 	}
 
 	// material dynamic table
