@@ -54,7 +54,7 @@ export class TransferenciaComponent implements OnInit {
 			.subscribe(
 				res => {
 					this.data.username = res['username']
-					this.data.balance = res['balance'].toFixed(2).toString().replace(".", ",")
+					this.data.balance = res['balance']
 					this.data.account = res["account"]
 					this.data.logs =  res['logs'] 
 				}

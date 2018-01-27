@@ -2,15 +2,12 @@
 	<mat-toolbar-row [fxLayout]="row" fxLayoutAlign="space-between center">
 
 		<div>
-			<!-- exibir botão voltar e titulo em paginas internas -->
-			<div *ngIf="router.url != '/';else innerHeader" [fxLayout]="column" fxLayoutAlign="center center">
-				<a routerLink="/" routerLinkActive="active" mat-icon-button>
+			<div [fxLayout]="column" fxLayoutAlign="center center">
+				
+				<a *ngIf="router.url != '/'" routerLink="/" routerLinkActive="active" mat-icon-button>
 					<mat-icon>arrow_back</mat-icon>
 				</a>
-				<h4>{{ pageTitle }}</h4>
-			</div>
 
-			<ng-template #innerHeader>
 				<div [fxLayout]="column" fxLayoutAlign="center center">
 					<div class="avatar">{{ data.username | iniciais }}</div>
 					<div>
@@ -18,7 +15,9 @@
 						<div class="account">conta: {{ data.account }}</div>
 					</div>
 				</div>
-			</ng-template>
+
+				<!-- <h4>{{ pageTitle }}</h4> -->
+			</div>
 		</div>
 
 		<div>

@@ -2,7 +2,7 @@
 
 	<mat-card fxFlex="50" fxFlex.sm="100" [@fallIn]='state'>
 		<mat-card-title>Saldo em conta</mat-card-title>
-		<h3 class="balance"> {{ data.balance | currency:'BRL':'symbol' }}</h3>
+		<h3 class="balance">{{ data.balance | currency:'BRL':'symbol' }}</h3>
 	
 		<div class="f-right mt-2">
 			<a routerLink="transferencia" mat-button color="primary">Fazer transferência</a>
