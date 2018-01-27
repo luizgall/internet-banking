@@ -4,7 +4,7 @@
 		<div>
 			<div [fxLayout]="column" fxLayoutAlign="center center">
 				
-				<a *ngIf="router.url != '/'" routerLink="/" routerLinkActive="active" mat-icon-button>
+				<a *ngIf="router.url != '/'" routerLink="/" mat-icon-button>
 					<mat-icon>arrow_back</mat-icon>
 				</a>
 
@@ -21,7 +21,7 @@
 		</div>
 
 		<div>
-			<a routerLink="" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" mat-button fxHide fxShow.gt-xs="true">
+			<a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" mat-button fxHide fxShow.gt-xs="true">
 				<mat-icon>home</mat-icon>
 				<span>Início</span>
 			</a>

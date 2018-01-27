@@ -1,6 +1,6 @@
 <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center start" fxLayoutAlign.xs="center" fxLayoutGap="32px">
 
-	<mat-card fxFlex="50" fxFlex.sm="100" [@fallIn]='state'>
+	<mat-card fxFlex="50" fxFlex.sm="100">
 		<mat-card-title>Saldo em conta</mat-card-title>
 		<h3 class="balance">{{ data.balance | currency:'BRL':'symbol' }}</h3>
 	
@@ -9,21 +9,21 @@
 		</div>
 	</mat-card>
 
-	<mat-card fxFlex="50" fxFlex.sm="100" [@fallIn]='state'>
+	<mat-card fxFlex="50" fxFlex.sm="100">
 		<mat-card-title>Lançamentos recentes</mat-card-title>
 		
 		<div class="table-container" *ngIf="logs.length;else nothingToShow">
 			<mat-list>
 				<mat-list-item fxLayout="column">
-					<div fxFlex="30"><small>Tipo:</small></div>
-					<div fxFlex="30"><small>Valor:</small></div>
-					<div fxFlex="40"><small>Data:</small></div>
+					<div fxFlex="20"><small>Tipo:</small></div>
+					<div fxFlex="60"><small>Valor:</small></div>
+					<div fxFlex="30"><small>Data:</small></div>
 					<div fxFlex="10"><small>Conta:</small></div>
 				</mat-list-item>
 				<mat-list-item *ngFor="let log of logs | slice:0:3;" fxLayout="column">
-					<div fxFlex="30" class="type"><mat-icon>{{ log.recebimento ? 'arrow_back' : 'arrow_forward' }}</mat-icon></div> 
-					<div fxFlex="30" class="value">{{ log.value | currency: 'BRL':'symbol' }}</div> 
-					<div fxFlex="40" class="date">{{ log.date | date: 'dd/MM/yyyy' }}</div>
+					<div fxFlex="20" class="type"><mat-icon>{{ log.recebimento ? 'arrow_back' : 'arrow_forward' }}</mat-icon></div> 
+					<div fxFlex="60" class="value">{{ log.value | currency: 'BRL':'symbol' }}</div> 
+					<div fxFlex="30" class="date">{{ log.date | date: 'dd/MM/yyyy' }}</div>
 					<div fxFlex="10" class="from-account">{{ log.destAccount }}</div>
 				</mat-list-item>
 			</mat-list>

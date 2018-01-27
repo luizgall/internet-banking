@@ -3,14 +3,14 @@ import { ExtratoService } from '../../services/extrato.service';
 import { Globals } from '../../model/Globals.module';
 import { HttpClient } from '@angular/common/http';
 import { MatTableDataSource, MatPaginator } from '@angular/material';
-import { moveIn, fallIn } from '../../router.animations';
+import { moveInLeft } from '../../router.animations';
 
 @Component({
 	selector: 'app-extrato',
 	templateUrl: './extrato.component.html',
 	styleUrls: ['./extrato.component.scss'],
-	animations: [moveIn(), fallIn()],
-	host: { '[@moveIn]': '' }
+	animations: [moveInLeft()],
+	host: { '[@moveInLeft]': '' }
 })
 export class ExtratoComponent implements OnInit {
 	
