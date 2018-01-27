@@ -20,7 +20,6 @@ export class LoginService {
 					if(res['status']){
 						this.router.navigateByUrl("/")
 						localStorage.setItem("auth-token", res['token'])
-						this.toasterService.showToaster('Login efetuado com sucesso', 'alert-success')
 					} else {
 						alert("Senha ou conta inválida")
 						this.toasterService.showToaster('Dados incorretos, revise os campos e tente novamente', 'alert-error')
