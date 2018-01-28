@@ -2,11 +2,16 @@
 
 	<mat-card fxFlex="50" fxFlex.sm="100">
 		<mat-card-title>Saldo atual disponível</mat-card-title>
+		<mat-card-subtitle>Saldo total disponível para transferências.</mat-card-subtitle>		
 		<h3 class="balance">{{ data.balance | currency:'BRL':'symbol' }}</h3>
+		<div class="f-right mt-2">
+			<a routerLink="/" mat-button color="primary">Cancelar transferência</a>
+		</div>
 	</mat-card>
 
 	<mat-card fxFlex="50" fxFlex.sm="100">
 		<mat-card-title>Fazer nova transferência</mat-card-title>
+		<mat-card-subtitle>Insira um valor e a conta destino para realizar uma transferência.</mat-card-subtitle>		
 		<div class="form-transfer">
 			<form (ngSubmit)="onSubmit()">
 		

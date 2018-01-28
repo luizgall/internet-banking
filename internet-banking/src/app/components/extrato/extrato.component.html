@@ -1,8 +1,10 @@
 <div class="container" fxLayout="row" fxLayoutAlign="center start" fxLayoutGap="32px">
 	<mat-card fxFlex="100">
 		<mat-card-title>Extrato completo</mat-card-title>
-		
+
 		<div *ngIf="logs.length;else nothingToShow">
+			<mat-card-subtitle>Lista completa de transações realizadas. Use o campo de busca abaixo para filtrar por conta, nome, data ou nome do usuário.</mat-card-subtitle>		
+			
 			<!-- <mat-list *ngFor="let log of logs">
 				<mat-list-item>{{ log.value }} - {{ log.date | date: 'dd/MM/yyyy' }} - {{ log.destAccount }}</mat-list-item>
 			</mat-list> -->

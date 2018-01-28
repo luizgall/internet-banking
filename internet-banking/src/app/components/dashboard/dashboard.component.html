@@ -2,16 +2,17 @@
 
 	<mat-card fxFlex="50" fxFlex.sm="100">
 		<mat-card-title>Saldo em conta</mat-card-title>
+		<mat-card-subtitle>Seu saldo total disponível para transações.</mat-card-subtitle>		
 		<h3 class="balance">{{ data.balance | currency:'BRL':'symbol' }}</h3>
 	
 		<div class="f-right mt-2">
-			<a routerLink="transferencia" mat-button color="primary">Fazer transferência</a>
+			<a routerLink="transferencia" mat-button color="accent">Fazer transferência</a>
 		</div>
 	</mat-card>
 
 	<mat-card fxFlex="50" fxFlex.sm="100">
 		<mat-card-title>Lançamentos recentes</mat-card-title>
-		
+		<mat-card-subtitle>Confira abaixo um resumo das útlimas transações realizadas.</mat-card-subtitle>
 		<div class="table-container" *ngIf="logs.length;else nothingToShow">
 			<mat-list>
 				<mat-list-item fxLayout="column">
@@ -28,7 +29,7 @@
 				</mat-list-item>
 			</mat-list>
 			<div class="f-right mt-2">
-				<a routerLink="extrato" mat-button color="primary">Ver extrato completo</a>
+				<a routerLink="extrato" mat-button color="accent">Ver extrato completo</a>
 			</div>
 		</div>
 
