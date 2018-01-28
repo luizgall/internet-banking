@@ -27,7 +27,7 @@ export class LoginService {
 						localStorage.setItem("auth-token", res['token'])
 						console.log(res['status'])
 					} else {
-						this.toasterService.showToaster('Dados incorretos, revise os campos e tente novamente', 'alert-error')
+						this.toasterService.showToaster('Dados incorretos, revise os campos e tente novamente', 'alert-warning')
 						console.log(res['status'])						
 					}
 				},

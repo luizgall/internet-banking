@@ -17,6 +17,10 @@ import { TransferenciaService } from './transferencia.service';
 	host: { '[@moveInLeft]': '' }
 })
 export class TransferenciaComponent implements OnInit {
+
+	amountToTransfer = document.getElementById('amountToTransfer');
+	
+
 	
 	pageTitle: string;
 	displayedColumns = [];

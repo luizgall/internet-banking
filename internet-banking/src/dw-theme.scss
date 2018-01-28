@@ -13,7 +13,7 @@ $ngbankline-app-primary: mat-palette($mat-teal, 500);
 $ngbankline-app-accent:  mat-palette($mat-blue, 700);
 
 // The warn palette is optional (defaults to red).
-$ngbankline-app-warn:    mat-palette($mat-red);
+$ngbankline-app-warn:    mat-palette($mat-red, 700);
 
 // Create the theme object (a Sass map containing all of the palettes).
 $ngbankline-app-theme: mat-light-theme($ngbankline-app-primary, $ngbankline-app-accent, $ngbankline-app-warn);
