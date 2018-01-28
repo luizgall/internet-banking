@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { NgModel } from '@angular/forms';
-import { LoginService } from '../../services/login.service';
+import { LoginService } from './login.service';
 import { Globals } from '../../model/Globals.module';
 
 // animations

@@ -8,7 +8,7 @@ export class ServiceService {
 	constructor(private http: HttpClient) {}
 	
 	public doGet() {
-		let url = `https://safe-falls-28681.herokuapp.com/api/users`;
+		let url = `https://ng-bankline.herokuapp.com/api/users`;
 		this.http.get(url)
 			.subscribe(res => {return res});
 	}

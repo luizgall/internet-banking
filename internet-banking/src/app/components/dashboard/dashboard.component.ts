@@ -3,7 +3,7 @@ import { MatTableDataSource } from '@angular/material';
 import { HttpClient } from '@angular/common/http';
 import { Globals } from '../../model/Globals.module'
 import { Router } from '@angular/router'
-import { ExtratoService } from '../../services/extrato.service';
+import { ExtratoService } from '../extrato/extrato.service';
 import { ToasterService } from '../../services/toaster.service';
 import { moveInLeft } from '../../router.animations';
 

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ExtratoService } from '../../services/extrato.service';
+import { ExtratoService } from './extrato.service';
 import { Globals } from '../../model/Globals.module';
 import { HttpClient } from '@angular/common/http';
 import { MatTableDataSource, MatPaginator } from '@angular/material';
@@ -35,7 +35,7 @@ export class ExtratoComponent implements OnInit {
 	}
 
 	getExtract = (apiKey) =>{
-		let url = `https://ng-bankline.herokuapp.com/api/user`;
+		let url = `https://ng-bankline.herokuapp.com/api/users`;
 		this.http.post(url, { apiKey: apiKey, token: localStorage.getItem("auth-token") })
 			.subscribe( res => {
 				this.extratoService.getExtract(apiKey, res['account'], this.atualizar)
