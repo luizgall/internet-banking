@@ -7,7 +7,6 @@ import { ExtratoService } from '../extrato/extrato.service';
 import { ToasterService } from '../../services/toaster.service';
 import { moveInLeft } from '../../router.animations';
 
-
 @Component({
 	selector: 'app-dashboard',
 	templateUrl: './dashboard.component.html',
