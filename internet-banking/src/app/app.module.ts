@@ -9,15 +9,15 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Globals } from './model/Globals.module';
 
 // guards
-import { LoginGuard } from './guards/login.guard';
+import { LoginGuard } from './components/login/login.guard';
 import { SessionGuard } from './guards/session.guard';
 
 import { ServiceService } from './services/service.service';
-import { LoginService } from "./services/login.service";
-import { ExtratoService } from "./services/extrato.service";
-import { TransferenciaService } from "./services/transferencia.service";
+import { LoginService } from "./components/login/login.service";
+import { ExtratoService } from "./components/extrato/extrato.service";
 import { ChecarloginService} from './services/checarlogin.service';
 import { ToasterService } from './services/toaster.service';
+import { TransferenciaService } from './components/transferencia/transferencia.service';
 
 // components
 import { AppComponent } from './app.component';
@@ -26,7 +26,6 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ExtratoComponent } from './components/extrato/extrato.component';
 import { TransferenciaComponent } from './components/transferencia/transferencia.component';
-import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { NavbarMobileComponent } from './components/navbar-mobile/navbar-mobile.component';
 
 // custom pipes

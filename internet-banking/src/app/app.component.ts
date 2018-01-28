@@ -3,9 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { Globals } from './model/Globals.module'
 import { ChecarloginService } from './services/checarlogin.service'
 import { ServiceService } from './services/service.service'
-import { LoginService } from './services/login.service'
-import { TransferenciaService } from './services/transferencia.service';
-import { ExtratoService } from './services/extrato.service';
+import { LoginService } from './components/login/login.service'
+import { TransferenciaService } from './components/transferencia/transferencia.service';
 
 @Component({
 	selector: 'app-root',
@@ -19,7 +18,6 @@ export class AppComponent {
 		private loginService: LoginService, 
 
 		private transferenciaService: TransferenciaService,
-		private extratoService: ExtratoService,
 		private checarloginService: ChecarloginService,
 		private global: Globals
 	) {}

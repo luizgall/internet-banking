@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { HttpClient } from "@angular/common/http"
-import { TransferenciaService } from '../../services/transferencia.service'
 import { Router } from '@angular/router'
 import { MatTableDataSource } from '@angular/material';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { Globals } from '../../model/Globals.module';
 import { ToasterService } from '../../services/toaster.service';
 import { moveInLeft } from '../../router.animations';
+import { TransferenciaService } from './transferencia.service';
 
 @Component({
 	selector: 'app-transferencia',
