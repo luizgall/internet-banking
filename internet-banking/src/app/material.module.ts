@@ -1,7 +1,7 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 
-import { MatToolbarModule, MatPaginatorModule, MatSnackBarModule, MatCheckboxModule, MatListModule, MatDividerModule, MatTableModule, MatMenuModule, MatSlideToggleModule, MatCardModule, MatInputModule, MatGridListModule, MatIconModule, MatButtonModule } from "@angular/material";
+import { MatToolbarModule, MatPaginatorModule, MatSnackBarModule, MatCheckboxModule, MatListModule, MatDividerModule, MatTableModule, MatMenuModule, MatSlideToggleModule, MatCardModule, MatInputModule, MatGridListModule, MatIconModule, MatButtonModule, MatProgressSpinnerModule } from "@angular/material";
 import { FlexLayoutModule } from "@angular/flex-layout";
 
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
@@ -26,7 +26,8 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 		MatListModule,
 		MatCheckboxModule,
 		MatSnackBarModule,
-		MatPaginatorModule
+		MatPaginatorModule,
+		MatProgressSpinnerModule
 	],
 	exports: [
 		BrowserAnimationsModule,
@@ -44,7 +45,8 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 		MatListModule,
 		MatCheckboxModule,
 		MatSnackBarModule,
-		MatPaginatorModule
+		MatPaginatorModule,
+		MatProgressSpinnerModule
 	]
 })
 
