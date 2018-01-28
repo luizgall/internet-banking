@@ -12,19 +12,19 @@
 			font-size: 20px;
 		}
 	}
-	.mat-icon {
-		line-height: 60px;
-	}
 }
 .form-login {
 	min-width: 280px;
 }
-.opacity-7 {
-	background: rgba(#fff, 0.7);
-}
 .text-light {
-	color: #fff;
+	color: #333;
 	a {
-		color: #fff;
+		text-decoration: none;
+		&.avanade-link {
+			color: #e54e07;
+		}
+		&.gama-link {
+			color: #63dc3e;
+		}
 	}
 }

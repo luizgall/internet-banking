@@ -6,16 +6,14 @@ import { HttpClient} from '@angular/common/http'
 export class Globals implements OnInit {
 	constructor(private http:HttpClient){}
 	apiKey
-	ngOnInit(){
-		
-	}
+	ngOnInit(){}
 
 	getApiKey(cb){
 		this.http.get('../../assets/apiKey.json')
 			.subscribe(
-			data => {
-				cb(data['key'])
-			}
+				data => {
+					cb(data['key'])
+				}
 			)
 	}
 }
