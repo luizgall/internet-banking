@@ -7,7 +7,7 @@ export class TransferenciaService {
 	constructor(private http: HttpClient) { }
 	
 	public transfer(email, apiKey, token, value, dest, cb ) {
-		let url = `http://localhost:3000/api/transferencia`;
+		let url = `https://ng-bankline.herokuapp.com/api/transferencia`;
 		this.http.post(url, {
 				value: value,
 				dest: dest,

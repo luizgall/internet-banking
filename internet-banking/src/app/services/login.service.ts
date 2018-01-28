@@ -13,7 +13,7 @@ export class LoginService {
 	) {}
 	
 	public tryLogin(account, password, apiKey, logado){
-		let url = `http://localhost:3000/api/login`;
+		let url = `https://ng-bankline.herokuapp.com/api/login`;
 		this.http.post(url, {
 				account: account, 
 				password: password, 
