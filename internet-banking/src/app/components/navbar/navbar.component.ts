@@ -26,7 +26,7 @@ export class NavbarComponent implements OnInit {
 	}
 		
 	ngOnInit() {
-		let url = `http://localhost:3000/api/user`;
+		let url = `https://ng-bankline.herokuapp.com/api/user`;
 		this.http.post(url, {token: localStorage.getItem("auth-token")})
 		.subscribe(
 			res => {
