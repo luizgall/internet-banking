@@ -40,7 +40,7 @@ export class DashboardComponent implements OnInit {
 				if(res['msg']==='token-invalido'){
 					localStorage.removeItem("auth-token")
 					this.router.navigate(['/login'])
-					this.toasterService.showToaster('Sua seção expirou')
+					this.toasterService.showToaster('Sua sessão expirou')
 				}
 				this.data.username = res['username']
 				this.data.balance = res['balance']
