@@ -35,7 +35,7 @@ export class ExtratoComponent implements OnInit {
 		console.log(this.pageTitle)
 	}
 
-	getExtract = (apiKey) =>{
+	getExtract = (apiKey) => {
 		let url = `https://ng-bankline.herokuapp.com/api/extrato`;
 		this.http.post(url, { apiKey: apiKey, token: localStorage.getItem("auth-token") })
 			.subscribe( res => {

@@ -2,19 +2,22 @@
 
 	<mat-card fxFlex="50" fxFlex.sm="100">
 		<mat-card-title>Saldo atual disponível</mat-card-title>
+		<mat-card-subtitle>Saldo total disponível para transferências.</mat-card-subtitle>		
 		<h3 class="balance">{{ data.balance | currency:'BRL':'symbol' }}</h3>
+		<div class="f-right mt-2">
+			<a routerLink="/" mat-button color="warn">Cancelar transferência</a>
+		</div>
 	</mat-card>
 
 	<mat-card fxFlex="50" fxFlex.sm="100">
 		<mat-card-title>Fazer nova transferência</mat-card-title>
+		<mat-card-subtitle>Insira um valor e a conta destino para realizar uma transferência.</mat-card-subtitle>		
 		<div class="form-transfer">
 			<form (ngSubmit)="onSubmit()">
 		
-				<mat-grid-list cols="6" rowHeight="70">
-					<mat-grid-tile colspan="1">
-						<mat-icon>attach_money</mat-icon>
-					</mat-grid-tile>
-					<mat-grid-tile colspan="5">
+				<div fxFlexLayout="row" fxLayoutAlign="space-around center">
+					<mat-icon fxFlex="5">attach_money</mat-icon>
+					<div fxFlex="95">
 						<mat-form-field class="form-field full-width">
 							<input 
 								matInput 
@@ -32,14 +35,12 @@
 								Insira o valor para transferir
 							</mat-error>
 						</mat-form-field>
-					</mat-grid-tile>
-				</mat-grid-list>
+					</div>
+				</div>
 		
-				<mat-grid-list cols="6" rowHeight="70">
-					<mat-grid-tile colspan="1">
-						<mat-icon>account_box</mat-icon>
-					</mat-grid-tile>
-					<mat-grid-tile colspan="5">
+				<div fxLayout="row" fxLayoutAlign="space-around center">
+					<mat-icon fxFlex="5">account_box</mat-icon>
+					<div fxFlex="95">
 						<mat-form-field class="form-field full-width">
 							<input
 								id="amountToTransfer"
@@ -60,15 +61,15 @@
 								Insira o número da conta
 							</mat-error>
 						</mat-form-field>
-					</mat-grid-tile>
-				</mat-grid-list>
+					</div>
+				</div>
 				<div class="form-group">
 					<mat-checkbox [(ngModel)]="email" name="email">Enviar comprovante por e-mail</mat-checkbox>
 				</div>
 				<div class="form-group">
 					<button 
 						mat-raised-button 
-						color="accent" 
+						color="primary" 
 						class="text-uppercase full-width btn-large"
 						[disabled]="account.errors?.required"
 					>Confirmar transferência</button>
