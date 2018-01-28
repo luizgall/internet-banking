@@ -1,11 +1,11 @@
 <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center start" fxLayoutAlign.xs="center" fxLayoutGap="32px">
 
-	<mat-card fxFlex="50" fxFlex.sm="100" [@fallIn]='state'>
+	<mat-card fxFlex="50" fxFlex.sm="100">
 		<mat-card-title>Saldo atual disponível</mat-card-title>
-		<h3 class="balance">{{ 'R$ ' + data.balance }}</h3>
+		<h3 class="balance">{{ data.balance | currency:'BRL':'symbol' }}</h3>
 	</mat-card>
 
-	<mat-card fxFlex="50" fxFlex.sm="100" [@fallIn]='state'>
+	<mat-card fxFlex="50" fxFlex.sm="100">
 		<mat-card-title>Fazer nova transferência</mat-card-title>
 		<div class="form-transfer">
 			<form (ngSubmit)="onSubmit()">
@@ -48,8 +48,9 @@
 								pattern="[0-9]{0,4}"
 								maxlength="4" 
 								minlength="4" 
-								[(ngModel)] = "toAccount" 
+								[(ngModel)]="toAccount" 
 								name="account"
+								#account="ngModel"
 							>
 							<mat-error *ngIf="accountFormControl.hasError('pattern') || accountFormControl.hasError('minlength')">
 								Conta inválida
@@ -61,13 +62,14 @@
 					</mat-grid-tile>
 				</mat-grid-list>
 				<div class="form-group">
-					<mat-checkbox [(ngModel)] = "email" name="email">Enviar comprovante por e-mail</mat-checkbox>
+					<mat-checkbox [(ngModel)]="email" name="email">Enviar comprovante por e-mail</mat-checkbox>
 				</div>
 				<div class="form-group">
 					<button 
 						mat-raised-button 
 						color="accent" 
 						class="text-uppercase full-width btn-large"
+						[disabled]="account.errors?.required"
 					>Confirmar transferência</button>
 				</div>
 			</form>

@@ -2,15 +2,12 @@
 	<mat-toolbar-row [fxLayout]="row" fxLayoutAlign="space-between center">
 
 		<div>
-			<!-- exibir botão voltar e titulo em paginas internas -->
-			<div *ngIf="router.url != '/';else innerHeader" [fxLayout]="column" fxLayoutAlign="center center">
-				<a routerLink="/" routerLinkActive="active" mat-icon-button>
+			<div [fxLayout]="column" fxLayoutAlign="center center">
+				
+				<a *ngIf="router.url != '/'" routerLink="/" mat-icon-button>
 					<mat-icon>arrow_back</mat-icon>
 				</a>
-				<h4>{{ pageTitle }}</h4>
-			</div>
 
-			<ng-template #innerHeader>
 				<div [fxLayout]="column" fxLayoutAlign="center center">
 					<div class="avatar">{{ data.username | iniciais }}</div>
 					<div>
@@ -18,19 +15,21 @@
 						<div class="account">conta: {{ data.account }}</div>
 					</div>
 				</div>
-			</ng-template>
+
+				<!-- <h4>{{ pageTitle }}</h4> -->
+			</div>
 		</div>
 
 		<div>
-			<a routerLink="" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" mat-button fxHide fxShow.gt-sm="true">
+			<a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" mat-button fxHide fxShow.gt-xs="true">
 				<mat-icon>home</mat-icon>
 				<span>Início</span>
 			</a>
-			<a routerLink="/transferencia" routerLinkActive="active" mat-button fxHide fxShow.gt-sm="true">
+			<a routerLink="/transferencia" routerLinkActive="active" mat-button fxHide fxShow.gt-xs="true">
 				<mat-icon>swap_vert</mat-icon>
 				<span>Transferência</span>
 			</a>
-			<a routerLink="/extrato" routerLinkActive="active" mat-button fxHide fxShow.gt-sm="true">
+			<a routerLink="/extrato" routerLinkActive="active" mat-button fxHide fxShow.gt-xs="true">
 				<mat-icon>format_list_bulleted</mat-icon>
 				<span>Extrato</span>
 			</a>

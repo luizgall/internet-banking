@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { NgModel } from '@angular/forms';
-import { LoginService } from '../../services/login.service';
+import { LoginService } from './login.service';
 import { Globals } from '../../model/Globals.module';
 
 // animations
-import { trigger, style, transition, animate, keyframes, query, stagger } from '@angular/animations';
+import { trigger, style, transition, animate, query, stagger } from '@angular/animations';
 
 @Component({
 	selector: 'app-login',

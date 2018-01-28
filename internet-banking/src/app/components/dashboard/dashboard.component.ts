@@ -3,21 +3,19 @@ import { MatTableDataSource } from '@angular/material';
 import { HttpClient } from '@angular/common/http';
 import { Globals } from '../../model/Globals.module'
 import { Router } from '@angular/router'
-import { ExtratoService } from '../../services/extrato.service';
+import { ExtratoService } from '../extrato/extrato.service';
 import { ToasterService } from '../../services/toaster.service';
+import { moveInLeft } from '../../router.animations';
 
-import { moveIn, fallIn } from '../../router.animations';
 
 @Component({
 	selector: 'app-dashboard',
 	templateUrl: './dashboard.component.html',
 	styleUrls: ['./dashboard.component.scss'],
-	animations: [moveIn(), fallIn()],
-	host: { '[@moveIn]': '' }
+	animations: [moveInLeft()],
+	host: { '[@moveInLeft]': '' }
 })
 export class DashboardComponent implements OnInit {
-	
-	isDashboard: boolean = true;
 	
 	data = {
 		username: "",
@@ -35,7 +33,7 @@ export class DashboardComponent implements OnInit {
 	) {}
 	
 	ngOnInit() {
-		let url = `http://localhost:3000/api/user`;
+		let url = `https://ng-bankline.herokuapp.com/api/user`;
 		this.http.post(url, {token: localStorage.getItem("auth-token")})
 		.subscribe(
 			res => {
@@ -45,9 +43,9 @@ export class DashboardComponent implements OnInit {
 					this.toasterService.showToaster('Sua seção expirou')
 				}
 				this.data.username = res['username']
-				this.data.balance = res['balance'].toFixed(2).toString().replace(".", ",")
+				this.data.balance = res['balance']
 				this.data.account = res["account"]
-				this.data.logs =  res['logs'] 
+				this.data.logs = res['logs'] 
 			}
 		)
 		
@@ -62,7 +60,7 @@ export class DashboardComponent implements OnInit {
 	}
 	
 	getExtract = (apiKey) => {
-		let url = `http://localhost:3000/api/user`;
+		let url = `https://ng-bankline.herokuapp.com/api/user`;
 		this.http.post(url, { apiKey: apiKey, token: localStorage.getItem("auth-token") })
 			.subscribe(res => {
 				this.extratoService.getExtract(apiKey, res['account'], this.atualizar)
