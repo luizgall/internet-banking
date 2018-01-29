@@ -32,6 +32,11 @@ var logSchema = new mongoose.Schema({
 		type:Number,
 		required:true
 	},
+
+	destName:{
+		type:String,
+		required:true
+	},
 	value:{
 		type:Number,
 		required:true

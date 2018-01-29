@@ -1,16 +1,15 @@
-module.exports = function(Logs, request, response, JWT, CHAVESECRETA, apiKey){  
+module.exports = function(Users, request, response, JWT, CHAVESECRETA, apiKey){  
   let account = request.body.account
   let requestApiKey = request.body.apiKey
 
   if(requestApiKey === apiKey){
-		Logs.find({"account":account}, function(err,docs){
-			if (docs !== null){
-			response.send({status: true, msg:"Sucesso!!!", logs: docs})
-			} else {
-			response.send ({status: false, msg: "Usuário não encontrado"})
-			}
-		})
-  } else{
+		 Users.findOne({"account":account}, (err, doc) => {
+          if (doc !== null){
+               response.send({status:true, 
+							logs: doc.logs
+                    })
+          }
+  })} else{
 		  response.send({status: false, msg: "ApiKey inválida"})
   }
 

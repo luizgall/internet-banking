@@ -25,28 +25,30 @@ module.exports = function (Logs, Users, request, response, JWT, CHAVESECRETA, ap
 							docs[0].balance -= value
 							log =
 							 {	msg: "Transferência de " + value + " para " + doc.account + " no dia " + new Date(), 	account:docs[0].account,
-								type:true,
+								type:false,
 								date: new Date(),
 								destAccount: doc.account,
+								destName: doc.name,
 								value: -value
 							}
 							let instance = new Logs(log)
+							docs[0].logs.push(log)
+							docs[0].save()
 							instance.save(function (err) {
 							if (err) return console.log(err)
 							})
 							log =
 							 {	msg: "Depósito de  " + value + " recebido de " + doc.account + " no dia " + new Date(), 	account:doc.account,
-								type:false,
+								type:true,
 								date: new Date(),
 								destAccount: docs[0].account,
+								destName: docs[0].name,
 								value: value
 							}
 							instance = new Logs(log)
 							instance.save(function (err) {
 							if (err) return console.log(err)
 							})
-							docs[0].logs.push(log)
-							docs[0].save()
 							doc.balance += value
 							doc.logs.push(log)
 							doc.save()

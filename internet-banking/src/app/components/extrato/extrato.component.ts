@@ -25,26 +25,34 @@ export class ExtratoComponent implements OnInit {
 	) {}
 	
 	logs = []
+	
 	userAccount: Number
 	atualizar = (res) => {
+		console.log(res)
 		this.logs = res.logs.reverse()
-		console.log(this.logs)
+		if(EXTRATO_DATA.length === 0){
+			for (let log of this.logs) {
+				EXTRATO_DATA.push(
+					{ type: log.type, name: log.destName, account: log.destAccount, date: log.date, value: log.value }
+				)
+			}
+		}
+
 	}
 	
 	ngOnInit() {
 		this.global.getApiKey(this.getExtract)
-
 		this.pageTitle = 'Extrato'
-		console.log(this.pageTitle)
 	}
 
 	getExtract = (apiKey) => {
-		let url = `http://localhost:3000/api/extrato`;
+		let url = `http://localhost:3000/api/user`;
 		this.http.post(url, { apiKey: apiKey, token: this.token.token.value })
-			.subscribe( res => {
+			.subscribe(res => {
 				this.extratoService.getExtract(apiKey, res['account'], this.atualizar)
 			}
-		)
+			)
+
 	}
 
 	// material dynamic table
@@ -82,8 +90,5 @@ export interface Extrato {
 
 // Simulação de dados no caso tem que criar um array nesse formato
 // usando os logs
-const EXTRATO_DATA: Extrato[] = [
-	{ type: true, name: 'Luiz Gall', account: 1001, date: '11/01/2018', value: 200 },
-	{ type: false, name: 'Bruno Sesso', account: 1007, date: '13/01/2018', value: 140 },
-	{ type: true, name: 'Murilo Portescheller', account: 1005, date: '08/01/2018', value: 120 },
+let EXTRATO_DATA: Extrato[] = [
 ];
