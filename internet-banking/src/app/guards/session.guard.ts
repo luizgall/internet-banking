@@ -3,6 +3,7 @@ import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angul
 import { Observable } from 'rxjs/Observable';
 import { LoginService } from '../components/login/login.service'
 import { Router } from '@angular/router';
+import { TokenService } from '../services/token.service'
 
 
  @Injectable()
@@ -12,11 +13,12 @@ import { Router } from '@angular/router';
 
  	constructor(
  		private router: Router,
- 		private loginService: LoginService,
+		 private loginService: LoginService,
+		 private token:TokenService
  	) { }
 
  	canActivate( ){
- 		if (localStorage.getItem("logado")) {
+ 		if (this.token.token.status) {
  			this.router.navigate(['/']);				
  			return false;
  		} else {

@@ -4,6 +4,7 @@ import { Globals } from '../../model/Globals.module';
 import { HttpClient } from '@angular/common/http';
 import { MatTableDataSource, MatPaginator } from '@angular/material';
 import { moveInLeft } from '../../router.animations';
+import { TokenService } from '../../services/token.service'
 
 @Component({
 	selector: 'app-extrato',
@@ -19,7 +20,8 @@ export class ExtratoComponent implements OnInit {
 	constructor(
 		private extratoService: ExtratoService, 
 		private http: HttpClient, 
-		private global: Globals
+		private global: Globals,
+		public token:TokenService
 	) {}
 	
 	logs = []
@@ -37,7 +39,7 @@ export class ExtratoComponent implements OnInit {
 
 	getExtract = (apiKey) => {
 		let url = `http://localhost:3000/api/extrato`;
-		this.http.post(url, { apiKey: apiKey, token: localStorage.getItem("auth-token") })
+		this.http.post(url, { apiKey: apiKey, token: this.token.token.value })
 			.subscribe( res => {
 				this.extratoService.getExtract(apiKey, res['account'], this.atualizar)
 			}

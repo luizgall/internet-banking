@@ -12,13 +12,14 @@ import { Globals } from './model/Globals.module';
 import { LoginGuard } from './components/login/login.guard';
 import { SessionGuard } from './guards/session.guard';
 
+//services
 import { ServiceService } from './services/service.service';
 import { LoginService } from "./components/login/login.service";
 import { ExtratoService } from "./components/extrato/extrato.service";
 import { ChecarloginService} from './services/checarlogin.service';
 import { ToasterService } from './services/toaster.service';
 import { TransferenciaService } from './components/transferencia/transferencia.service';
-
+import { TokenService } from './services/token.service'
 // components
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
@@ -56,6 +57,7 @@ registerLocaleData(ptBr)
 		TransferenciaService, 
 		ExtratoService, 
 		ToasterService, 
+		TokenService,
 		{ provide: LOCALE_ID, useValue: 'pt-PT' }		
 	],
 	bootstrap: [AppComponent]

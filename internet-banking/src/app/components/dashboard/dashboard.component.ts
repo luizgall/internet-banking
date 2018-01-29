@@ -6,6 +6,7 @@ import { Router } from '@angular/router'
 import { ExtratoService } from '../extrato/extrato.service';
 import { ToasterService } from '../../services/toaster.service';
 import { moveInLeft } from '../../router.animations';
+import { TokenService } from '../../services/token.service'
 
 @Component({
 	selector: 'app-dashboard',
@@ -28,16 +29,18 @@ export class DashboardComponent implements OnInit {
 		private router: Router,
 		private global: Globals,
 		private extratoService: ExtratoService,
-		private toasterService: ToasterService
+		private toasterService: ToasterService,
+		public token:TokenService
 	) {}
 	
 	ngOnInit() {
-		let url = `https://ng-bankline.herokuapp.com/api/user`;
-		this.http.post(url, {token: localStorage.getItem("auth-token")})
+		let url = `http://localhost:3000/api/user`;
+		this.http.post(url, {token: this.token.token.value})
 		.subscribe(
 			res => {
 				if(res['msg']==='token-invalido'){
-					localStorage.removeItem("auth-token")
+					this.token.token.status = false
+					this.token.token.value = ""
 					this.router.navigate(['/login'])
 					this.toasterService.showToaster('Sua sessão expirou')
 				}
@@ -60,7 +63,7 @@ export class DashboardComponent implements OnInit {
 	
 	getExtract = (apiKey) => {
 		let url = `http://localhost:3000/api/user`;
-		this.http.post(url, { apiKey: apiKey, token: localStorage.getItem("auth-token") })
+		this.http.post(url, { apiKey: apiKey, token: this.token.token.value })
 			.subscribe(res => {
 				this.extratoService.getExtract(apiKey, res['account'], this.atualizar)
 			}

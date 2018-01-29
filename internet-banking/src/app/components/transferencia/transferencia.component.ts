@@ -8,7 +8,7 @@ import { Globals } from '../../model/Globals.module';
 import { ToasterService } from '../../services/toaster.service';
 import { moveInLeft } from '../../router.animations';
 import { TransferenciaService } from './transferencia.service';
-
+import { TokenService } from '../../services/token.service'
 @Component({
 	selector: 'app-transferencia',
 	templateUrl: './transferencia.component.html',
@@ -49,12 +49,13 @@ export class TransferenciaComponent implements OnInit {
 		private transferenciaService: TransferenciaService,
 		private router: Router,
 		private global: Globals,
-		private toasterService: ToasterService
+		private toasterService: ToasterService,
+		public token: TokenService
 	) {}
 	
 	ngOnInit() {
 		let url = `http://localhost:3000/api/user`;
-		this.http.post(url, {token: localStorage.getItem("auth-token")})
+		this.http.post(url, {token: this.token.token.value})
 			.subscribe(
 				res => {
 					this.data.username = res['username']
@@ -77,7 +78,7 @@ export class TransferenciaComponent implements OnInit {
 		}
 		this.transferenciaService.transfer(
 
-			this.email, apiKey, localStorage.getItem("auth-token"), parseFloat(this.value.replace(",", ".")), this.toAccount, this.afterSubmit
+			this.email, apiKey, this.token.token.value, parseFloat(this.value.replace(",", ".")), this.toAccount, this.afterSubmit
 		);
 	}
 	
