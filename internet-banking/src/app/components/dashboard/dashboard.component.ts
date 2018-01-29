@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material';
 import { HttpClient } from '@angular/common/http';
-import { Globals } from '../../model/Globals.module'
 import { Router } from '@angular/router'
 import { ExtratoService } from '../extrato/extrato.service';
 import { ToasterService } from '../../services/toaster.service';
 import { moveInLeft } from '../../router.animations';
+import { TokenService } from '../../services/token.service'
+import { UserDataService } from "../../services/user-data.service";
 
 @Component({
 	selector: 'app-dashboard',
@@ -16,56 +17,29 @@ import { moveInLeft } from '../../router.animations';
 })
 export class DashboardComponent implements OnInit {
 	
-	data = {
-		username: "",
-		balance: "0",
-		account: 0,
-		logs: []
-	}
+	
+	data ={}
+	logs = []
 	
 	constructor(
 		private http: HttpClient, 
 		private router: Router,
-		private global: Globals,
 		private extratoService: ExtratoService,
-		private toasterService: ToasterService
+		private toasterService: ToasterService,
+		public token:TokenService,
+		public userData: UserDataService
 	) {}
 	
 	ngOnInit() {
-		let url = `https://ng-bankline.herokuapp.com/api/user`;
-		this.http.post(url, {token: localStorage.getItem("auth-token")})
-		.subscribe(
-			res => {
-				if(res['msg']==='token-invalido'){
-					localStorage.removeItem("auth-token")
-					this.router.navigate(['/login'])
-					this.toasterService.showToaster('Sua sessão expirou')
-				}
-				this.data.username = res['username']
-				this.data.balance = res['balance']
-				this.data.account = res["account"]
-				this.data.logs = res['logs'] 
-			}
-		)
-		
-		this.global.getApiKey(this.getExtract)
+		this.data = {
+			username: this.userData.name,
+			balance: this.userData.balance,
+			account: this.userData.account,
+			logs: this.userData.logs
+		}
+		this.logs = this.data['logs']
 	}
 	
-	logs = []
-	that = this
-	userAccount: Number
-	atualizar = (res) => {
-		this.logs = res.logs.reverse()
-	}
-	
-	getExtract = (apiKey) => {
-		let url = `https://ng-bankline.herokuapp.com/api/user`;
-		this.http.post(url, { apiKey: apiKey, token: localStorage.getItem("auth-token") })
-			.subscribe(res => {
-				this.extratoService.getExtract(apiKey, res['account'], this.atualizar)
-			}
-		)
-		
-	}
+
 
 }

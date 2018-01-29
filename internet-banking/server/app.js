@@ -68,7 +68,7 @@ app.post('/api/transferencia', function(request, response){
 
 
 app.post('/api/extrato', function(request, response){
-	require('./api/extrato')(Logs, request, response, JWT, CHAVESECRETA, apiKey)
+	require('./api/extrato')(Users, request, response, JWT, CHAVESECRETA, apiKey)
 
 })
 

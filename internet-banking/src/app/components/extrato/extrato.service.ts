@@ -1,16 +1,18 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { TokenService } from '../../services/token.service'
 
 @Injectable()
 export class ExtratoService {
 	
 	constructor(
-		private http: HttpClient
+		private http: HttpClient,
+		public token: TokenService
 	) {}
 	
 	public getExtract(apiKey, account, cb) {
-		let url = `https://ng-bankline.herokuapp.com/api/extrato`;
-		this.http.post(url, { account: account, token: localStorage.getItem('auth-token'), apiKey: apiKey})
+		let url = `http://localhost:3000/api/extrato`;
+		this.http.post(url, { account: account, token: this.token.token.value, apiKey: apiKey})
 			.subscribe(
 				res => {
 					if(res['status']) {

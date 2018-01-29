@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Globals } from './model/Globals.module'
 import { ChecarloginService } from './services/checarlogin.service'
 import { ServiceService } from './services/service.service'
 import { LoginService } from './components/login/login.service'
@@ -19,7 +18,6 @@ export class AppComponent {
 
 		private transferenciaService: TransferenciaService,
 		private checarloginService: ChecarloginService,
-		private global: Globals
 	) {}
 	
 	ngOnInit(){

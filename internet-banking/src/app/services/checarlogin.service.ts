@@ -1,12 +1,15 @@
 import { Injectable } from '@angular/core';
+import { TokenService } from './token.service'
 
 @Injectable()
 export class ChecarloginService {
 	
-	constructor() { }
+	constructor(
+		public token:TokenService
+	) { }
 	
 	public isLogin(){
-		if(localStorage.getItem("auth-token")){	
+		if(this.token.token.status){	
 			return true
 		} else{
 			return false

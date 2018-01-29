@@ -6,19 +6,20 @@ import { NgModule, LOCALE_ID } from '@angular/core';
 import { AppRoutes } from './app.routes';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { Globals } from './model/Globals.module';
+import { UserDataService } from './services/user-data.service'
 
 // guards
 import { LoginGuard } from './components/login/login.guard';
 import { SessionGuard } from './guards/session.guard';
 
+//services
 import { ServiceService } from './services/service.service';
 import { LoginService } from "./components/login/login.service";
 import { ExtratoService } from "./components/extrato/extrato.service";
 import { ChecarloginService} from './services/checarlogin.service';
 import { ToasterService } from './services/toaster.service';
 import { TransferenciaService } from './components/transferencia/transferencia.service';
-
+import { TokenService } from './services/token.service'
 // components
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
@@ -46,7 +47,6 @@ registerLocaleData(ptBr)
 		BrowserModule, HttpClientModule, FormsModule, ReactiveFormsModule, AppMaterialModule, AppRoutes		
 	],
 	providers: [
-		Globals, 
 		LoginGuard, 
 		SessionGuard, 
 		ChecarloginService, 
@@ -56,6 +56,8 @@ registerLocaleData(ptBr)
 		TransferenciaService, 
 		ExtratoService, 
 		ToasterService, 
+		TokenService,
+		UserDataService,
 		{ provide: LOCALE_ID, useValue: 'pt-PT' }		
 	],
 	bootstrap: [AppComponent]

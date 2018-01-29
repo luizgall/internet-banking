@@ -28,9 +28,12 @@ module.exports = function (Logs, Users, request, response, JWT, CHAVESECRETA, ap
 								type:false,
 								date: new Date(),
 								destAccount: doc.account,
+								destName: doc.name,
 								value: -value
 							}
 							let instance = new Logs(log)
+							docs[0].logs.push(log)
+							docs[0].save()
 							instance.save(function (err) {
 							if (err) return console.log(err)
 							})
@@ -39,19 +42,18 @@ module.exports = function (Logs, Users, request, response, JWT, CHAVESECRETA, ap
 								type:true,
 								date: new Date(),
 								destAccount: docs[0].account,
+								destName: docs[0].name,
 								value: value
 							}
 							instance = new Logs(log)
 							instance.save(function (err) {
 							if (err) return console.log(err)
 							})
-							docs[0].logs.push(log)
-							docs[0].save()
 							doc.balance += value
 							doc.logs.push(log)
 							doc.save()
 							if (request.body.email){
-								//let email = require('./email/sendEmail')(docs[0], doc, value)
+								let email = require('../email/sendEmail')(docs[0], doc, value)
 							}
 							response.send({msg:"Transação concluída!", seuSaldo:docs[0].balance, saldoDest: doc.balance, data: new Date()})
 						}

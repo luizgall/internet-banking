@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ExtratoService } from './extrato.service';
-import { Globals } from '../../model/Globals.module';
 import { HttpClient } from '@angular/common/http';
 import { MatTableDataSource, MatPaginator } from '@angular/material';
 import { moveInLeft } from '../../router.animations';
+import { TokenService } from '../../services/token.service'
+import { UserDataService } from '../../services/user-data.service'
 
 @Component({
 	selector: 'app-extrato',
@@ -19,30 +20,30 @@ export class ExtratoComponent implements OnInit {
 	constructor(
 		private extratoService: ExtratoService, 
 		private http: HttpClient, 
-		private global: Globals
+		public token:TokenService,
+		public userData: UserDataService
 	) {}
 	
 	logs = []
 	userAccount: Number
-	atualizar = (res) => {
-		this.logs = res.logs.reverse()
+
+
+	atualizar = () => {
+		if(EXTRATO_DATA.length === 0){
+			for (let log of this.logs) {
+				EXTRATO_DATA.push(
+					{ type: log.type, name: log.destName, account: log.destAccount, date: log.date, value: log.value }
+				)
+			}
+		}
+
 	}
 	
 	ngOnInit() {
-		this.global.getApiKey(this.getExtract)
-
-		this.pageTitle = 'Extrato'
-		console.log(this.pageTitle)
+		this.logs = this.userData.logs
+		this.atualizar()
 	}
 
-	getExtract = (apiKey) => {
-		let url = `https://ng-bankline.herokuapp.com/api/extrato`;
-		this.http.post(url, { apiKey: apiKey, token: localStorage.getItem("auth-token") })
-			.subscribe( res => {
-				this.extratoService.getExtract(apiKey, res['account'], this.atualizar)
-			}
-		)
-	}
 
 	// material dynamic table
 	displayedColumns = ['type', 'name', 'account', 'date', 'value'];
@@ -79,8 +80,5 @@ export interface Extrato {
 
 // Simulação de dados no caso tem que criar um array nesse formato
 // usando os logs
-const EXTRATO_DATA: Extrato[] = [
-	{ type: true, name: 'Luiz Gall', account: 1001, date: '11/01/2018', value: 200 },
-	{ type: false, name: 'Bruno Sesso', account: 1007, date: '13/01/2018', value: 140 },
-	{ type: true, name: 'Murilo Portescheller', account: 1005, date: '08/01/2018', value: 120 },
+let EXTRATO_DATA: Extrato[] = [
 ];

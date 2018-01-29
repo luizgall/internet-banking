@@ -22,7 +22,7 @@
 					<div fxFlex="10"><small>Conta:</small></div>
 				</mat-list-item>
 				<mat-list-item *ngFor="let log of logs | slice:0:3;" fxLayout="column">
-					<div fxFlex="20" class="type"><mat-icon>{{ log.type ? 'arrow_back' : 'arrow_forward' }}</mat-icon></div> 
+					<div fxFlex="20" class="type"><mat-icon>{{ log.type ? 'arrow_forward' : 'arrow_back' }}</mat-icon></div> 
 					<div fxFlex="60" class="value">{{ log.value | currency: 'BRL':'symbol' }}</div> 
 					<div fxFlex="30" class="date">{{ log.date | date: 'dd/MM/yyyy' }}</div>
 					<div fxFlex="10" class="from-account">{{ log.destAccount }}</div>

@@ -2,18 +2,22 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router'
 import { ToasterService } from '../../services/toaster.service';
-
+import {TokenService} from '../../services/token.service'
+import {  UserDataService } from "../../services/user-data.service";
+ 
 @Injectable()
 export class LoginService {
 
 	constructor(
 		private http: HttpClient, 
 		private router: Router,
-		private toasterService: ToasterService
+		private toasterService: ToasterService,
+		public token:TokenService, 
+		public userData: UserDataService
 	) {}
 	
 	public tryLogin(account, password, apiKey, logado){
-		let url = `https://ng-bankline.herokuapp.com/api/login`;
+		let url = `http://localhost:3000/api/login`;
 		this.http.post(url, {
 				account: account, 
 				password: password, 
@@ -23,12 +27,17 @@ export class LoginService {
 			.subscribe(
 				res => {
 					if(res['status'] == true){
+						this.token.token.status = true
+						this.token.token.value = res['token']
+						this.userData.account = res['account']
+						this.userData.balance = res['balance']
+						this.userData.logs = res['logs']
+						this.userData.name = res['name']
+						
 						this.router.navigateByUrl("/")
-						localStorage.setItem("auth-token", res['token'])
-						console.log(res['status'])
+
 					} else {
-						this.toasterService.showToaster('Dados incorretos, revise os campos e tente novamente', 'alert-warning')
-						console.log(res['status'])						
+						this.toasterService.showToaster('Dados incorretos, revise os campos e tente novamente', 'alert-warning')					
 					}
 				},
 				err => {

@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { NgModel } from '@angular/forms';
 import { LoginService } from './login.service';
-import { Globals } from '../../model/Globals.module';
-
+import {UserDataService} from '../../services/user-data.service'
 // animations
 import { trigger, style, transition, animate, query, stagger } from '@angular/animations';
 
@@ -42,20 +41,20 @@ export class LoginComponent implements OnInit {
 	logado
 	constructor(
 		private loginService: LoginService, 
-		private global: Globals
+		public userData: UserDataService
 	){}
 	
-	ngOnInit() {}
+	ngOnInit() {
+		this.userData.getApiKey();
+
+	}
 	
 	onSubmit(){
-		this.global.getApiKey(this.submitLogin)
-	}
-
-	submitLogin = (apiKey) =>{
-		if(this.logado === undefined){
+		console.log(this.userData.apiKey)
+		if (this.logado === undefined) {
 			this.logado = false
 		}
-		this.loginService.tryLogin(parseInt(this.data.account), this.data.password, apiKey, this.logado)
+		this.loginService.tryLogin(parseInt(this.data.account), this.data.password, this.userData.apiKey, this.logado)
 	}
 	
 }
