@@ -16,8 +16,8 @@
 			<form (ngSubmit)="onSubmit()">
 		
 				<div fxFlexLayout="row" fxLayoutAlign="space-around center">
-					<mat-icon fxFlex="5">attach_money</mat-icon>
-					<div fxFlex="95">
+					<mat-icon fxFlex="10">attach_money</mat-icon>
+					<div fxFlex="90">
 						<mat-form-field class="form-field full-width">
 							<input 
 								matInput 
@@ -39,8 +39,8 @@
 				</div>
 		
 				<div fxLayout="row" fxLayoutAlign="space-around center">
-					<mat-icon fxFlex="5">account_box</mat-icon>
-					<div fxFlex="95">
+					<mat-icon fxFlex="10">account_box</mat-icon>
+					<div fxFlex="90">
 						<mat-form-field class="form-field full-width">
 							<input
 								id="amountToTransfer"
@@ -64,7 +64,7 @@
 					</div>
 				</div>
 				<div class="form-group">
-					<mat-checkbox [(ngModel)]="email" name="email">Enviar comprovante por e-mail</mat-checkbox>
+					<mat-checkbox [(ngModel)]="email" name="email" color="primary">Enviar comprovante por e-mail</mat-checkbox>
 				</div>
 				<div class="form-group">
 					<button 

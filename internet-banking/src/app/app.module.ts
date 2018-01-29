@@ -26,7 +26,6 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ExtratoComponent } from './components/extrato/extrato.component';
 import { TransferenciaComponent } from './components/transferencia/transferencia.component';
-import { NavbarMobileComponent } from './components/navbar-mobile/navbar-mobile.component';
 
 // custom pipes
 import { IniciaisPipe } from './pipes/iniciais.pipe';
@@ -38,7 +37,7 @@ registerLocaleData(ptBr)
 
 @NgModule({
 	declarations: [
-		AppComponent, LoginComponent, NavbarComponent, DashboardComponent, ExtratoComponent, TransferenciaComponent, NavbarMobileComponent,
+		AppComponent, LoginComponent, NavbarComponent, DashboardComponent, ExtratoComponent, TransferenciaComponent,
 		
 		// pipes
 		IniciaisPipe, NumberFormatPipe
