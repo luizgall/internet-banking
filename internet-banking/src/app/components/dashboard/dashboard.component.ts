@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material';
 import { HttpClient } from '@angular/common/http';
-import { Globals } from '../../model/Globals.module'
 import { Router } from '@angular/router'
 import { ExtratoService } from '../extrato/extrato.service';
 import { ToasterService } from '../../services/toaster.service';
 import { moveInLeft } from '../../router.animations';
 import { TokenService } from '../../services/token.service'
+import { UserDataService } from "../../services/user-data.service";
 
 @Component({
 	selector: 'app-dashboard',
@@ -17,58 +17,29 @@ import { TokenService } from '../../services/token.service'
 })
 export class DashboardComponent implements OnInit {
 	
-	data = {
-		username: "",
-		balance: "0",
-		account: 0,
-		logs: []
-	}
+	
+	data ={}
+	logs = []
 	
 	constructor(
 		private http: HttpClient, 
 		private router: Router,
-		private global: Globals,
 		private extratoService: ExtratoService,
 		private toasterService: ToasterService,
-		public token:TokenService
+		public token:TokenService,
+		public userData: UserDataService
 	) {}
 	
 	ngOnInit() {
-		let url = `http://localhost:3000/api/user`;
-		this.http.post(url, {token: this.token.token.value})
-		.subscribe(
-			res => {
-				if(res['msg']==='token-invalido'){
-					this.token.token.status = false
-					this.token.token.value = ""
-					this.router.navigate(['/login'])
-					this.toasterService.showToaster('Sua sessão expirou')
-				}
-				this.data.username = res['username']
-				this.data.balance = res['balance']
-				this.data.account = res["account"]
-				this.data.logs = res['logs'] 
-			}
-		)
-		
-		this.global.getApiKey(this.getExtract)
+		this.data = {
+			username: this.userData.name,
+			balance: this.userData.balance,
+			account: this.userData.account,
+			logs: this.userData.logs
+		}
+		this.logs = this.data['logs']
 	}
 	
-	logs = []
-	that = this
-	userAccount: Number
-	atualizar = (res) => {
-		this.logs = res.logs.reverse()
-	}
-	
-	getExtract = (apiKey) => {
-		let url = `http://localhost:3000/api/user`;
-		this.http.post(url, { apiKey: apiKey, token: this.token.token.value })
-			.subscribe(res => {
-				this.extratoService.getExtract(apiKey, res['account'], this.atualizar)
-			}
-		)
-		
-	}
+
 
 }

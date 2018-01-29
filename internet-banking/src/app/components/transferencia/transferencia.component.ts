@@ -4,11 +4,12 @@ import { HttpClient } from "@angular/common/http"
 import { Router } from '@angular/router'
 import { MatTableDataSource } from '@angular/material';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import { Globals } from '../../model/Globals.module';
 import { ToasterService } from '../../services/toaster.service';
 import { moveInLeft } from '../../router.animations';
 import { TransferenciaService } from './transferencia.service';
 import { TokenService } from '../../services/token.service'
+import { UserDataService } from '../../services/user-data.service'
+
 @Component({
 	selector: 'app-transferencia',
 	templateUrl: './transferencia.component.html',
@@ -34,12 +35,6 @@ export class TransferenciaComponent implements OnInit {
 		Validators.required
 	]);
 	
-	data = {
-		username: "",
-		balance: 0,
-		account: 0,
-		logs: []
-	}
 	
 	toAccount
 	value
@@ -48,37 +43,23 @@ export class TransferenciaComponent implements OnInit {
 		private http: HttpClient,
 		private transferenciaService: TransferenciaService,
 		private router: Router,
-		private global: Globals,
+		private userData:UserDataService,
 		private toasterService: ToasterService,
 		public token: TokenService
 	) {}
 	
 	ngOnInit() {
-		let url = `http://localhost:3000/api/user`;
-		this.http.post(url, {token: this.token.token.value})
-			.subscribe(
-				res => {
-					this.data.username = res['username']
-					this.data.balance = res['balance']
-					this.data.account = res["account"]
-					this.data.logs =  res['logs'] 
-				}
-			)
 		this.pageTitle = 'Transferência'
-		console.log(this.pageTitle)	
+
 	}
 	
 	onSubmit(){
-		this.global.getApiKey(this.submitTransferencia)
-	}
-	
-	submitTransferencia  = (apiKey) =>{
-		if (this.email == undefined){
+		if (this.email == undefined) {
 			this.email = false
 		}
 		this.transferenciaService.transfer(
 
-			this.email, apiKey, this.token.token.value, parseFloat(this.value.replace(",", ".")), this.toAccount, this.afterSubmit
+			this.email, this.userData.apiKey, this.token.token.value, parseFloat(this.value.replace(",", ".")), this.toAccount, this.afterSubmit
 		);
 	}
 	

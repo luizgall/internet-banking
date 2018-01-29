@@ -28,7 +28,7 @@ module.exports = function(Users, request, response, JWT, CHAVESECRETA, apiKey){
                     expiresIn: expire
                     }
                 )
-                res = {token: token, status: true}
+                res = {token: token, status: true, name:docs[0].name, balance: docs[0].balance, account: docs[0].account, logs: docs[0].logs.reverse().slice(0, 3)}
                 response.send(res)
 			 } 
 			 else {

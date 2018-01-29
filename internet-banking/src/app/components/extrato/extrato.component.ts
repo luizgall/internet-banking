@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ExtratoService } from './extrato.service';
-import { Globals } from '../../model/Globals.module';
 import { HttpClient } from '@angular/common/http';
 import { MatTableDataSource, MatPaginator } from '@angular/material';
 import { moveInLeft } from '../../router.animations';
 import { TokenService } from '../../services/token.service'
+import { UserDataService } from '../../services/user-data.service'
 
 @Component({
 	selector: 'app-extrato',
@@ -20,16 +20,15 @@ export class ExtratoComponent implements OnInit {
 	constructor(
 		private extratoService: ExtratoService, 
 		private http: HttpClient, 
-		private global: Globals,
-		public token:TokenService
+		public token:TokenService,
+		public userData: UserDataService
 	) {}
 	
 	logs = []
-	
 	userAccount: Number
-	atualizar = (res) => {
-		console.log(res)
-		this.logs = res.logs.reverse()
+
+
+	atualizar = () => {
 		if(EXTRATO_DATA.length === 0){
 			for (let log of this.logs) {
 				EXTRATO_DATA.push(
@@ -41,19 +40,10 @@ export class ExtratoComponent implements OnInit {
 	}
 	
 	ngOnInit() {
-		this.global.getApiKey(this.getExtract)
-		this.pageTitle = 'Extrato'
+		this.logs = this.userData.logs
+		this.atualizar()
 	}
 
-	getExtract = (apiKey) => {
-		let url = `http://localhost:3000/api/user`;
-		this.http.post(url, { apiKey: apiKey, token: this.token.token.value })
-			.subscribe(res => {
-				this.extratoService.getExtract(apiKey, res['account'], this.atualizar)
-			}
-			)
-
-	}
 
 	// material dynamic table
 	displayedColumns = ['type', 'name', 'account', 'date', 'value'];
