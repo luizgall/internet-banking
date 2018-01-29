@@ -16,6 +16,7 @@ export class ExtratoService {
 			.subscribe(
 				res => {
 					if(res['status']) {
+						console.log(res)
 						cb(res)
 					}	
 				},

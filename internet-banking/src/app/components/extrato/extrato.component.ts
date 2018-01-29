@@ -28,6 +28,7 @@ export class ExtratoComponent implements OnInit {
 	userAccount: Number
 	atualizar = (res) => {
 		this.logs = res.logs.reverse()
+		console.log(this.logs)
 	}
 	
 	ngOnInit() {
