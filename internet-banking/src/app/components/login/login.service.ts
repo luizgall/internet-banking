@@ -31,8 +31,7 @@ export class LoginService {
 						this.token.token.status = true
 						this.token.token.value = res['token']
 					} else {
-						this.toasterService.showToaster('Dados incorretos, revise os campos e tente novamente', 'alert-warning')
-						console.log(res['status'])						
+						this.toasterService.showToaster('Dados incorretos, revise os campos e tente novamente', 'alert-warning')					
 					}
 				},
 				err => {

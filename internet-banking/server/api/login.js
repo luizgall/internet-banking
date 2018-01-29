@@ -30,7 +30,10 @@ module.exports = function(Users, request, response, JWT, CHAVESECRETA, apiKey){
                 )
                 res = {token: token, status: true}
                 response.send(res)
-             }
+			 } 
+			 else {
+				response.send({status:false, token:''})
+			 }
          })
        
         }
