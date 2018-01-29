@@ -1,7 +1,13 @@
 <mat-toolbar color="warn" class="main-toolbar">
 	<mat-toolbar-row [fxLayout]="row" fxLayoutAlign="space-between center">
 
-		<div>
+		<div fxShow fxShow.gt-sm="false">
+			<button mat-icon-button>
+				<mat-icon aria-label="Menu" (click)="sidenav.toggle()">menu</mat-icon>
+			</button>
+		</div>
+
+		<div fxHide fxShow.gt-sm="true">
 			<div [fxLayout]="column" fxLayoutAlign="center center">
 				
 				<a *ngIf="router.url != '/'" routerLink="/" mat-icon-button>
@@ -16,23 +22,24 @@
 					</div>
 				</div>
 
-				<!-- <h4>{{ pageTitle }}</h4> -->
 			</div>
 		</div>
 
 		<div>
-			<a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" mat-button fxHide fxShow.gt-xs="true">
-				<mat-icon>home</mat-icon>
-				<span>Início</span>
-			</a>
-			<a routerLink="/transferencia" routerLinkActive="active" mat-button fxHide fxShow.gt-xs="true">
-				<mat-icon>swap_vert</mat-icon>
-				<span>Transferência</span>
-			</a>
-			<a routerLink="/extrato" routerLinkActive="active" mat-button fxHide fxShow.gt-xs="true">
-				<mat-icon>format_list_bulleted</mat-icon>
-				<span>Extrato</span>
-			</a>
+			<span fxHide fxShow.gt-sm="true">
+				<a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" mat-button>
+					<mat-icon>home</mat-icon>
+					<span>Início</span>
+				</a>
+				<a routerLink="/transferencia" routerLinkActive="active" mat-button>
+					<mat-icon>swap_vert</mat-icon>
+					<span>Transferência</span>
+				</a>
+				<a routerLink="/extrato" routerLinkActive="active" mat-button>
+					<mat-icon>format_list_bulleted</mat-icon>
+					<span>Extrato</span>
+				</a>
+			</span>
 
 			<button mat-icon-button [matMenuTriggerFor]="menu">
 				<mat-icon>more_vert</mat-icon>
@@ -46,11 +53,69 @@
 					<mat-icon>settings</mat-icon>
 					<span>Configurações</span>
 				</button>
-				<button mat-menu-item (click) = "desconectar()">
+				<button mat-menu-item (click)="desconectar()">
 					<mat-icon>exit_to_app</mat-icon>
 					<span>Desconectar</span>
 				</button>
 			</mat-menu>
 		</div>
+
 	</mat-toolbar-row>
 </mat-toolbar>
+
+<!-- sidenav -->
+<mat-sidenav-container class="sidenav-container">
+	<mat-sidenav class="sidenav" #sidenav mode="over" opened="false">
+		<div class="sidenav-header">
+			<div class="infos" fxLayout="column" fxLayoutAlign="end start" fxFill>
+			
+				<!-- <a *ngIf="router.url != '/'" routerLink="/" mat-icon-button>
+					<mat-icon>arrow_back</mat-icon>
+				</a> -->
+			
+				<div>
+					<div class="avatar">{{ data.username | iniciais }}</div>
+					<div>
+						<div class="name">Olá, {{ data.username }}</div>
+						<div class="account">conta: {{ data.account }}</div>
+					</div>
+				</div>
+			
+			</div>
+		</div>
+		<div class="sidenav-content">
+			<mat-list>
+				<h3 mat-subheader>Navegação</h3>
+				<mat-list-item routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="sidenav.toggle()">
+					<mat-icon mat-list-icon>home</mat-icon>
+					<h4 mat-line>Home</h4>
+				</mat-list-item>
+				<mat-list-item routerLink="/transferencia" routerLinkActive="active" (click)="sidenav.toggle()">
+					<mat-icon mat-list-icon>swap_vert</mat-icon>
+					<h4 mat-line>Transferência</h4>
+				</mat-list-item>
+				<mat-list-item routerLink="/extrato" routerLinkActive="active" (click)="sidenav.toggle()">
+					<mat-icon mat-list-icon>format_list_bulleted</mat-icon>
+					<h4 mat-line>Extrato completo</h4>
+				</mat-list-item>
+				
+				<mat-divider></mat-divider>
+
+				<mat-list-item *ngIf="false" disabled>
+					<mat-icon mat-list-icon>sync</mat-icon>
+					<h4 mat-line>Sincronizar</h4>
+				</mat-list-item>
+
+				<mat-list-item>
+					<mat-icon mat-list-icon>settings</mat-icon>
+					<h4 mat-line>Configurações</h4>
+				</mat-list-item>
+				<mat-list-item>
+					<mat-icon mat-list-icon>exit_to_app</mat-icon>
+					<h4 mat-line>Desconectar</h4>
+				</mat-list-item>
+
+			</mat-list>
+		</div>
+	</mat-sidenav>
+</mat-sidenav-container>

@@ -16,6 +16,9 @@ body {
 	overflow-x: hidden;
 	padding: 0;
 }
+img {
+	max-width: 100%;
+}
 
 .page {
 	height: 100%;
@@ -94,15 +97,17 @@ body {
 		color: #ffffff;
 	}
 }
-
-.mat-list-item-content {
-	border-bottom: 1px solid #ccc;
-	&:last-child() {
-		border-bottom: 0;
-	}
-}
 .nothing-to-show {
 	display: block;
 	margin-top: 4rem;
 	min-height: 80px;	
+}
+
+.mat-card {
+	.mat-list-item-content {
+		border-bottom: 1px solid #ccc;
+		&:last-child() {
+			border-bottom: 0;
+		}
+	}
 }
