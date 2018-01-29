@@ -53,7 +53,7 @@ export class TransferenciaComponent implements OnInit {
 	) {}
 	
 	ngOnInit() {
-		let url = `https://ng-bankline.herokuapp.com/api/user`;
+		let url = `http://localhost:3000/api/user`;
 		this.http.post(url, {token: localStorage.getItem("auth-token")})
 			.subscribe(
 				res => {

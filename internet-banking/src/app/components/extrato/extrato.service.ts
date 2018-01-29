@@ -9,7 +9,7 @@ export class ExtratoService {
 	) {}
 	
 	public getExtract(apiKey, account, cb) {
-		let url = `https://ng-bankline.herokuapp.com/api/extrato`;
+		let url = `http://localhost:3000/api/extrato`;
 		this.http.post(url, { account: account, token: localStorage.getItem('auth-token'), apiKey: apiKey})
 			.subscribe(
 				res => {

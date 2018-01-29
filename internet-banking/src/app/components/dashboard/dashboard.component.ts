@@ -59,7 +59,7 @@ export class DashboardComponent implements OnInit {
 	}
 	
 	getExtract = (apiKey) => {
-		let url = `https://ng-bankline.herokuapp.com/api/user`;
+		let url = `http://localhost:3000/api/user`;
 		this.http.post(url, { apiKey: apiKey, token: localStorage.getItem("auth-token") })
 			.subscribe(res => {
 				this.extratoService.getExtract(apiKey, res['account'], this.atualizar)
