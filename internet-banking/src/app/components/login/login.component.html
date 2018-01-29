@@ -22,6 +22,7 @@
 									maxlength="4" 
 									minlength="4" 
 									[(ngModel)] = "data.account"
+									class="inputContaLogin"
 								>
 								<mat-error *ngIf="accountFormControl.hasError('pattern') || accountFormControl.hasError('minlength')">
 									Conta inválida
