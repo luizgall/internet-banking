@@ -17,7 +17,7 @@ import { ScrollDispatcher, ViewportRuler } from '@angular/cdk/scrolling';
 import { Globals } from '../../model/Globals.module';
 import { NoopAnimationsModule, BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-fdescribe('LoginComponent', () => {
+describe('LoginComponent', () => {
   // declara todos os elementos que vc vai testar/que são carregados dentro do template do componente
   let component: LoginComponent;
   let fixture: ComponentFixture<LoginComponent>;
@@ -72,9 +72,6 @@ fdescribe('LoginComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(LoginComponent);
     component = fixture.componentInstance;
-    ///////////////////////////////////////////////////////
-    // PAROU AQUI => ngOnInit
-    //////////////////////////////////////////////////////
     // component.ngOnInit(); // comentado pq nao tem nada dentro de ngOnInit
 
     // testando elementos do componente == pode puxar por classe, tags, etc
