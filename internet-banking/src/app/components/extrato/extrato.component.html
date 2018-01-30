@@ -60,8 +60,12 @@
 					<mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
 					<mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
 				</mat-table>
-				<button *ngIf="this.carregarMais" (click) = "showMore()"> Carregar mais </button>
-				<p *ngIf="!this.carregarMais"> Não há mais extratos </p>
+				<button class="load-more-btn" mat-button *ngIf="this.carregarMais;else noMoreItems" (click)="showMore()"><mat-icon>sync</mat-icon> Carregar mais</button>
+
+				<ng-template #noMoreItems>
+					<p class="text-center">Não há mais extratos</p>
+				</ng-template>
+
 				<!-- paginator provavelmente terá que ficar pra proxima atualização -->
 				<!-- <mat-paginator #paginator [pageSize]="5" [pageSizeOptions]="[5, 10, 20]"></mat-paginator> -->
 			</div>
