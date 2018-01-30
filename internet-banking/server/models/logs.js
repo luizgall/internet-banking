@@ -19,22 +19,8 @@ var logSchema = new mongoose.Schema({
 	msg:{
 		type: String,
 		required: true},
-	
-	type:{
-		type:String,
-		required:true
-	},
-	date:{
-		type:Date,
-		required:true
-	},
-	destAccount:{
-		type:Number,
-	},
-	value:{
-		type:Number,
-		required:true
-	}
+
+	date:Date
 })
 
    

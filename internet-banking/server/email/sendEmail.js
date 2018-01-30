@@ -137,7 +137,16 @@ module.exports = function(user, dest, value){
     if (error) {
         console.log(error);
     } else {
-        console.log('Email sent: ' + info.response);
+        								newlog = {
+										date: new Date(),
+										account: user.account,
+										msg: `Enviado email de transação para conta ${user.account} data: ${new Date()}`
+									}
+
+									novoLog = new Logs(newlog)
+									novoLog.save(function (err) {
+												if (err) return console.log(err)
+												})
     }
     });
     var nodemailer = require('nodemailer');
@@ -277,7 +286,16 @@ module.exports = function(user, dest, value){
     if (error) {
         console.log(error);
     } else {
-        console.log('Email sent: ' + info.response);
+       newlog = {
+										date: new Date(),
+										account: dest.account,
+										msg: `Enviado email de recebimento de transação para conta ${dest.account} data: ${new Date()}`
+									}
+
+									novoLog = new Logs(newlog)
+									novoLog.save(function (err) {
+												if (err) return console.log(err)
+												})
     }
     });
 

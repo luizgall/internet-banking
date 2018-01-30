@@ -17,8 +17,8 @@ app.use(function(req, res, next) {
   });
 
 var Users = require('./models/users')
+var Transacao = require('./models/transacoes')
 var Logs = require('./models/logs')
-
 Logs.remove({}, function(err){
 	console.log("Logs removidos")
 })
