@@ -19,9 +19,8 @@ import { UserDataService } from '../../services/user-data.service'
 })
 export class TransferenciaComponent implements OnInit {
 
-	amountToTransfer = document.getElementById('amountToTransfer');
-	
-
+	data = {}
+	logs = []
 	
 	pageTitle: string;
 	displayedColumns = [];
@@ -43,7 +42,7 @@ export class TransferenciaComponent implements OnInit {
 		private http: HttpClient,
 		private transferenciaService: TransferenciaService,
 		private router: Router,
-		private userData:UserDataService,
+		private userData: UserDataService,
 		private toasterService: ToasterService,
 		public token: TokenService
 	) {}
@@ -51,6 +50,13 @@ export class TransferenciaComponent implements OnInit {
 	ngOnInit() {
 		this.pageTitle = 'Transferência'
 
+		this.data = {
+			username: this.userData.name,
+			balance: this.userData.balance,
+			account: this.userData.account,
+			logs: this.userData.logs
+		}
+		this.logs = this.data['logs']
 	}
 	
 	onSubmit(){

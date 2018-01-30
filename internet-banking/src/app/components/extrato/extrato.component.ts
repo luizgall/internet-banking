@@ -20,13 +20,12 @@ export class ExtratoComponent implements OnInit {
 	constructor(
 		private extratoService: ExtratoService, 
 		private http: HttpClient, 
-		public token:TokenService,
+		public token: TokenService,
 		public userData: UserDataService
 	) {}
 	
 	logs = []
 	userAccount: Number
-
 
 	atualizar = () => {
 		if(EXTRATO_DATA.length === 0){
@@ -80,5 +79,4 @@ export interface Extrato {
 
 // Simulação de dados no caso tem que criar um array nesse formato
 // usando os logs
-let EXTRATO_DATA: Extrato[] = [
-];
+let EXTRATO_DATA: Extrato[] = [];

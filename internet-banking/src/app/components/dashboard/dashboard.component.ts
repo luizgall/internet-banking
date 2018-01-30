@@ -17,8 +17,7 @@ import { UserDataService } from "../../services/user-data.service";
 })
 export class DashboardComponent implements OnInit {
 	
-	
-	data ={}
+	data = {}
 	logs = []
 	
 	constructor(
@@ -39,7 +38,5 @@ export class DashboardComponent implements OnInit {
 		}
 		this.logs = this.data['logs']
 	}
-	
-
 
 }
