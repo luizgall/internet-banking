@@ -50,7 +50,6 @@ export class LoginComponent implements OnInit {
 	}
 	
 	onSubmit(){
-		console.log(this.userData.apiKey)
 		if (this.logado === undefined) {
 			this.logado = false
 		}

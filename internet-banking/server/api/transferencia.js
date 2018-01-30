@@ -1,4 +1,4 @@
-module.exports = function (Logs, Users, request, response, JWT, CHAVESECRETA, apiKey){
+module.exports = function (Transacao, Users, request, response, JWT, CHAVESECRETA, apiKey){
     let value = request.body.value
 	let dest = request.body.dest
 	let receivedApiKey = request.body.apiKey
@@ -32,7 +32,7 @@ module.exports = function (Logs, Users, request, response, JWT, CHAVESECRETA, ap
 								destName: doc.name,
 								value: -value
 							}
-							let instance = new Logs(log)
+							let instance = new Transacao(log)
 							docs.logs.push(log)
 							docs.save()
 							instance.save(function (err) {
@@ -46,7 +46,7 @@ module.exports = function (Logs, Users, request, response, JWT, CHAVESECRETA, ap
 								destName: docs.name,
 								value: value
 							}
-							instance = new Logs(log)
+							instance = new Transacao(log)
 							instance.save(function (err) {
 							if (err) return console.log(err)
 							})
