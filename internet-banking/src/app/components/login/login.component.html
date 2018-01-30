@@ -39,7 +39,8 @@
 						<div fxFlex="90">
 							<mat-form-field class="form-field full-width">
 								<input 
-									matInput 
+									matInput
+									id="senha" 
 									type="password" 
 									placeholder="Senha eletrônica" 
 									[formControl]="passwordFormControl" 
@@ -57,14 +58,15 @@
 							</mat-form-field>
 						</div>
 					</div>
-					<div class="form-group">
+					<!-- <div class="form-group">
 						<mat-slide-toggle [(ngModel)]="logado" name="logado" color="primary">continuar logado</mat-slide-toggle>
-					</div>
+					</div> -->
 					<div class="form-group">
 						<button
 							type="submit"
 							mat-raised-button 
 							color="primary" 
+							id="logar"
 							class="text-uppercase full-width btn-large"
 						>Acessar minha conta</button>
 					</div>

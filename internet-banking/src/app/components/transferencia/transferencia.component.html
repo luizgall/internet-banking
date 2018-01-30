@@ -21,6 +21,7 @@
 						<mat-form-field class="form-field full-width">
 							<input 
 								matInput 
+								id="valorTranfer"
 								required
 								pattern="[0-9]+([\.,][0-9]+)?"
 								placeholder="Valor a transferir"  
@@ -45,6 +46,7 @@
 							<input
 								id="amountToTransfer"
 								matInput
+								id="contaDestino"
 								placeholder="Conta destino" 
 								required
 								pattern="[0-9]{0,4}"
@@ -83,7 +85,12 @@
 				<div class="form-group">
 					<button 
 						mat-raised-button 
+<<<<<<< HEAD
+						id="confirmaTransfer"
+						color="accent" 
+=======
 						color="primary" 
+>>>>>>> 609a79a12112f2d65313a8c74f3b7ef1bcdbc8a5
 						class="text-uppercase full-width btn-large"
 						[disabled]="account.errors?.required"
 					>Confirmar transferência</button>
