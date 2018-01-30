@@ -3,28 +3,29 @@ module.exports = function (Logs, Users, request, response, JWT, CHAVESECRETA, ap
 	let dest = request.body.dest
 	let receivedApiKey = request.body.apiKey
 	const tokenDoUsuario = request.body.token
+	let password = request.body.password
 	
 	if(receivedApiKey === apiKey){
 			if(tokenDoUsuario) {
 			JWT.verify(tokenDoUsuario, CHAVESECRETA, function(erro, tokenDecodificado) {
 				if(tokenDecodificado) {
-				Users.find({"account":tokenDecodificado.account}, function (err, docs) {
-					if(docs.length === 0){
-					response.send({msg:"Senha inválida"})
-					} else if (docs.length === 1){
-					if(docs[0].balance < value ){
+				Users.findOne({"account":tokenDecodificado.account}, function (err, docs) {
+					 docs.comparePassword(password, function(err, isMatch){
+						if(err) throw err
+						if(isMatch){
+					if(docs.balance < value ){
 						response.send({msg:"Saldo insuficiente"})
 					} else{
 						Users.findOne({"account":dest},function(err, doc){
 						if(doc === null){
 							response.send({msg:"Destinatário não encontrado"})
-						} else if(doc.account === docs[0].account){
+						} else if(doc.account === docs.account){
 							response.send({msg:"Conta inválida"})
 						} 
 						else{
-							docs[0].balance -= value
+							docs.balance -= value
 							log =
-							 {	msg: "Transferência de " + value + " para " + doc.account + " no dia " + new Date(), 	account:docs[0].account,
+							 {	msg: "Transferência de " + value + " para " + doc.account + " no dia " + new Date(), 	account:docs.account,
 								type:false,
 								date: new Date(),
 								destAccount: doc.account,
@@ -32,8 +33,8 @@ module.exports = function (Logs, Users, request, response, JWT, CHAVESECRETA, ap
 								value: -value
 							}
 							let instance = new Logs(log)
-							docs[0].logs.push(log)
-							docs[0].save()
+							docs.logs.push(log)
+							docs.save()
 							instance.save(function (err) {
 							if (err) return console.log(err)
 							})
@@ -41,8 +42,8 @@ module.exports = function (Logs, Users, request, response, JWT, CHAVESECRETA, ap
 							 {	msg: "Depósito de  " + value + " recebido de " + doc.account + " no dia " + new Date(), 	account:doc.account,
 								type:true,
 								date: new Date(),
-								destAccount: docs[0].account,
-								destName: docs[0].name,
+								destAccount: docs.account,
+								destName: docs.name,
 								value: value
 							}
 							instance = new Logs(log)
@@ -53,13 +54,21 @@ module.exports = function (Logs, Users, request, response, JWT, CHAVESECRETA, ap
 							doc.logs.push(log)
 							doc.save()
 							if (request.body.email){
-								let email = require('../email/sendEmail')(docs[0], doc, value)
+								let email = require('../email/sendEmail')(docs, doc, value)
 							}
-							response.send({msg:"Transação concluída!", seuSaldo:docs[0].balance, saldoDest: doc.balance, data: new Date()})
-						}
+
+							x = docs.logs.reverse()
+							response.send(
+								{msg:"Transação concluída!", seuSaldo:docs.balance, saldoDest: doc.balance, data: new Date(), balance:docs.balance, logs: x.slice(0,3)})
+						}	
 						})
 					}
-					}
+					
+						}
+					
+					else{
+						response.send({msg: "Senha inválida"})
+					}})
 				})
 		
 				} else {

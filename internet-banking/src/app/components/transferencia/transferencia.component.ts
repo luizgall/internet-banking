@@ -66,12 +66,15 @@ export class TransferenciaComponent implements OnInit {
 		}
 		this.transferenciaService.transfer(
 
-			this.password, this.email, this.userData.apiKey, this.token.token.value, parseFloat(this.value.replace(",", ".")), this.toAccount, this.afterSubmit
+		this.password, this.email, this.userData.apiKey, this.token.token.value, parseFloat(this.value.replace(",", ".")), this.toAccount, this.afterSubmit
 		);
 	}
 	
 	afterSubmit = (res) => {
 		if(res.msg == 'Transação concluída!'){
+
+			this.userData.balance = res['balance']
+			this.userData.logs = res['logs']
 			let mensagem = `
 			${res.msg}
 
