@@ -38,6 +38,7 @@ export class TransferenciaComponent implements OnInit {
 	toAccount
 	value
 	email
+	password
 	constructor(
 		private http: HttpClient,
 		private transferenciaService: TransferenciaService,
@@ -65,7 +66,7 @@ export class TransferenciaComponent implements OnInit {
 		}
 		this.transferenciaService.transfer(
 
-			this.email, this.userData.apiKey, this.token.token.value, parseFloat(this.value.replace(",", ".")), this.toAccount, this.afterSubmit
+			this.password, this.email, this.userData.apiKey, this.token.token.value, parseFloat(this.value.replace(",", ".")), this.toAccount, this.afterSubmit
 		);
 	}
 	

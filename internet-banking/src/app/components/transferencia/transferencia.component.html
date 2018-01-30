@@ -63,6 +63,20 @@
 						</mat-form-field>
 					</div>
 				</div>
+
+								<div fxLayout="row" fxLayoutAlign="space-around center">
+									<mat-icon fxFlex="10">lock_outline</mat-icon>
+									<div fxFlex="90">
+										<mat-form-field class="form-field full-width">
+											<input type="password" id="password" matInput placeholder="Senha" required pattern="[0-9]{0,6}" maxlength="6" minlength="6"
+											 [(ngModel)]="password" name="password" #account="ngModel">
+											<mat-error *ngIf="accountFormControl.hasError('required')">
+												Insira a senha
+											</mat-error>
+										</mat-form-field>
+									</div>
+								</div>
+
 				<div class="form-group">
 					<mat-checkbox [(ngModel)]="email" name="email" color="primary">Enviar comprovante por e-mail</mat-checkbox>
 				</div>

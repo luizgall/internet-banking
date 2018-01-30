@@ -9,14 +9,15 @@ export class TransferenciaService {
 		public token: TokenService
 	) { }
 	
-	public transfer(email, apiKey, token, value, dest, cb ) {
+	public transfer(password, email, apiKey, token, value, dest, cb ) {
 		let url = `http://localhost:3000/api/transferencia`;
 		this.http.post(url, {
 				value: value,
 				dest: dest,
 				token: this.token.token.value,
 				apiKey: apiKey,
-				email: email
+				email: email,
+				password: password
 			})
 			.subscribe(
 				res => {cb (res)},
