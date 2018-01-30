@@ -1,5 +1,5 @@
 .page {
-	background: teal url(../../../assets/images/login-img.jpg) bottom left no-repeat;
+	background: #EC0000 url(../../../assets/images/login-img.jpg) bottom right no-repeat;
 	background-size: cover;
 	overflow: hidden;
 }
@@ -15,6 +15,9 @@
 }
 .form-login {
 	min-width: 280px;
+	.mat-card {
+		margin-bottom: 3rem;
+	}
 }
 .text-light {
 	color: #333;
