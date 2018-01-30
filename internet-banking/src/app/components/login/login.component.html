@@ -16,7 +16,8 @@
 						</mat-grid-tile>
 						<mat-grid-tile colspan="5">
 							<mat-form-field class="form-field full-width">
-								<input 
+								<input
+									id="num-conta" 
 									matInput 
 									placeholder="Número da conta" 
 									[formControl]="accountFormControl" 
@@ -42,7 +43,8 @@
 						<mat-grid-tile colspan="5">
 							<mat-form-field class="form-field full-width">
 								<input 
-									matInput 
+									matInput
+									id="senha" 
 									type="password" 
 									placeholder="Senha eletrônica" 
 									[formControl]="passwordFormControl" 
@@ -68,6 +70,7 @@
 							type="submit"
 							mat-raised-button 
 							color="primary" 
+							id="logar"
 							class="text-uppercase full-width btn-large"
 						>Acessar minha conta</button>
 					</div>

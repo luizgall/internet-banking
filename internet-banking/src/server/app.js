@@ -103,5 +103,5 @@ app.post('/api/user', (request,response) => {
 var httpServer = http.createServer(app);
 var httpsServer = https.createServer(options, app);
 
-httpServer.listen(3000);
+//httpServer.listen(3000);
 httpsServer.listen(3001);
