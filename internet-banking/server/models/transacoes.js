@@ -1,15 +1,8 @@
 // Dependencies 
 var restful = require('node-restful');
 var mongoose = restful.mongoose;
-
-var CounterSchema = new mongoose.Schema({
-    _id: {type: String, required: true},
-    seq: { type: Number, default: 0 }
-});
-var counter = mongoose.model('counter', CounterSchema);
-
 // Schema
-var logSchema = new mongoose.Schema({
+var transSchema = new mongoose.Schema({
     account: 
     {type: Number,
     required: true,
@@ -47,4 +40,4 @@ var logSchema = new mongoose.Schema({
 })
 
    
-module.exports = restful.model('Log', logSchema);
+module.exports = restful.model('Transacao', transSchema);

@@ -39,6 +39,8 @@ app.use(function(req, res, next) {
   
 var Users = require('./models/users');
 var Transacao = require('./models/transacoes')
+var Logs = require('./models/logs')
+
  //carregar seeds se banco estiver vazio 	
 Users.find({}, function (err, docs) {
    if(docs.length === 0){ // Se a coleção estiver vazia, popula o banco com os dados do seed.json
@@ -56,19 +58,19 @@ app.use('/api', require('./routes/api'));
 
 // Definir rotas da api
 app.post('/api/login', function(request, response){
-  	require('./api/login')(Users, request, response, JWT, CHAVESECRETA, apiKey)
+  	require('./api/login')(Logs, Users, request, response, JWT, CHAVESECRETA, apiKey)
 });
 
 
 app.post('/api/transferencia', function(request, response){
- 	require('./api/transferencia')(Transacao, Users, request, response, JWT, CHAVESECRETA, apiKey)
+ 	require('./api/transferencia')(Logs, Transacao, Users, request, response, JWT, CHAVESECRETA, apiKey)
 })
 
 
 
 
 app.post('/api/extrato', function(request, response){
-	require('./api/extrato')(Users, request, response, JWT, CHAVESECRETA, apiKey)
+	require('./api/extrato')(Logs, Users, request, response, JWT, CHAVESECRETA, apiKey)
 
 })
 

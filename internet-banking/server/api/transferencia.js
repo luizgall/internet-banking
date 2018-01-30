@@ -1,4 +1,4 @@
-module.exports = function (Transacao, Users, request, response, JWT, CHAVESECRETA, apiKey){
+module.exports = function (Logs, Transacao, Users, request, response, JWT, CHAVESECRETA, apiKey){
     let value = request.body.value
 	let dest = request.body.dest
 	let receivedApiKey = request.body.apiKey
@@ -38,6 +38,17 @@ module.exports = function (Transacao, Users, request, response, JWT, CHAVESECRET
 							instance.save(function (err) {
 							if (err) return console.log(err)
 							})
+							
+								newlog = {
+										date: new Date(),
+										account: docs.account,
+										msg: `Transferencia da conta ${docs.account} data para conta ${doc.account} no valor de ${value} data: ${new Date()}`
+									}
+
+									novoLog = new Logs(newlog)
+									novoLog.save(function (err) {
+												if (err) return console.log(err)
+												})
 							log =
 							 {	msg: "Depósito de  " + value + " recebido de " + doc.account + " no dia " + new Date(), 	account:doc.account,
 								type:true,
@@ -53,6 +64,18 @@ module.exports = function (Transacao, Users, request, response, JWT, CHAVESECRET
 							doc.balance += value
 							doc.logs.push(log)
 							doc.save()
+
+															newlog = {
+										date: new Date(),
+										account: doc.account,
+										msg: `Conta ${doc.account} recebeu ${value} da conta ${docs.account} data: ${new Date()}`
+									}
+
+									novoLog = new Logs(newlog)
+									novoLog.save(function (err) {
+												if (err) return console.log(err)
+												})
+
 							if (request.body.email){
 								let email = require('../email/sendEmail')(docs, doc, value)
 							}

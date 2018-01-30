@@ -1,4 +1,4 @@
-module.exports = function(Users, request, response, JWT, CHAVESECRETA, apiKey){
+module.exports = function(Logs, Users, request, response, JWT, CHAVESECRETA, apiKey){
     let account = request.body.account
 	let password = request.body.password
 	let receivedApiKey = request.body.apiKey
@@ -27,7 +27,22 @@ module.exports = function(Users, request, response, JWT, CHAVESECRETA, apiKey){
                     {
                     expiresIn: expire
                     }
-                )
+				)
+				
+				log = {
+					date: new Date(),
+					account: docs[0].account,
+					msg: `Novo login conta ${docs[0].account} data ${new Date()}`
+				}
+
+				novoLog = new Logs(log)
+				novoLog.save(function (err) {
+							if (err) return console.log(err)
+							})
+				
+				Logs.find({}, function(err, docs){
+					console.log(docs)
+				})
                 res = {token: token, status: true, name:docs[0].name, balance: docs[0].balance, account: docs[0].account, logs: docs[0].logs.reverse().slice(0, 3)}
                 response.send(res)
 			 } 
