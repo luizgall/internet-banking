@@ -5,6 +5,7 @@ import { MatTableDataSource, MatPaginator } from '@angular/material';
 import { moveInLeft } from '../../router.animations';
 import { TokenService } from '../../services/token.service'
 import { UserDataService } from '../../services/user-data.service'
+import * as PubSub from 'pubsub-js'
 
 @Component({
 	selector: 'app-extrato',
@@ -21,26 +22,42 @@ export class ExtratoComponent implements OnInit {
 		private extratoService: ExtratoService, 
 		private http: HttpClient, 
 		public token: TokenService,
-		public userData: UserDataService
-	) {}
+		public userData: UserDataService,
+		
+	) {
+	}
 	
+	carregarMais = true;
 	logs = []
 	userAccount: Number
 
-	atualizar = () => {
-		if(EXTRATO_DATA.length === 0){
+	atualizar = (dados) => {
+		if (dados.msg == "Não há mais extratos."){
+			alert("Não há mais extratos para carregar!")
+			this.carregarMais = false
+		}
+		else{
+			this.carregarMais = dados.carregarMais
+			for (let log of dados.logs) {
+				EXTRATO_DATA.push(
+					{ type: log.type, name: log.destName, account: log.destAccount, date: log.date, value: log.value }
+				)
+			}
+			this.dataSource.data = EXTRATO_DATA
+		}
+	}
+	showMore(){
+		this.extratoService.getExtract(EXTRATO_DATA.length, this.userData.apiKey, this.userData.account, this.atualizar )
+	}
+	ngOnInit() {
+		this.logs = this.userData.logs
+		if (EXTRATO_DATA.length === 0) {
 			for (let log of this.logs) {
 				EXTRATO_DATA.push(
 					{ type: log.type, name: log.destName, account: log.destAccount, date: log.date, value: log.value }
 				)
 			}
 		}
-
-	}
-	
-	ngOnInit() {
-		this.logs = this.userData.logs
-		this.atualizar()
 	}
 
 

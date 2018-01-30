@@ -10,9 +10,9 @@ export class ExtratoService {
 		public token: TokenService
 	) {}
 	
-	public getExtract(apiKey, account, cb) {
+	public getExtract(len, apiKey, account, cb) {
 		let url = `http://localhost:3000/api/extrato`;
-		this.http.post(url, { account: account, token: this.token.token.value, apiKey: apiKey})
+		this.http.post(url, {len:len, account: account, token: this.token.token.value, apiKey: apiKey})
 			.subscribe(
 				res => {
 					if(res['status']) {
