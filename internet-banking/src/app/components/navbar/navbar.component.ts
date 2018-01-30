@@ -25,8 +25,7 @@ export class NavbarComponent implements OnInit {
 		private route: ActivatedRoute,
 		public token: TokenService,
 		public userData: UserDataService
-	) {
-	}
+	) {}
 		
 	ngOnInit() {
 	}

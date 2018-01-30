@@ -24,7 +24,9 @@
 					<!-- Type Column -->
 					<ng-container matColumnDef="type">
 						<mat-header-cell *matHeaderCellDef> Tipo: </mat-header-cell>
-						<mat-cell *matCellDef="let extrato"><mat-icon>{{ extrato.type ? 'arrow_forward' : 'arrow_back' }}</mat-icon></mat-cell>
+						<mat-cell *matCellDef="let extrato">
+							<mat-icon class="type">{{ extrato.type ? 'arrow_forward' : 'arrow_back' }}</mat-icon>
+						</mat-cell>
 					</ng-container>
 			
 					<!-- Name Column -->
@@ -48,7 +50,11 @@
 					<!-- Symbol Column -->
 					<ng-container matColumnDef="value">
 						<mat-header-cell *matHeaderCellDef> Valor: </mat-header-cell>
-						<mat-cell *matCellDef="let extrato"> {{extrato.value | currency: 'BRL':'symbol'}} </mat-cell>
+						<mat-cell *matCellDef="let extrato">
+							<span [ngClass]="{'value-credit': extrato.type, 'value-debit': !extrato.type }">
+								{{extrato.value | currency: 'BRL':'symbol'}}
+							</span>
+						</mat-cell>
 					</ng-container>
 			
 					<mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

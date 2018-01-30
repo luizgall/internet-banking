@@ -4,7 +4,10 @@ import { TokenService } from '../../services/token.service'
 @Injectable()
 export class TransferenciaService {
 	
-	constructor(private http: HttpClient, public token:TokenService) { }
+	constructor(
+		private http: HttpClient, 
+		public token: TokenService
+	) { }
 	
 	public transfer(email, apiKey, token, value, dest, cb ) {
 		let url = `http://localhost:3000/api/transferencia`;

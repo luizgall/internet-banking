@@ -85,7 +85,15 @@
 		</div>
 		<div class="sidenav-content">
 			<mat-list>
-				<h3 mat-subheader>Navegação</h3>
+
+				<!-- 
+					Google apps não tem isso, mas talvez seja bom add um botão para fechar a sidenav 
+				<mat-list-item (click)="sidenav.toggle()">
+					<mat-icon mat-list-icon>arrow_back</mat-icon>
+				</mat-list-item>
+				<mat-divider></mat-divider>
+				 -->
+
 				<mat-list-item routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="sidenav.toggle()">
 					<mat-icon mat-list-icon>home</mat-icon>
 					<h4 mat-line>Home</h4>
@@ -110,7 +118,7 @@
 					<mat-icon mat-list-icon>settings</mat-icon>
 					<h4 mat-line>Configurações</h4>
 				</mat-list-item>
-				<mat-list-item>
+				<mat-list-item (click)="desconectar()">
 					<mat-icon mat-list-icon>exit_to_app</mat-icon>
 					<h4 mat-line>Desconectar</h4>
 				</mat-list-item>
