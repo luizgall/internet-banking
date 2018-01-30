@@ -6,6 +6,7 @@ import { moveInLeft } from '../../router.animations';
 import { TokenService } from '../../services/token.service'
 import { UserDataService } from '../../services/user-data.service'
 import * as PubSub from 'pubsub-js'
+import { ToasterService } from '../../services/toaster.service';
 
 @Component({
 	selector: 'app-extrato',
@@ -21,6 +22,7 @@ export class ExtratoComponent implements OnInit {
 	constructor(
 		private extratoService: ExtratoService, 
 		private http: HttpClient, 
+		private toaster: ToasterService,
 		public token: TokenService,
 		public userData: UserDataService,
 		
@@ -33,7 +35,9 @@ export class ExtratoComponent implements OnInit {
 
 	atualizar = (dados) => {
 		if (dados.msg == "Não há mais extratos."){
-			alert("Não há mais extratos para carregar!")
+
+			this.toaster.showToaster('Não há mais extratos para carregar!', 'alert-warning')
+
 			this.carregarMais = false
 		}
 		else{
