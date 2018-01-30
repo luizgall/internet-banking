@@ -21,7 +21,7 @@ var logSchema = new mongoose.Schema({
 		required: true},
 	
 	type:{
-		type:String,
+		type:Boolean,
 		required:true
 	},
 	date:{
@@ -30,6 +30,11 @@ var logSchema = new mongoose.Schema({
 	},
 	destAccount:{
 		type:Number,
+		required:true
+	},
+
+	destName:{
+		type:String,
 		required:true
 	},
 	value:{

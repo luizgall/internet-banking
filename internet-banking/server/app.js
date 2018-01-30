@@ -38,7 +38,7 @@ app.use(function(req, res, next) {
 
   
 var Users = require('./models/users');
-var Logs = require('./models/logs')
+var Transacao = require('./models/transacoes')
  //carregar seeds se banco estiver vazio 	
 Users.find({}, function (err, docs) {
    if(docs.length === 0){ // Se a coleção estiver vazia, popula o banco com os dados do seed.json
@@ -61,14 +61,14 @@ app.post('/api/login', function(request, response){
 
 
 app.post('/api/transferencia', function(request, response){
- 	require('./api/transferencia')(Logs, Users, request, response, JWT, CHAVESECRETA, apiKey)
+ 	require('./api/transferencia')(Transacao, Users, request, response, JWT, CHAVESECRETA, apiKey)
 })
 
 
 
 
 app.post('/api/extrato', function(request, response){
-	require('./api/extrato')(Logs, request, response, JWT, CHAVESECRETA, apiKey)
+	require('./api/extrato')(Users, request, response, JWT, CHAVESECRETA, apiKey)
 
 })
 

@@ -6,9 +6,6 @@
 .login-header {
 	color: #fff;
 	text-align: center;
-	h1 {
-		margin-top: 0;
-	}
 	h2 {
 		font-weight: 100;
 		@media (max-width: 480px) {
@@ -19,6 +16,16 @@
 .form-login {
 	min-width: 280px;
 }
-.opacity-9 {
-	background: rgba(#fff, 0.9);
+.text-light {
+	color: #333;
+	a {
+		font-weight: 500;
+		text-decoration: none;
+		&.avanade-link {
+			color: #e54e07;
+		}
+		&.gama-link {
+			color: #63dc3e;
+		}
+	}
 }

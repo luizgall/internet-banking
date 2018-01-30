@@ -4,10 +4,11 @@ import { HttpClient } from "@angular/common/http"
 import { Router } from '@angular/router'
 import { MatTableDataSource } from '@angular/material';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import { Globals } from '../../model/Globals.module';
 import { ToasterService } from '../../services/toaster.service';
 import { moveInLeft } from '../../router.animations';
 import { TransferenciaService } from './transferencia.service';
+import { TokenService } from '../../services/token.service'
+import { UserDataService } from '../../services/user-data.service'
 
 @Component({
 	selector: 'app-transferencia',
@@ -17,6 +18,9 @@ import { TransferenciaService } from './transferencia.service';
 	host: { '[@moveInLeft]': '' }
 })
 export class TransferenciaComponent implements OnInit {
+
+	data = {}
+	logs = []
 	
 	pageTitle: string;
 	displayedColumns = [];
@@ -30,55 +34,47 @@ export class TransferenciaComponent implements OnInit {
 		Validators.required
 	]);
 	
-	data = {
-		username: "",
-		balance: 0,
-		account: 0,
-		logs: []
-	}
 	
 	toAccount
 	value
 	email
+	password
 	constructor(
 		private http: HttpClient,
 		private transferenciaService: TransferenciaService,
 		private router: Router,
-		private global: Globals,
-		private toasterService: ToasterService
+		private userData: UserDataService,
+		private toasterService: ToasterService,
+		public token: TokenService
 	) {}
 	
 	ngOnInit() {
-		let url = `https://ng-bankline.herokuapp.com/api/user`;
-		this.http.post(url, {token: localStorage.getItem("auth-token")})
-			.subscribe(
-				res => {
-					this.data.username = res['username']
-					this.data.balance = res['balance']
-					this.data.account = res["account"]
-					this.data.logs =  res['logs'] 
-				}
-			)
 		this.pageTitle = 'Transferência'
-		console.log(this.pageTitle)	
+
+		this.data = {
+			username: this.userData.name,
+			balance: this.userData.balance,
+			account: this.userData.account,
+			logs: this.userData.logs
+		}
+		this.logs = this.data['logs']
 	}
 	
 	onSubmit(){
-		this.global.getApiKey(this.submitTransferencia)
-	}
-	
-	submitTransferencia  = (apiKey) =>{
-		if (this.email == undefined){
+		if (this.email == undefined) {
 			this.email = false
 		}
 		this.transferenciaService.transfer(
 
-			this.email, apiKey, localStorage.getItem("auth-token"), parseFloat(this.value.replace(",", ".")), this.toAccount, this.afterSubmit
+		this.password, this.email, this.userData.apiKey, this.token.token.value, parseFloat(this.value.replace(",", ".")), this.toAccount, this.afterSubmit
 		);
 	}
 	
 	afterSubmit = (res) => {
 		if(res.msg == 'Transação concluída!'){
+
+			this.userData.balance = res['balance']
+			this.userData.logs = res['logs']
 			let mensagem = `
 			${res.msg}
 

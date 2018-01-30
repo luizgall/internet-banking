@@ -2,33 +2,34 @@
 
 	<mat-card fxFlex="50" fxFlex.sm="100">
 		<mat-card-title>Saldo em conta</mat-card-title>
+		<mat-card-subtitle>Seu saldo total disponível para transações.</mat-card-subtitle>		
 		<h3 class="balance">{{ data.balance | currency:'BRL':'symbol' }}</h3>
 	
 		<div class="f-right mt-2">
-			<a routerLink="transferencia" mat-button color="primary" id="transfer">Fazer transferência</a>
+			<a routerLink="transferencia" mat-button color="accent" id="transfer">Fazer transferência</a>
 		</div>
 	</mat-card>
 
 	<mat-card fxFlex="50" fxFlex.sm="100">
 		<mat-card-title>Lançamentos recentes</mat-card-title>
-		
+		<mat-card-subtitle>Confira abaixo um resumo das útlimas transações realizadas.</mat-card-subtitle>
 		<div class="table-container" *ngIf="logs.length;else nothingToShow">
 			<mat-list>
 				<mat-list-item fxLayout="column">
 					<div fxFlex="20"><small>Tipo:</small></div>
 					<div fxFlex="60"><small>Valor:</small></div>
 					<div fxFlex="30"><small>Data:</small></div>
-					<div fxFlex="10"><small>Conta:</small></div>
+					<div fxFlex="10" class="from-account"><small>Conta:</small></div>
 				</mat-list-item>
 				<mat-list-item *ngFor="let log of logs | slice:0:3;" fxLayout="column">
-					<div fxFlex="20" class="type"><mat-icon>{{ log.recebimento ? 'arrow_back' : 'arrow_forward' }}</mat-icon></div> 
-					<div fxFlex="60" class="value">{{ log.value | currency: 'BRL':'symbol' }}</div> 
+					<div fxFlex="20" class="type"><mat-icon>{{ log.type ? 'arrow_forward' : 'arrow_back' }}</mat-icon></div> 
+					<div fxFlex="60" [ngClass]="{'value-credit': log.type, 'value-debit': !log.type }">{{ log.value | currency: 'BRL':'symbol' }}</div> 
 					<div fxFlex="30" class="date">{{ log.date | date: 'dd/MM/yyyy' }}</div>
 					<div fxFlex="10" class="from-account">{{ log.destAccount }}</div>
 				</mat-list-item>
 			</mat-list>
 			<div class="f-right mt-2">
-				<a routerLink="extrato" mat-button color="primary" id="viewExtrato">Ver extrato completo</a>
+				<a routerLink="extrato" mat-button color="accent" id="viewExtrato">Ver extrato completo</a>
 			</div>
 		</div>
 

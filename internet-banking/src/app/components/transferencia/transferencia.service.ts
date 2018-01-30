@@ -1,19 +1,23 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-
+import { TokenService } from '../../services/token.service'
 @Injectable()
 export class TransferenciaService {
 	
-	constructor(private http: HttpClient) { }
+	constructor(
+		private http: HttpClient, 
+		public token: TokenService
+	) { }
 	
-	public transfer(email, apiKey, token, value, dest, cb ) {
-		let url = `https://ng-bankline.herokuapp.com/api/transferencia`;
+	public transfer(password, email, apiKey, token, value, dest, cb ) {
+		let url = `http://localhost:3000/api/transferencia`;
 		this.http.post(url, {
 				value: value,
 				dest: dest,
-				token: localStorage.getItem('auth-token'),
+				token: this.token.token.value,
 				apiKey: apiKey,
-				email: email
+				email: email,
+				password: password
 			})
 			.subscribe(
 				res => {cb (res)},

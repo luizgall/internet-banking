@@ -1,4 +1,4 @@
-// navbar
+/* main navbar */
 .main-toolbar {
 	@media (max-width: 960px) {
 		position: fixed;
@@ -34,4 +34,55 @@
 
 .mat-button.active {
 	color: #111;
+}
+
+/* sidenav */
+.sidenav-container {
+	background: transparent;
+	height: 100%;
+	left: 0;
+	position: fixed;
+	right: 0;
+	visibility: hidden;
+	width: 100%;
+	z-index: 1000;	
+}
+.sidenav {
+	overflow-y: auto;
+	width: 320px;
+}
+.sidenav-header {
+	background: #000 url(../../../assets/images/sidenav-header-img.jpg) center no-repeat;
+	background-size: cover;
+	height: 160px;
+	.infos {
+		color: #fff;
+		padding: 16px 16px 8px;
+		.avatar {
+			height: 60px;
+			margin-bottom: 16px;
+			line-height: 60px;
+			width: 60px;
+		}
+	}
+}
+
+.mat-list-item {
+	outline: none;
+	cursor: pointer;
+	transition: 0.3s;
+	&.active, &:hover {
+		background: rgba(#000, 0.05);
+		h4, .mat-icon {
+			color: #1565C0;
+		}
+	}
+	.mat-icon {
+		color: #607D8B;
+	}
+	h4 {
+		color: #000;
+		font-size: 14px;
+		font-weight: 500;
+	}
 }

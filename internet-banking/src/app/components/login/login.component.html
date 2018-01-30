@@ -2,22 +2,19 @@
 
 	<div class="container vertical-center horizontal enter-from-top">
 		<header class="login-header">
-			<h1>NG Bank<span class="text-thin">LINE</span></h1>
+			<h1><img src="./assets/images/logo.png" alt="NG Bank Line" width="260"></h1>
 			<h2 class="headline">Seja bem-vindo ao seu banco<br /> 100% online</h2>
 		</header>
 
-		<mat-card class="opacity-9">
+		<mat-card>
 			<div class="form-login">
 				<form (ngSubmit)="onSubmit()">
 
-					<mat-grid-list cols="6" rowHeight="70">
-						<mat-grid-tile colspan="1">
-							<mat-icon>person_outline</mat-icon>
-						</mat-grid-tile>
-						<mat-grid-tile colspan="5">
+					<div fxLayout="row" fxLayoutAlign="space-around center">
+						<mat-icon fxFlex="10">person_outline</mat-icon>
+						<div fxFlex="90">
 							<mat-form-field class="form-field full-width">
 								<input
-									id="num-conta" 
 									matInput 
 									placeholder="Número da conta" 
 									[formControl]="accountFormControl" 
@@ -25,6 +22,7 @@
 									maxlength="4" 
 									minlength="4" 
 									[(ngModel)] = "data.account"
+									class="inputContaLogin"
 								>
 								<mat-error *ngIf="accountFormControl.hasError('pattern') || accountFormControl.hasError('minlength')">
 									Conta inválida
@@ -33,14 +31,12 @@
 									Insira o número da conta
 								</mat-error>
 							</mat-form-field>
-						</mat-grid-tile>
-					</mat-grid-list>
+						</div>
+					</div>
 
-					<mat-grid-list cols="6" rowHeight="70">
-						<mat-grid-tile colspan="1">
-							<mat-icon>lock_outline</mat-icon>
-						</mat-grid-tile>
-						<mat-grid-tile colspan="5">
+					<div fxLayout="row" fxLayoutAlign="space-around center">
+						<mat-icon fxFlex="10">lock_outline</mat-icon>
+						<div fxFlex="90">
 							<mat-form-field class="form-field full-width">
 								<input 
 									matInput
@@ -60,11 +56,11 @@
 									A senha deve ser numérica
 								</mat-error>
 							</mat-form-field>
-						</mat-grid-tile>
-					</mat-grid-list>
-					<div class="form-group">
-						<mat-slide-toggle [(ngModel)]="logado" name="logado">continuar logado</mat-slide-toggle>
+						</div>
 					</div>
+					<!-- <div class="form-group">
+						<mat-slide-toggle [(ngModel)]="logado" name="logado" color="primary">continuar logado</mat-slide-toggle>
+					</div> -->
 					<div class="form-group">
 						<button
 							type="submit"
@@ -77,6 +73,7 @@
 				</form>
 			</div>
 		</mat-card>
+		<p class="text-light"><small>powered by <a class="avanade-link" href="https://www.avanade.com/" target="_blank">Avanade</a> & <a class="gama-link" href="http://gama.academy/" target="_blank">Gama Academy</a></small></p>
 	</div>
 
 </div>

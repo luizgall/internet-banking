@@ -1,8 +1,10 @@
 <div class="container" fxLayout="row" fxLayoutAlign="center start" fxLayoutGap="32px">
 	<mat-card fxFlex="100">
 		<mat-card-title>Extrato completo</mat-card-title>
-		
+
 		<div *ngIf="logs.length;else nothingToShow">
+			<mat-card-subtitle>Lista completa de transações realizadas. Use o campo de busca abaixo para filtrar por conta, nome, data ou nome do usuário.</mat-card-subtitle>		
+			
 			<!-- <mat-list *ngFor="let log of logs">
 				<mat-list-item>{{ log.value }} - {{ log.date | date: 'dd/MM/yyyy' }} - {{ log.destAccount }}</mat-list-item>
 			</mat-list> -->
@@ -22,7 +24,9 @@
 					<!-- Type Column -->
 					<ng-container matColumnDef="type">
 						<mat-header-cell *matHeaderCellDef> Tipo: </mat-header-cell>
-						<mat-cell *matCellDef="let extrato"><mat-icon>{{ extrato.type ? 'arrow_forward' : 'arrow_back' }}</mat-icon></mat-cell>
+						<mat-cell *matCellDef="let extrato">
+							<mat-icon class="type">{{ extrato.type ? 'arrow_forward' : 'arrow_back' }}</mat-icon>
+						</mat-cell>
 					</ng-container>
 			
 					<!-- Name Column -->
@@ -40,18 +44,27 @@
 					<!-- Date Column -->
 					<ng-container matColumnDef="date">
 						<mat-header-cell *matHeaderCellDef> Data: </mat-header-cell>
-						<mat-cell *matCellDef="let extrato"> {{extrato.date}} </mat-cell>
+						<mat-cell *matCellDef="let extrato"> {{extrato.date | date: 'dd/MM/yyyy' }} </mat-cell>
 					</ng-container>
 			
 					<!-- Symbol Column -->
 					<ng-container matColumnDef="value">
 						<mat-header-cell *matHeaderCellDef> Valor: </mat-header-cell>
-						<mat-cell *matCellDef="let extrato"> {{extrato.value | currency: 'BRL':'symbol'}} </mat-cell>
+						<mat-cell *matCellDef="let extrato">
+							<span [ngClass]="{'value-credit': extrato.type, 'value-debit': !extrato.type }">
+								{{extrato.value | currency: 'BRL':'symbol'}}
+							</span>
+						</mat-cell>
 					</ng-container>
 			
 					<mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
 					<mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
 				</mat-table>
+				<button class="load-more-btn" mat-button *ngIf="this.carregarMais;else noMoreItems" (click)="showMore()"><mat-icon>sync</mat-icon> Carregar mais</button>
+
+				<ng-template #noMoreItems>
+					<p class="text-center">Não há mais extratos</p>
+				</ng-template>
 
 				<!-- paginator provavelmente terá que ficar pra proxima atualização -->
 				<!-- <mat-paginator #paginator [pageSize]="5" [pageSizeOptions]="[5, 10, 20]"></mat-paginator> -->
