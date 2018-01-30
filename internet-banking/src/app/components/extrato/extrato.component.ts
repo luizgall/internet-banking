@@ -58,6 +58,7 @@ export class ExtratoComponent implements OnInit {
 				)
 			}
 		}
+		this.dataSource.data = EXTRATO_DATA
 	}
 
 
