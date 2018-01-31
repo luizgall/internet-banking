@@ -2,7 +2,7 @@
 	<mat-toolbar-row [fxLayout]="row" fxLayoutAlign="space-between center">
 
 		<div fxShow fxShow.gt-sm="false">
-			<button mat-icon-button (click)="sidenav.toggle()">
+			<button mat-icon-button (click)="sidenav.toggle()" id="menuBurgerBtn">
 				<mat-icon aria-label="Menu">menu</mat-icon>
 			</button>
 		</div>
@@ -31,11 +31,11 @@
 					<mat-icon>home</mat-icon>
 					<span>Início</span>
 				</a>
-				<a routerLink="/transferencia" routerLinkActive="active" mat-button>
+				<a routerLink="/transferencia" routerLinkActive="active" mat-button id="transferBtnDesktop">
 					<mat-icon>swap_vert</mat-icon>
 					<span>Transferência</span>
 				</a>
-				<a routerLink="/extrato" routerLinkActive="active" mat-button>
+				<a routerLink="/extrato" routerLinkActive="active" mat-button id="extratoBtnDesktop">
 					<mat-icon>format_list_bulleted</mat-icon>
 					<span>Extrato</span>
 				</a>
@@ -53,7 +53,7 @@
 					<mat-icon>settings</mat-icon>
 					<span>Configurações</span>
 				</button>
-				<button mat-menu-item (click)="desconectar()" id="logOutBtn">
+				<button mat-menu-item (click)="desconectar()" id="logOutDesktop">
 					<mat-icon>exit_to_app</mat-icon>
 					<span>Desconectar</span>
 				</button>
@@ -98,11 +98,11 @@
 					<mat-icon mat-list-icon>home</mat-icon>
 					<h4 mat-line>Home</h4>
 				</mat-list-item>
-				<mat-list-item routerLink="/transferencia" routerLinkActive="active" (click)="sidenav.toggle()">
+				<mat-list-item routerLink="/transferencia" routerLinkActive="active" (click)="sidenav.toggle()" id="transferBtnMobile">
 					<mat-icon mat-list-icon>swap_vert</mat-icon>
 					<h4 mat-line>Transferência</h4>
 				</mat-list-item>
-				<mat-list-item routerLink="/extrato" routerLinkActive="active" (click)="sidenav.toggle()">
+				<mat-list-item routerLink="/extrato" routerLinkActive="active" (click)="sidenav.toggle()" id="extratoBtnMobile">
 					<mat-icon mat-list-icon>format_list_bulleted</mat-icon>
 					<h4 mat-line>Extrato completo</h4>
 				</mat-list-item>
@@ -118,7 +118,7 @@
 					<mat-icon mat-list-icon>settings</mat-icon>
 					<h4 mat-line>Configurações</h4>
 				</mat-list-item>
-				<mat-list-item (click)="desconectar()">
+				<mat-list-item (click)="desconectar()" id="logOutMobile">
 					<mat-icon mat-list-icon>exit_to_app</mat-icon>
 					<h4 mat-line>Desconectar</h4>
 				</mat-list-item>
