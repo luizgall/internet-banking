@@ -41,7 +41,7 @@
 				</a>
 			</span>
 
-			<button mat-icon-button [matMenuTriggerFor]="menu">
+			<button mat-icon-button [matMenuTriggerFor]="menu" id="tresPontosBtn">
 				<mat-icon>more_vert</mat-icon>
 			</button>
 			<mat-menu #menu="matMenu">
@@ -53,7 +53,7 @@
 					<mat-icon>settings</mat-icon>
 					<span>Configurações</span>
 				</button>
-				<button mat-menu-item (click)="desconectar()">
+				<button mat-menu-item (click)="desconectar()" id="logOutBtn">
 					<mat-icon>exit_to_app</mat-icon>
 					<span>Desconectar</span>
 				</button>
