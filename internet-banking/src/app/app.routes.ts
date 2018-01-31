@@ -12,7 +12,7 @@ const appRoutes: Routes = [
 	{ path: '', component: DashboardComponent, canActivate: [LoginGuard] },
 	{ path: 'login', component: LoginComponent, canActivate: [SessionGuard] },
 	{ path: 'extrato', component: ExtratoComponent, canActivate: [LoginGuard] },
-	{ path: 'transferencia', component: TransferenciaComponent, canActivate: [LoginGuard], data: { titulo: 'Transferencia' } },
+	{ path: 'transferencia', component: TransferenciaComponent, canActivate: [LoginGuard] },
 	{ path: '**', redirectTo: '' },
 ];
 
