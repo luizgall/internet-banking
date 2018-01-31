@@ -40,9 +40,6 @@ module.exports = function(Logs, Users, request, response, JWT, CHAVESECRETA, api
 							if (err) return console.log(err)
 							})
 				
-				Logs.find({}, function(err, docs){
-					console.log(docs)
-				})
                 res = {token: token, status: true, name:docs[0].name, balance: docs[0].balance, account: docs[0].account, logs: docs[0].logs.reverse().slice(0, 3)}
                 response.send(res)
 			 } 

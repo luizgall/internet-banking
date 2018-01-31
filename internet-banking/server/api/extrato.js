@@ -1,7 +1,8 @@
-module.exports = function(Users, request, response, JWT, CHAVESECRETA, apiKey){  
+module.exports = function(Logs, Users, request, response, JWT, CHAVESECRETA, apiKey){  
   let account = request.body.account
   let requestApiKey = request.body.apiKey
   let len = request.body.len
+
   if(requestApiKey === apiKey){
 		 Users.findOne({"account":account}, (err, doc) => {
           if (doc !== null){
