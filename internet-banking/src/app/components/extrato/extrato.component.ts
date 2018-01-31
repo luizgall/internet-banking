@@ -17,7 +17,7 @@ import { ToasterService } from '../../services/toaster.service';
 })
 export class ExtratoComponent implements OnInit {
 	
-	pageTitle: string;
+	// pageTitle: string;
 
 	constructor(
 		private extratoService: ExtratoService, 

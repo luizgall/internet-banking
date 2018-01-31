@@ -1,14 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { HttpClient } from "@angular/common/http"
-import { Router } from '@angular/router'
+import { Router, ActivatedRoute } from '@angular/router'
 import { MatTableDataSource } from '@angular/material';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { ToasterService } from '../../services/toaster.service';
 import { moveInLeft } from '../../router.animations';
 import { TransferenciaService } from './transferencia.service';
-import { TokenService } from '../../services/token.service'
-import { UserDataService } from '../../services/user-data.service'
+import { TokenService } from '../../services/token.service';
+import { UserDataService } from '../../services/user-data.service';
+
+import * as Pubsub from 'pubsub-js';
 
 @Component({
 	selector: 'app-transferencia',
@@ -22,7 +24,7 @@ export class TransferenciaComponent implements OnInit {
 	data = {}
 	logs = []
 	
-	pageTitle: string;
+	// pageTitle: string;
 	displayedColumns = [];
 	dataSource;
 
@@ -34,7 +36,6 @@ export class TransferenciaComponent implements OnInit {
 		Validators.required
 	]);
 	
-	
 	toAccount
 	value
 	email
@@ -45,11 +46,17 @@ export class TransferenciaComponent implements OnInit {
 		private router: Router,
 		private userData: UserDataService,
 		private toasterService: ToasterService,
-		public token: TokenService
+		public token: TokenService,
+		private rotaAtiva: ActivatedRoute
 	) {}
 	
 	ngOnInit() {
-		this.pageTitle = 'Transferência'
+		// this.rotaAtiva.data.subscribe( dados => { 
+		// 	console.log(dados, dados.titulo)
+
+		// 	Pubsub.publish('MUDA_TITULO_NAVBAR', { pageTitle: dados.titulo })			
+		// })
+
 
 		this.data = {
 			username: this.userData.name,
@@ -58,6 +65,8 @@ export class TransferenciaComponent implements OnInit {
 			logs: this.userData.logs
 		}
 		this.logs = this.data['logs']
+
+		// console.log(this.data)
 	}
 	
 	onSubmit(){

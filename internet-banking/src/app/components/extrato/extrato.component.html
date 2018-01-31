@@ -58,10 +58,12 @@
 					</ng-container>
 			
 					<mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-					<mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+					<mat-row *matRowDef="let row; columns: displayedColumns;" tabindex="1"></mat-row>
 				</mat-table>
-				<button class="load-more-btn" mat-button *ngIf="this.carregarMais;else noMoreItems" (click)="showMore()"><mat-icon>sync</mat-icon> Carregar mais</button>
 
+				<div *ngIf="carregarMais;else noMoreItems">
+					<button class="load-more-btn" mat-button (click)="showMore()"><mat-icon>sync</mat-icon> Carregar mais</button>
+				</div>
 				<ng-template #noMoreItems>
 					<p class="text-center">Não há mais extratos</p>
 				</ng-template>

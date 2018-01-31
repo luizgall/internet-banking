@@ -1,8 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router'
 import { HttpClient } from '@angular/common/http';
-import { TokenService } from '../../services/token.service'
-import { UserDataService } from '../../services/user-data.service'
+import { TokenService } from '../../services/token.service';
+import { UserDataService } from '../../services/user-data.service';
+import * as Pubsub from 'pubsub-js';
 
 @Component({
 	selector: 'app-navbar',
@@ -11,7 +12,7 @@ import { UserDataService } from '../../services/user-data.service'
 })
 export class NavbarComponent implements OnInit {
 	
-	pageTitle: string;
+	// pageTitle: string;
 
 	data = {
 		username: this.userData.name,
@@ -28,6 +29,9 @@ export class NavbarComponent implements OnInit {
 	) {}
 		
 	ngOnInit() {
+		// Pubsub.subscribe('MUDA_TITULO_NAVBAR', function(canal, dados) {
+		// 	this.pageTitle = dados.titulo
+		// })
 	}
 		
 	desconectar(){
