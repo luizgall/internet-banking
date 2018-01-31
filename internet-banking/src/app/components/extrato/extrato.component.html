@@ -58,7 +58,7 @@
 					</ng-container>
 			
 					<mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-					<mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+					<mat-row *matRowDef="let row; columns: displayedColumns;" tabindex="1"></mat-row>
 				</mat-table>
 
 				<div *ngIf="carregarMais;else noMoreItems">

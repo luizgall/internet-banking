@@ -24,7 +24,7 @@ export class TransferenciaComponent implements OnInit {
 	data = {}
 	logs = []
 	
-	pageTitle: string;
+	// pageTitle: string;
 	displayedColumns = [];
 	dataSource;
 
@@ -51,11 +51,11 @@ export class TransferenciaComponent implements OnInit {
 	) {}
 	
 	ngOnInit() {
-		this.rotaAtiva.data.subscribe( dados => { 
-			console.log(dados, dados.titulo)
+		// this.rotaAtiva.data.subscribe( dados => { 
+		// 	console.log(dados, dados.titulo)
 
-			Pubsub.publish('MUDA_TITULO_NAVBAR', { pageTitle: dados.titulo })			
-		})
+		// 	Pubsub.publish('MUDA_TITULO_NAVBAR', { pageTitle: dados.titulo })			
+		// })
 
 
 		this.data = {
@@ -66,7 +66,7 @@ export class TransferenciaComponent implements OnInit {
 		}
 		this.logs = this.data['logs']
 
-		console.log(this.data)
+		// console.log(this.data)
 	}
 	
 	onSubmit(){

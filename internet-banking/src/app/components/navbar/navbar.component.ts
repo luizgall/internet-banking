@@ -12,7 +12,7 @@ import * as Pubsub from 'pubsub-js';
 })
 export class NavbarComponent implements OnInit {
 	
-	pageTitle: string;
+	// pageTitle: string;
 
 	data = {
 		username: this.userData.name,
@@ -29,9 +29,9 @@ export class NavbarComponent implements OnInit {
 	) {}
 		
 	ngOnInit() {
-		Pubsub.subscribe('MUDA_TITULO_NAVBAR', function(canal, dados) {
-			this.pageTitle = dados.titulo
-		})
+		// Pubsub.subscribe('MUDA_TITULO_NAVBAR', function(canal, dados) {
+		// 	this.pageTitle = dados.titulo
+		// })
 	}
 		
 	desconectar(){
